@@ -6,8 +6,6 @@ import javax.swing.JFrame;
 public class AdaptableViewLogIn extends JFrame{
 	public ObservableViewLogIn viewObservable;
 	
-	//Constructeur de la classe
-	//Doit créer la vue avec 2 texts fields, 2 labels et 1 button
 	public AdaptableViewLogIn(){
 		
 	}
