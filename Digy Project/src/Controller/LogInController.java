@@ -10,14 +10,17 @@ import View.*;
 public class LogInController implements Observer{
 	private String user_id;
 	private char[] password;
+	private AdaptableViewLogIn viewAdaptable;
 	
 	public LogInController(){
 		this.user_id = null;
 		this.password = null;
-		AdaptableViewLogIn viewAdaptable = new AdaptableViewLogIn(); // On crée notre AdaptableView
-		viewAdaptable.addObserver(this);							 // On ajoute l'observer à l'adaptable view 
+		setViewAdaptable(new AdaptableViewLogIn()); // On crée notre AdaptableView
+		getViewAdaptable().addObserver(this);							 // On ajoute l'observer à l'adaptable view 
 	}
 	
+	
+	//GETTEURS & SETTEURS
 	private String getUserId(){
 		return user_id;
 	}
@@ -34,19 +37,29 @@ public class LogInController implements Observer{
 		this.password = password;
 	}
 	
+	private AdaptableViewLogIn getViewAdaptable(){
+		return this.viewAdaptable;
+	}
+	
+	private void setViewAdaptable(AdaptableViewLogIn viewAdaptable){
+		this.viewAdaptable = viewAdaptable;
+	}
+	
 	
 	//Fonction qui traite et vérifie que le compte existe
 	private void handleLogIn(){
 		String myPassword = "mdp";			//Juste pour tester avec un seul utilisateur
 		String myUser = "fbeiger";
+		String msg = "";
 		
 		String newPassword = String.valueOf(password);		// On transforme notre mot de passe en String
 		if(myUser.equals(getUserId()) && myPassword.equals(newPassword)){
-			System.out.println("Hi " + this.user_id + " !");
+			msg = ("Hi " + this.user_id + " !");
 		}
 		else{
-			System.out.println("Error wrong User ID and/or Password !");
+			msg = ("Error wrong User ID and/or Password !");
 		}
+		getViewAdaptable().displayMessage(msg);
 	}
 
 	

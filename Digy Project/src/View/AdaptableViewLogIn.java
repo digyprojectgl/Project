@@ -37,4 +37,8 @@ public class AdaptableViewLogIn extends Observable{
 		notifyObservers();				//On notifie alors l'observer
 	}
 	
+	public void displayMessage(String msg){
+		this.viewLogIn.displayMessage(msg);
+	}
+	
 }
