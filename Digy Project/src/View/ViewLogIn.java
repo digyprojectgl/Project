@@ -24,26 +24,28 @@ public class ViewLogIn extends JFrame implements ActionListener{
 		this.viewAdaptable = viewAdaptable;			//On référence ici l'adaptableView
 		
 		Container contentPane = getContentPane(); 	//Super Container
-		JPanel contentFields = new JPanel();		//Container user + password
+		JPanel contentFields = new JPanel(new GridLayout(2,0));		//Container user + password
 		
-		JPanel userPanel = new JPanel();			//Panel dans lequel on aura les champs "user"
+		JPanel userPanel = new JPanel();			//Panel dans lequel on aura les label
+		JPanel passPanel = new JPanel();			//Panel dans lequel on aura les champs password et user_id
+		
 		JLabel user_id = new JLabel("User ID");		//Label "User ID"
 		text_user = new JTextArea(1,10);	//Text Field dans lequel le user va entrer son id
 		
 		userPanel.add(user_id);						//On ajoute le label et le text area au panel
 		userPanel.add(text_user);
 		
-		JPanel passPanel = new JPanel();			//Panel dans lequel on aura les champs password
+		
 		JLabel password = new JLabel("Password");	//Label "Password"
 		passwordField = new JPasswordField(10);//PAssword field
 		
 		passPanel.add(password);					//On ajoute le label et le passwordField
 		passPanel.add(passwordField);
 		
-		contentFields.add(userPanel, BorderLayout.NORTH);	//On ajoute les 2 panels au container fields, 
-		contentFields.add(passPanel, BorderLayout.CENTER);
+		contentFields.add(userPanel);	//On ajoute les 2 panels au container fields, 
+		contentFields.add(passPanel);
 		
-		contentPane.add(contentFields, BorderLayout.CENTER);// On ajoute le container au SuperContainer, contrainte CENTER
+		contentPane.add(contentFields, BorderLayout.NORTH);// On ajoute le container au SuperContainer, contrainte CENTER
 		
 		submit = new JButton("Submit");		//Bouton 'submit'
 		submit.addActionListener(this);
