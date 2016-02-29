@@ -11,6 +11,24 @@ public abstract class User {
     private String tel;
     private String email;
 
+    public User(String userID, String password, String name, String adress, String tel, String email){
+    	this.userID = userID;
+    	this.password = password;
+    	this.name = name;
+    	this.adress = adress;
+    	this.tel = tel;
+    	this.email = email;
+    }
+    
+    public User(){
+    	this.userID = null;
+    	this.password = null;
+    	this.name = null;
+    	this.adress = null;
+    	this.tel = null;
+    	this.email = null;
+    }
+    
     public abstract Comment postComment(User from, String message);
 
     public abstract void deleteComment(Comment comment);

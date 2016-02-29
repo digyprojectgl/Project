@@ -1,5 +1,7 @@
 package app.model.dao;
 
+import app.model.User;
+
 public class UserFactory {
 
 	public UserFactory(){
