@@ -1,33 +1,28 @@
-package View;
+package UI.views;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import UI.controllers.LogInController;
+
 
 //Cette classe est la vue LogIn 
 //Elle va afficher les 2 text fields (user_id & password)
 //Quand l'utilisateur appuie sur le boutton 'Submit'
 //Appelle le controller avec les infos (user_id & password)
-public class ViewLogIn extends JFrame implements ActionListener{
-	public AdaptableViewLogIn viewAdaptable;
+public class ViewLogIn implements ActionListener{
 	JTextArea text_user;
 	JPasswordField passwordField;
-	JButton submit;
-	
-	Container contentPane;	//Super Container	
-	
+	JButton submit;	
+	LogInController logInController;
 	
 	//Constructeur
-	public ViewLogIn(AdaptableViewLogIn viewAdaptable){
-		//Paramètres de la fenêtre
-		super("LogIn View");
-		setSize(600, 400);
-		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //Fermeture de la fenêtre auto
-		setViewAdaptable(viewAdaptable);			//On référence ici l'adaptableView
-		
-		contentPane = getContentPane(); 	
+	public ViewLogIn(Container contentPane){
+		logInController = new LogInController(contentPane);
+				
 		JPanel contentFields = new JPanel(new GridLayout(2,0));		//Container user + password
 		
 		JPanel userPanel = new JPanel();			//Panel dans lequel on aura les label
@@ -54,21 +49,11 @@ public class ViewLogIn extends JFrame implements ActionListener{
 		setButtonSubmit(new JButton("Submit"));		//Bouton 'submit'
 		getButtonSubmit().addActionListener(this);
 		contentPane.add(submit, BorderLayout.SOUTH);
-
-		setVisible(true);
 	}
 	
 	
 	//GETTEURS & SETTEURS
 	
-	//AdaptableView
-	private AdaptableViewLogIn getViewAdaptable(){
-		return this.viewAdaptable;
-	}
-	private void setViewAdaptable(AdaptableViewLogIn viewAdaptable){
-		this.viewAdaptable = viewAdaptable;
-	}
-
 	//Text User
 	private JTextArea getTextUser(){
 		return this.text_user;
@@ -99,15 +84,9 @@ public class ViewLogIn extends JFrame implements ActionListener{
 	//ActionPerformed lorsque le bouton submit est appuyé
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		viewAdaptable.change(text_user.getText(), passwordField.getPassword());		//On apelle la fonction change de AdaptableView
-	}
-	
-	
-	//Fonction exécutée après le traitement du controlleur
-	public void displayMessage(String msg){
-		JTextField messageAccepted = new JTextField();
-		messageAccepted.setText(msg);
-		contentPane.add(messageAccepted, BorderLayout.CENTER);
-		setVisible(true);
+		
+		String username = getTextUser().getText().toString();
+		String password = String.valueOf(getPasswordField().getPassword());
+		logInController.handleLogIn(username, password);
 	}
 }
