@@ -20,7 +20,13 @@ public class LogInController {
 	
 	public void handleLogIn(String username, String password){
 		//Todo appel à la façade puis mets à jour la vue
-		String answer = LogInFacade.handleLogIn(username, password);
+		String answer;
+		try {
+			answer = ("Hi " + LogInFacade.handleLogIn(username, password) + " !");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			answer = e.toString();
+		}
 		new HomeView(contentPane, answer);
 		
 	}

@@ -5,8 +5,8 @@ import app.services.UserService;
 
 public class LogInFacade {
 	
-	public static String handleLogIn(String username, String password){
-		User answer = UserService.handleLogIn(username, password);
-		return answer.name;
+	public static String handleLogIn(String userID, String password) throws Exception{
+		User answer = UserService.handleLogIn(userID, password);
+		return answer.getUserID();
 	}
 }

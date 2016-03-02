@@ -10,6 +10,18 @@ public class UserJDBC extends User {
 		super();
 	}
 	
+	public static User findUser(String userID) throws Exception{
+		User myUser = new UserJDBC();
+		myUser.setUserID("user");
+		myUser.setPassword("mdp");
+		if(myUser.getUserID().equals(userID)){
+			return myUser;
+		}
+		else{
+			throw new Exception("User not find !");
+		}
+	}
+	
 	@Override
 	public Comment postComment(User from, String message) {
 		// TODO Auto-generated method stub

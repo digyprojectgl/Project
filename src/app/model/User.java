@@ -29,6 +29,23 @@ public abstract class User {
     	this.email = null;
     }
     
+    //GETTERS & SETTERS
+    public String getUserID(){
+    	return this.userID;
+    }
+    
+    public String getPassword(){
+    	return this.password;
+    }
+    
+    public void setUserID(String userID){
+    	this.userID = userID;
+    }
+    
+    public void setPassword(String password){
+    	this.password = password;
+    }
+    
     public abstract Comment postComment(User from, String message);
 
     public abstract void deleteComment(Comment comment);
