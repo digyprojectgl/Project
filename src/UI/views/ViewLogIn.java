@@ -9,17 +9,23 @@ import javax.swing.*;
 import UI.controllers.LogInController;
 
 
-//Cette classe est la vue LogIn 
-//Elle va afficher les 2 text fields (user_id & password)
-//Quand l'utilisateur appuie sur le boutton 'Submit'
-//Appelle le controller avec les infos (user_id & password)
+/**
+ * Display 2 text fields (user_id & password).
+ * Call the LogIn Controller with user_id & password when the submit button is turned on.
+ * @author francois.beiger
+ *
+ */
 public class ViewLogIn implements ActionListener{
 	JTextArea text_user;
 	JPasswordField passwordField;
 	JButton submit;	
 	LogInController logInController;
 	
-	//Constructeur
+	/**
+	 * Constructor.
+	 * Create all the JFrame components then adds them to the contentPane.
+	 * @param contentPane
+	 */
 	public ViewLogIn(Container contentPane){
 		logInController = new LogInController(contentPane);
 				
@@ -52,28 +58,52 @@ public class ViewLogIn implements ActionListener{
 	}
 	
 	
-	//GETTEURS & SETTEURS
+	//GETTERS & SETTERS
 	
-	//Text User
+	/**
+	 * Get the user_ID
+	 * @return JTextArea
+	 */
 	private JTextArea getTextUser(){
 		return this.text_user;
 	}
+	
+	/**
+	 * Set the text_user. Have to place a JTextArea in parameter.
+	 * @param text_user
+	 */
 	private void setTextUser(JTextArea text_user){
 		this.text_user = text_user;
 	}
 	
-	//Password Field
+	/**
+	 * Get the passwordField.
+	 * @return JPasswordField.
+	 */
 	private JPasswordField getPasswordField(){
 		return this.passwordField;
 	}
+	
+	/**
+	 * Set the passwordField. Must place a JPasswordField in parameter.
+	 * @param passwordField.
+	 */
 	private void setPasswordField(JPasswordField passwordField){
 		this.passwordField = passwordField;
 	}
 	
-	//Submit Button
+	/**
+	 * Get the submit button.
+	 * @return JButton
+	 */
 	private JButton getButtonSubmit(){
 		return this.submit;
 	}
+	
+	/**
+	 * Set the submit button. Must place a JButton in parameter.
+	 * @param submit
+	 */
 	private void setButtonSubmit(JButton submit){
 		this.submit = submit;
 	}
@@ -81,7 +111,10 @@ public class ViewLogIn implements ActionListener{
 	
 	
 	
-	//ActionPerformed lorsque le bouton submit est appuyé
+	//ActionPerformed
+	/**
+	 * Calls the logInController, who is in charge of handling the LogIn.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		

@@ -1,8 +1,12 @@
 import UI.MainView;
-import UI.controllers.LogInController;
 
 
-//Main de l'application
+/**
+ * Main of the app.
+ * Create the MainView.
+ * @author francois.beiger
+ *
+ */
 public class Digy {
 	public static void main(String args[]){
 		new MainView();

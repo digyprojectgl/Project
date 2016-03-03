@@ -1,18 +1,21 @@
 package UI;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 import UI.controllers.LogInController;
 
 
-//Créé la fenêtre de l'application 
-//Créé le controllerLogIn qui affiche les props. du log in
+/**
+ * Create the view of the app. Only the contentPane change
+ * @author francois.beiger
+ *
+ */
 public class MainView extends JFrame{
 	Container contentPane;	//Super Container	
 	
 	
-	//Constructeur
+	/**
+	 * Constructer, create the LogInController, create the content pane, then give it to the controller
+	 */
 	public MainView(){
 		//Paramètres de la fenêtre
 		super("Digy");

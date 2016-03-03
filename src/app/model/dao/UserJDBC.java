@@ -4,12 +4,27 @@ import app.model.Comment;
 import app.model.Notification;
 import app.model.User;
 
+/**
+ * Class in charge of linking the model to the database.
+ * No database provide for the moment.
+ * @author francois.beiger
+ *
+ */
 public class UserJDBC extends User {
 	
 	UserJDBC(){
 		super();
 	}
 	
+	/**
+	 * Static method.
+	 * No database yet.
+	 * Find a user by his userID. 
+	 * Throws an Exception if not found.
+	 * @param userID
+	 * @return User
+	 * @throws Exception
+	 */
 	public static User findUser(String userID) throws Exception{
 		User myUser = new UserJDBC();
 		myUser.setUserID("user");
@@ -18,7 +33,7 @@ public class UserJDBC extends User {
 			return myUser;
 		}
 		else{
-			throw new Exception("User not find !");
+			throw new Exception("User not found !");
 		}
 	}
 	
