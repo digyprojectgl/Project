@@ -1,7 +1,4 @@
 package UI.controllers;
-import java.awt.Container;
-
-import UI.views.HomeView;
 import UI.views.ViewLogIn;
 import app.facades.LogInFacade;
 
@@ -12,17 +9,11 @@ import app.facades.LogInFacade;
  *
  */
 public class LogInController {
-	private Container contentPane;
+	private SuperController superController;
 	
-	public LogInController(Container contentPane){
-		this.contentPane = contentPane;
-	}
-	
-	/**
-	 * Method which creates the viewLogIn.
-	 */
-	public void displayViewLogIn(){
-		new ViewLogIn(contentPane);
+	public LogInController(SuperController superController){
+		this.setSuperController(superController);
+		new ViewLogIn(superController.getContentPane(), this);
 	}
 	
 	/**
@@ -32,16 +23,23 @@ public class LogInController {
 	 * @param username
 	 * @param password
 	 */
-	public void handleLogIn(String username, String password){
+	public Object handleLogIn(String username, String password){
 		//Todo appel à la façade puis mets à jour la vue
-		String answer;
+		Object answer;
 		try {
 			answer = ("Hi " + LogInFacade.handleLogIn(username, password) + " !");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			answer = e.toString();
-		}
-		new HomeView(contentPane, answer);
-		
+			answer = e;
+		}	
+		return answer;
+	}
+
+	public SuperController getSuperController() {
+		return superController;
+	}
+
+	public void setSuperController(SuperController superController) {
+		this.superController = superController;
 	}
 }

@@ -31,8 +31,6 @@ public class UserService {
 		myUser.setPassword(password);
 		
 		User userFind = UserJDBC.findUser(myUser.getUserID());
-		System.out.println(userFind.getPassword());
-		System.out.println(myUser.getPassword());
 		if(userFind.getPassword().equals(myUser.getPassword())){
 			return userFind;
 		}

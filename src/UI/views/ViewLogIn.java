@@ -26,8 +26,8 @@ public class ViewLogIn implements ActionListener{
 	 * Create all the JFrame components then adds them to the contentPane.
 	 * @param contentPane
 	 */
-	public ViewLogIn(Container contentPane){
-		logInController = new LogInController(contentPane);
+	public ViewLogIn(Container contentPane, LogInController logInController){
+		this.logInController = logInController;
 				
 		JPanel contentFields = new JPanel(new GridLayout(2,0));		//Container user + password
 		
@@ -120,6 +120,12 @@ public class ViewLogIn implements ActionListener{
 		
 		String username = getTextUser().getText().toString();
 		String password = String.valueOf(getPasswordField().getPassword());
-		logInController.handleLogIn(username, password);
+		Object answer = logInController.handleLogIn(username, password);
+		if(answer instanceof Exception){ //It's an error
+			JOptionPane.showMessageDialog(null, answer, "You're not connected", JOptionPane.ERROR_MESSAGE);
+		}
+		else{ //It's good
+			JOptionPane.showMessageDialog(null, answer, "Welcome to Digy !", JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 }

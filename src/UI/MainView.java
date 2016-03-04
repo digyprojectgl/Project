@@ -2,6 +2,7 @@ package UI;
 import java.awt.*;
 import javax.swing.*;
 import UI.controllers.LogInController;
+import UI.controllers.SuperController;
 
 
 /**
@@ -10,21 +11,18 @@ import UI.controllers.LogInController;
  *
  */
 public class MainView extends JFrame{
-	Container contentPane;	//Super Container	
-	
-	
+	private SuperController superController;
 	/**
-	 * Constructer, create the LogInController, create the content pane, then give it to the controller
+	 * Constructor, create the LogInController, create the content pane, then give it to the controller
 	 */
-	public MainView(){
+	public MainView(SuperController superController){
 		//Paramètres de la fenêtre
 		super("Digy");
 		setSize(800, 600);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //Fermeture de la fenêtre auto
-
-		contentPane = getContentPane(); 
-		LogInController controlLogIn = new LogInController(contentPane);
-		controlLogIn.displayViewLogIn();
+		this.superController = superController;
+		this.superController.setContentPane(getContentPane());
 		setVisible(true);
 	}
+	
 }
