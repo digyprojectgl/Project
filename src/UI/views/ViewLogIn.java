@@ -1,33 +1,34 @@
-package View;
+package UI.views;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import UI.controllers.LogInController;
 
-//Cette classe est la vue LogIn 
-//Elle va afficher les 2 text fields (user_id & password)
-//Quand l'utilisateur appuie sur le boutton 'Submit'
-//Appelle le controller avec les infos (user_id & password)
-public class ViewLogIn extends JFrame implements ActionListener{
-	public AdaptableViewLogIn viewAdaptable;
+
+/**
+ * Display 2 text fields (user_id & password).
+ * Call the LogIn Controller with user_id & password when the submit button is turned on.
+ * @author francois.beiger
+ *
+ */
+public class ViewLogIn implements ActionListener{
 	JTextArea text_user;
 	JPasswordField passwordField;
-	JButton submit;
+	JButton submit;	
+	LogInController logInController;
 	
-	Container contentPane;	//Super Container	
-	
-	
-	//Constructeur
-	public ViewLogIn(AdaptableViewLogIn viewAdaptable){
-		//Paramètres de la fenêtre
-		super("LogIn View");
-		setSize(600, 400);
-		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //Fermeture de la fenêtre auto
-		setViewAdaptable(viewAdaptable);			//On référence ici l'adaptableView
-		
-		contentPane = getContentPane(); 	
+	/**
+	 * Constructor.
+	 * Create all the JFrame components then adds them to the contentPane.
+	 * @param contentPane
+	 */
+	public ViewLogIn(Container contentPane){
+		logInController = new LogInController(contentPane);
+				
 		JPanel contentFields = new JPanel(new GridLayout(2,0));		//Container user + password
 		
 		JPanel userPanel = new JPanel();			//Panel dans lequel on aura les label
@@ -54,41 +55,55 @@ public class ViewLogIn extends JFrame implements ActionListener{
 		setButtonSubmit(new JButton("Submit"));		//Bouton 'submit'
 		getButtonSubmit().addActionListener(this);
 		contentPane.add(submit, BorderLayout.SOUTH);
-
-		setVisible(true);
 	}
 	
 	
-	//GETTEURS & SETTEURS
+	//GETTERS & SETTERS
 	
-	//AdaptableView
-	private AdaptableViewLogIn getViewAdaptable(){
-		return this.viewAdaptable;
-	}
-	private void setViewAdaptable(AdaptableViewLogIn viewAdaptable){
-		this.viewAdaptable = viewAdaptable;
-	}
-
-	//Text User
+	/**
+	 * Get the user_ID
+	 * @return JTextArea
+	 */
 	private JTextArea getTextUser(){
 		return this.text_user;
 	}
+	
+	/**
+	 * Set the text_user. Have to place a JTextArea in parameter.
+	 * @param text_user
+	 */
 	private void setTextUser(JTextArea text_user){
 		this.text_user = text_user;
 	}
 	
-	//Password Field
+	/**
+	 * Get the passwordField.
+	 * @return JPasswordField.
+	 */
 	private JPasswordField getPasswordField(){
 		return this.passwordField;
 	}
+	
+	/**
+	 * Set the passwordField. Must place a JPasswordField in parameter.
+	 * @param passwordField.
+	 */
 	private void setPasswordField(JPasswordField passwordField){
 		this.passwordField = passwordField;
 	}
 	
-	//Submit Button
+	/**
+	 * Get the submit button.
+	 * @return JButton
+	 */
 	private JButton getButtonSubmit(){
 		return this.submit;
 	}
+	
+	/**
+	 * Set the submit button. Must place a JButton in parameter.
+	 * @param submit
+	 */
 	private void setButtonSubmit(JButton submit){
 		this.submit = submit;
 	}
@@ -96,18 +111,15 @@ public class ViewLogIn extends JFrame implements ActionListener{
 	
 	
 	
-	//ActionPerformed lorsque le bouton submit est appuyé
+	//ActionPerformed
+	/**
+	 * Calls the logInController, who is in charge of handling the LogIn.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		viewAdaptable.change(text_user.getText(), passwordField.getPassword());		//On apelle la fonction change de AdaptableView
-	}
-	
-	
-	//Fonction exécutée après le traitement du controlleur
-	public void displayMessage(String msg){
-		JTextField messageAccepted = new JTextField();
-		messageAccepted.setText(msg);
-		contentPane.add(messageAccepted, BorderLayout.CENTER);
-		setVisible(true);
+		
+		String username = getTextUser().getText().toString();
+		String password = String.valueOf(getPasswordField().getPassword());
+		logInController.handleLogIn(username, password);
 	}
 }
