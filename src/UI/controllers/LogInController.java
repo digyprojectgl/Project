@@ -13,6 +13,7 @@ import app.facades.LogInFacade;
  */
 public class LogInController {
 	private Container contentPane;
+	private LogInFacade loginfacade;
 	
 	public LogInController(Container contentPane){
 		this.contentPane = contentPane;
@@ -35,8 +36,9 @@ public class LogInController {
 	public void handleLogIn(String username, String password){
 		//Todo appel à la façade puis mets à jour la vue
 		String answer;
+		loginfacade = new LogInFacade();
 		try {
-			answer = ("Hi " + LogInFacade.handleLogIn(username, password) + " !");
+			answer = ("Hi " + loginfacade.handleLogIn(username, password).getUserID() + " !");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			answer = e.toString();

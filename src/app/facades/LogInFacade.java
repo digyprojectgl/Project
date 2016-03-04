@@ -9,8 +9,10 @@ import app.services.UserService;
  */
 public class LogInFacade {
 	
-	public static String handleLogIn(String userID, String password) throws Exception{
-		User answer = UserService.handleLogIn(userID, password);
-		return answer.getUserID();
+	private UserService userservice;
+	
+	public User handleLogIn(String userID, String password) throws Exception{
+		userservice = new UserService();
+		return userservice.handleLogIn(userID, password);
 	}
 }
