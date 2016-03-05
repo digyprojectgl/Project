@@ -23,6 +23,8 @@ public class UserService {
 	 */
 	public User handleLogIn(String userID, String password) throws Exception{
 		UserFactory factory = new UserFactory();
+		userID.trim();
+		userID.toLowerCase();
 		User myUser = factory.createUser(userID);
 
 		if(password.equals(myUser.getPassword())){
