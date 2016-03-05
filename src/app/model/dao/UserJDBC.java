@@ -1,5 +1,8 @@
 package app.model.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import app.model.Comment;
 import app.model.Notification;
 import app.model.User;
@@ -12,10 +15,6 @@ import app.model.User;
  */
 public class UserJDBC extends User {
 	
-	UserJDBC(){
-		super();
-	}
-	
 	/**
 	 * Static method.
 	 * No database yet.
@@ -25,16 +24,24 @@ public class UserJDBC extends User {
 	 * @return User
 	 * @throws Exception
 	 */
-	public static User findUser(String userID) throws Exception{
-		User myUser = new UserJDBC();
-		myUser.setUserID("user");
-		myUser.setPassword("mdp");
-		if(myUser.getUserID().equals(userID)){
-			return myUser;
+	public UserJDBC(String userID) throws Exception{
+		JdbcConnection connect = new JdbcConnection();
+		connect.openConnection();
+		ResultSet res = null;
+		
+		try{
+			String query ="SELECT * FROM User where login ='" + userID + "'";
+			connect.executeRequest(query);
+			while ((res = connect.fetchArray()) != null){
+				this.setUserID(res.getString("login"));
+				this.setPassword(res.getString("mdp"));
+
+			}
 		}
-		else{
-			throw new Exception("User not found !");
+		catch(SQLException e){
+			e.printStackTrace();
 		}
+		connect.close();
 	}
 	
 	@Override

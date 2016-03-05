@@ -13,8 +13,8 @@ public class UserFactory {
 		
 	}
 	
-	public User createUser(){
-		return new UserJDBC();
+	public User createUser(String userID) throws Exception{
+		return new UserJDBC(userID);
 	}
 	
 }

@@ -21,8 +21,14 @@ public class UserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public static User handleLogIn(String userID, String password) throws Exception{
+	public User handleLogIn(String userID, String password) throws Exception{
 		UserFactory factory = new UserFactory();
+<<<<<<< HEAD
+		User myUser = factory.createUser(userID);
+
+		if(password.equals(myUser.getPassword())){
+			return myUser;
+=======
 		User myUser = factory.createUser();
 		
 		userID.trim();
@@ -33,6 +39,7 @@ public class UserService {
 		User userFind = UserJDBC.findUser(myUser.getUserID());
 		if(userFind.getPassword().equals(myUser.getPassword())){
 			return userFind;
+>>>>>>> master
 		}
 		else{
 			throw new Exception("Wrong password !");

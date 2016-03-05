@@ -9,7 +9,16 @@ import app.facades.LogInFacade;
  *
  */
 public class LogInController {
+<<<<<<< HEAD
+	private Container contentPane;
+	private LogInFacade loginfacade;
+	
+	public LogInController(Container contentPane){
+		this.contentPane = contentPane;
+	}
+=======
 	private SuperController superController;
+>>>>>>> master
 	
 	public LogInController(SuperController superController){
 		this.setSuperController(superController);
@@ -25,9 +34,14 @@ public class LogInController {
 	 */
 	public Object handleLogIn(String username, String password){
 		//Todo appel à la façade puis mets à jour la vue
+<<<<<<< HEAD
+		String answer;
+		loginfacade = new LogInFacade();
+=======
 		Object answer;
+>>>>>>> master
 		try {
-			answer = ("Hi " + LogInFacade.handleLogIn(username, password) + " !");
+			answer = ("Hi " + loginfacade.handleLogIn(username, password).getUserID() + " !");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			answer = e;
