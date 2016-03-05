@@ -1,7 +1,5 @@
 package UI;
-import java.awt.*;
 import javax.swing.*;
-import UI.controllers.LogInController;
 import UI.controllers.SuperController;
 
 

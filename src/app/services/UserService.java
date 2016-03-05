@@ -23,23 +23,10 @@ public class UserService {
 	 */
 	public User handleLogIn(String userID, String password) throws Exception{
 		UserFactory factory = new UserFactory();
-<<<<<<< HEAD
 		User myUser = factory.createUser(userID);
 
 		if(password.equals(myUser.getPassword())){
 			return myUser;
-=======
-		User myUser = factory.createUser();
-		
-		userID.trim();
-		userID.toLowerCase();
-		myUser.setUserID(userID);
-		myUser.setPassword(password);
-		
-		User userFind = UserJDBC.findUser(myUser.getUserID());
-		if(userFind.getPassword().equals(myUser.getPassword())){
-			return userFind;
->>>>>>> master
 		}
 		else{
 			throw new Exception("Wrong password !");
