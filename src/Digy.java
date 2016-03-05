@@ -1,4 +1,4 @@
-import UI.MainView;
+import UI.controllers.SuperController;
 
 
 /**
@@ -9,6 +9,6 @@ import UI.MainView;
  */
 public class Digy {
 	public static void main(String args[]){
-		new MainView();
+		new SuperController();
 	}
 }
