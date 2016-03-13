@@ -11,14 +11,12 @@ import app.facades.LogInFacade;
  */
 public class LogInController {
 	private LogInFacade loginfacade;
-
-
-	private SuperController superController;
+	private RootController rootController;
 
 	
-	public LogInController(SuperController superController){
-		this.setSuperController(superController);
-		new ViewLogIn(superController.getContentPane(), this);
+	public LogInController(RootController rootController){
+		this.setRootController(rootController);
+		new ViewLogIn(rootController.getContentPane(), this);
 	}
 	
 	/**
@@ -42,11 +40,11 @@ public class LogInController {
 		return answer;
 	}
 
-	public SuperController getSuperController() {
-		return superController;
+	public RootController getRootController() {
+		return rootController;
 	}
 
-	public void setSuperController(SuperController superController) {
-		this.superController = superController;
+	public void setRootController(RootController rootController) {
+		this.rootController = rootController;
 	}
 }

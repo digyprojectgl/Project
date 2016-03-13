@@ -8,10 +8,10 @@ import UI.MainView;
  * @author francois.beiger
  *
  */
-public class SuperController {
+public class RootController {
 	Container contentPane;
 	
-	public SuperController(){
+	public RootController(){
 		new MainView(this);
 		new LogInController(this);
 		getContentPane().revalidate();
@@ -24,5 +24,11 @@ public class SuperController {
 	
 	public void setContentPane(Container contentPane){
 		this.contentPane = contentPane;
+	}
+	
+	public void goToSignUp(){
+		new SignUpController(this);
+		getContentPane().revalidate();
+		getContentPane().repaint();
 	}
 }

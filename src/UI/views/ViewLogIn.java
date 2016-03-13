@@ -25,6 +25,7 @@ public class ViewLogIn implements ActionListener{
 	 * Constructor.
 	 * Create all the JFrame components then adds them to the contentPane.
 	 * @param contentPane
+	 * @param logInContainer
 	 */
 	public ViewLogIn(Container contentPane, LogInController logInController){
 		this.logInController = logInController;
