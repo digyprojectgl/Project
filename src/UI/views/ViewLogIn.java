@@ -29,33 +29,39 @@ public class ViewLogIn implements ActionListener{
 	 */
 	public ViewLogIn(Container contentPane, LogInController logInController){
 		this.logInController = logInController;
-				
-		JPanel contentFields = new JPanel(new GridLayout(2,0));		//Container user + password
+			
+		JPanel totalContent = new JPanel();
 		
-		JPanel userPanel = new JPanel();			//Panel dans lequel on aura les label
-		JPanel passPanel = new JPanel();			//Panel dans lequel on aura les champs password et user_id
+		JPanel globalContent = new JPanel(new GridLayout(0,2));		//Container user + password
+		
+		JPanel labelPanel = new JPanel(new GridLayout(2,0));			//Panel dans lequel on aura les label
+		JPanel fieldPanel = new JPanel(new GridLayout(2,0));			//Panel dans lequel on aura les champs password et user_id
+		
+		JPanel submitPanel = new JPanel();
 		
 		JLabel user_id = new JLabel("User ID");		//Label "User ID"
 		setTextUser(new JTextField(10));	//Text Field dans lequel le user va entrer son id
-		
-		userPanel.add(user_id);						//On ajoute le label et le text area au panel
-		userPanel.add(getTextUser());
-		
-		
 		JLabel password = new JLabel("Password");	//Label "Password"
 		setPasswordField(new JPasswordField(10));//PAssword field
 		
-		passPanel.add(password);					//On ajoute le label et le passwordField
-		passPanel.add(getPasswordField());
+		labelPanel.add(user_id);						//On ajoute le label et le text area au panel
+		labelPanel.add(password);
+		fieldPanel.add(getTextUser());					//On ajoute le label et le passwordField
+		fieldPanel.add(getPasswordField());
 		
-		contentFields.add(userPanel);	//On ajoute les 2 panels au container fields, 
-		contentFields.add(passPanel);
+		globalContent.add(labelPanel);	//On ajoute les 2 panels au container fields, 
+		globalContent.add(fieldPanel);
 		
-		contentPane.add(contentFields, BorderLayout.NORTH);// On ajoute le container au SuperContainer, contrainte CENTER
+		totalContent.add(globalContent, BorderLayout.CENTER);
+		
+		contentPane.add(totalContent, BorderLayout.CENTER);// On ajoute le container au SuperContainer, contrainte CENTER
 		
 		setButtonSubmit(new JButton("Submit"));		//Bouton 'submit'
 		getButtonSubmit().addActionListener(this);
-		contentPane.add(submit, BorderLayout.SOUTH);
+		
+		submitPanel.add(getButtonSubmit());
+		
+		contentPane.add(submitPanel, BorderLayout.SOUTH);
 	}
 	
 	
