@@ -29,8 +29,11 @@ public class SignUpView {
 		JPanel totalPanel = new JPanel();
 		
 		JPanel globalContent = new JPanel(new GridLayout(0,2,0,0));
+		
 		JPanel labelPanel = new JPanel(new GridLayout(5,0,0,1));
 		JPanel fieldPanel = new JPanel(new GridLayout(5,0,0,1));
+		
+		JPanel submitPanel = new JPanel();
 		
 		JLabel firstName = new JLabel("First Name");
 		JLabel lastName = new JLabel("Last Name");
@@ -68,11 +71,12 @@ public class SignUpView {
 			}
 		});
 		
+		submitPanel.add(this.getSubmit());
+		
 		totalPanel.add(globalContent, BorderLayout.CENTER);
-		totalPanel.add(this.getSubmit(), BorderLayout.SOUTH);
-		
+	
 		contentPane.add(totalPanel, BorderLayout.CENTER);
-		
+		contentPane.add(submitPanel, BorderLayout.SOUTH);
 	}
 
 	private void submitAction(){
