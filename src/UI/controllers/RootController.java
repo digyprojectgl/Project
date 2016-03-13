@@ -13,7 +13,7 @@ public class RootController {
 	
 	public RootController(){
 		new MainView(this);
-		new LogInController(this);
+		new SignUpController(this);
 		getContentPane().revalidate();
 		getContentPane().repaint();
 	}

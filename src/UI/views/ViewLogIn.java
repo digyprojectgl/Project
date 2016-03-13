@@ -16,7 +16,7 @@ import UI.controllers.LogInController;
  *
  */
 public class ViewLogIn implements ActionListener{
-	JTextArea text_user;
+	JTextField text_user;
 	JPasswordField passwordField;
 	JButton submit;	
 	LogInController logInController;
@@ -36,7 +36,7 @@ public class ViewLogIn implements ActionListener{
 		JPanel passPanel = new JPanel();			//Panel dans lequel on aura les champs password et user_id
 		
 		JLabel user_id = new JLabel("User ID");		//Label "User ID"
-		setTextUser(new JTextArea(1,10));	//Text Field dans lequel le user va entrer son id
+		setTextUser(new JTextField(10));	//Text Field dans lequel le user va entrer son id
 		
 		userPanel.add(user_id);						//On ajoute le label et le text area au panel
 		userPanel.add(getTextUser());
@@ -65,7 +65,7 @@ public class ViewLogIn implements ActionListener{
 	 * Get the user_ID
 	 * @return JTextArea
 	 */
-	private JTextArea getTextUser(){
+	private JTextField getTextUser(){
 		return this.text_user;
 	}
 	
@@ -73,7 +73,7 @@ public class ViewLogIn implements ActionListener{
 	 * Set the text_user. Have to place a JTextArea in parameter.
 	 * @param text_user
 	 */
-	private void setTextUser(JTextArea text_user){
+	private void setTextUser(JTextField text_user){
 		this.text_user = text_user;
 	}
 	
