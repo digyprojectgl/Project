@@ -38,7 +38,7 @@ public class UserService {
 		userID.trim();
 		userID.toLowerCase();
 		UserFactory factory = new UserFactory();
-		
+		factory.createUser(firstName, lastName, userID, email, phoneNumber, address, password, confirm);
 		return null;
 		
 	}
