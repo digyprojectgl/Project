@@ -9,13 +9,18 @@ import UI.controllers.SignUpController;
 
 public class SignUpView {
 	SignUpController signUpController;
-	JTextField fieldFirstName;
-	JTextField fieldLastName;
-	JTextField fieldUserID;
-	JPasswordField fieldPassword;
-	JPasswordField fieldConfirm;
-	JButton submit;	
-	JButton alreadySignUp;
+	JTextField fieldFirstName = new JTextField(15);
+	JTextField fieldLastName = new JTextField(15);
+	JTextField fieldUserID = new JTextField(15);
+	
+	JTextField email = new JTextField(15);
+	JTextField address = new JTextField(15);
+	JTextField phoneNumber= new JTextField(10);
+	
+	JPasswordField fieldPassword = new JPasswordField(10);
+	JPasswordField fieldConfirm = new JPasswordField(10);
+	JButton submit = new JButton("Submit");	
+	JButton alreadySignUp = new JButton("Already sign up ?");
 	
 	
 	/**
@@ -32,39 +37,46 @@ public class SignUpView {
 		
 		JPanel globalField = new JPanel(new GridLayout(0,2,0,0));
 		
-		JPanel labelPanel = new JPanel(new GridLayout(5,0,0,1));
-		JPanel fieldPanel = new JPanel(new GridLayout(5,0,0,1));
+		JPanel labelPanel = new JPanel(new GridLayout(8,0,0,1));
+		JPanel fieldPanel = new JPanel(new GridLayout(8,0,0,1));
 		
 		JPanel buttonPanel = new JPanel();
+		
+		JLabel userType = new JLabel("Customer");
+		JPanel frameName = new JPanel();
+		frameName.add(userType);
 		
 		JLabel firstName = new JLabel("First Name");
 		JLabel lastName = new JLabel("Last Name");
 		JLabel userID = new JLabel("Username");
 		JLabel password = new JLabel("Password");
 		JLabel confirmPassword = new JLabel("Confirm your password");
-		
-		this.setFieldFirstName(new JTextField(10));
-		this.setFieldLastName(new JTextField(10));
-		this.setFieldUserID(new JTextField(10));
-		this.setFieldPassword(new JPasswordField(10));
-		this.setFieldConfirm(new JPasswordField(10));
+		JLabel emailLab = new JLabel("Email");
+		JLabel phoneNumberLab = new JLabel("Phone number");
+		JLabel addressLab = new JLabel("Address");
 		
 		labelPanel.add(firstName);
 		labelPanel.add(lastName);
 		labelPanel.add(userID);
+		labelPanel.add(emailLab);
+		labelPanel.add(phoneNumberLab);
+		labelPanel.add(addressLab);
 		labelPanel.add(password);
 		labelPanel.add(confirmPassword);
+		
 
 		fieldPanel.add(getFieldFirstName());
 		fieldPanel.add(getFieldLastName());
 		fieldPanel.add(getFieldUserID());
+		fieldPanel.add(getEmail());
+		fieldPanel.add(getPhoneNumber());
+		fieldPanel.add(getAddress());
 		fieldPanel.add(getFieldPassword());
 		fieldPanel.add(getFieldConfirm());
 		
 		globalField.add(labelPanel);
 		globalField.add(fieldPanel);
 		
-		this.setAlreadySignUp(new JButton("Already sign up ?"));
 		this.getAlreadySignUp().addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -72,10 +84,9 @@ public class SignUpView {
 				goToLogIn();
 			}
 		});
-		
 		buttonPanel.add(getAlreadySignUp());
 	
-		this.setSubmit(new JButton("Submit"));
+		
 		this.getSubmit().addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -83,14 +94,38 @@ public class SignUpView {
 				signUp();
 			}
 		});
-		
 		buttonPanel.add(this.getSubmit());
 		
 		totalPanel.add(globalField);
 		totalPanel.add(buttonPanel);
 		all.add(totalPanel);
 	
+		contentPane.add(frameName, BorderLayout.NORTH);
 		contentPane.add(all, BorderLayout.CENTER);
+	}
+
+	public JTextField getEmail() {
+		return email;
+	}
+
+	public void setEmail(JTextField email) {
+		this.email = email;
+	}
+
+	public JTextField getAddress() {
+		return address;
+	}
+
+	public void setAddress(JTextField address) {
+		this.address = address;
+	}
+
+	public JTextField getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(JTextField phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public JButton getAlreadySignUp() {

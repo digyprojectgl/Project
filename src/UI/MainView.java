@@ -1,5 +1,5 @@
 package UI;
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.Toolkit;
 
 import javax.swing.*;
