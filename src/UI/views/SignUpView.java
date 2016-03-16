@@ -15,6 +15,7 @@ public class SignUpView {
 	JPasswordField fieldPassword;
 	JPasswordField fieldConfirm;
 	JButton submit;	
+	JButton alreadySignUp;
 	
 	
 	/**
@@ -26,14 +27,15 @@ public class SignUpView {
 	public SignUpView(Container contentPane, SignUpController signUpController){
 		this.signUpController = signUpController;
 		
-		JPanel totalPanel = new JPanel();
+		JPanel all = new JPanel();
+		JPanel totalPanel = new JPanel(new GridLayout(2,0));
 		
-		JPanel globalContent = new JPanel(new GridLayout(0,2,0,0));
+		JPanel globalField = new JPanel(new GridLayout(0,2,0,0));
 		
 		JPanel labelPanel = new JPanel(new GridLayout(5,0,0,1));
 		JPanel fieldPanel = new JPanel(new GridLayout(5,0,0,1));
 		
-		JPanel submitPanel = new JPanel();
+		JPanel buttonPanel = new JPanel();
 		
 		JLabel firstName = new JLabel("First Name");
 		JLabel lastName = new JLabel("Last Name");
@@ -59,29 +61,46 @@ public class SignUpView {
 		fieldPanel.add(getFieldPassword());
 		fieldPanel.add(getFieldConfirm());
 		
-		globalContent.add(labelPanel);
-		globalContent.add(fieldPanel);
+		globalField.add(labelPanel);
+		globalField.add(fieldPanel);
 		
+		this.setAlreadySignUp(new JButton("Already sign up ?"));
+		this.getAlreadySignUp().addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				goToLogIn();
+			}
+		});
+		
+		buttonPanel.add(getAlreadySignUp());
+	
 		this.setSubmit(new JButton("Submit"));
 		this.getSubmit().addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				submitAction();
+				signUp();
 			}
 		});
 		
-		submitPanel.add(this.getSubmit());
+		buttonPanel.add(this.getSubmit());
 		
-		totalPanel.add(globalContent, BorderLayout.CENTER);
+		totalPanel.add(globalField);
+		totalPanel.add(buttonPanel);
+		all.add(totalPanel);
 	
-		contentPane.add(totalPanel, BorderLayout.CENTER);
-		contentPane.add(submitPanel, BorderLayout.SOUTH);
+		contentPane.add(all, BorderLayout.CENTER);
 	}
 
-	private void submitAction(){
-		System.out.println(this.getFieldUserID().getText());
+	public JButton getAlreadySignUp() {
+		return alreadySignUp;
 	}
+
+	public void setAlreadySignUp(JButton alreadySignUp) {
+		this.alreadySignUp = alreadySignUp;
+	}
+
 
 	public SignUpController getSignUpController() {
 		return signUpController;
@@ -152,5 +171,12 @@ public class SignUpView {
 		this.submit = submit;
 	}
 	
+	private void signUp(){
+		System.out.println(this.getFieldUserID().getText());
+	}
+
+	private void goToLogIn(){
+		getSignUpController().goToLogIn();
+	}
 	
 }

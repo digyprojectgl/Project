@@ -15,10 +15,11 @@ import UI.controllers.LogInController;
  * @author francois.beiger
  *
  */
-public class ViewLogIn implements ActionListener{
+public class ViewLogIn {
 	JTextField text_user;
 	JPasswordField passwordField;
 	JButton submit;	
+	JButton signUp;
 	LogInController logInController;
 	
 	/**
@@ -30,14 +31,16 @@ public class ViewLogIn implements ActionListener{
 	public ViewLogIn(Container contentPane, LogInController logInController){
 		this.logInController = logInController;
 			
-		JPanel totalContent = new JPanel();
+		JPanel all = new JPanel();
+		
+		JPanel totalContent = new JPanel(new GridLayout(2,0));
 		
 		JPanel globalContent = new JPanel(new GridLayout(0,2));		//Container user + password
 		
 		JPanel labelPanel = new JPanel(new GridLayout(2,0));			//Panel dans lequel on aura les label
 		JPanel fieldPanel = new JPanel(new GridLayout(2,0));			//Panel dans lequel on aura les champs password et user_id
 		
-		JPanel submitPanel = new JPanel();
+		JPanel buttonPanel = new JPanel();
 		
 		JLabel user_id = new JLabel("User ID");		//Label "User ID"
 		setTextUser(new JTextField(10));	//Text Field dans lequel le user va entrer son id
@@ -52,21 +55,50 @@ public class ViewLogIn implements ActionListener{
 		globalContent.add(labelPanel);	//On ajoute les 2 panels au container fields, 
 		globalContent.add(fieldPanel);
 		
-		totalContent.add(globalContent, BorderLayout.CENTER);
+		this.setSignUp(new JButton("Sign Up"));
+		this.getSignUp().addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				goToSignUp();
+			}
+		});
+		buttonPanel.add(getSignUp());
 		
-		contentPane.add(totalContent, BorderLayout.CENTER);// On ajoute le container au SuperContainer, contrainte CENTER
 		
 		setButtonSubmit(new JButton("Submit"));		//Bouton 'submit'
-		getButtonSubmit().addActionListener(this);
+		getButtonSubmit().addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				logIn();
+			}
+		});
+		buttonPanel.add(getButtonSubmit());
 		
-		submitPanel.add(getButtonSubmit());
+		totalContent.add(globalContent);
+		totalContent.add(buttonPanel);
 		
-		contentPane.add(submitPanel, BorderLayout.SOUTH);
+		all.add(totalContent);
+		
+		contentPane.add(all, BorderLayout.CENTER);// On ajoute le container au SuperContainer, contrainte CENTER
+		
+		
 	}
 	
 	
 	//GETTERS & SETTERS
 	
+	public JButton getSignUp() {
+		return signUp;
+	}
+
+
+	public void setSignUp(JButton signUp) {
+		this.signUp = signUp;
+	}
+
+
 	/**
 	 * Get the user_ID
 	 * @return JTextArea
@@ -116,14 +148,15 @@ public class ViewLogIn implements ActionListener{
 	}
 
 	
-	
+	private void goToSignUp(){
+		this.logInController.goToSignUp();
+	}
 	
 	//ActionPerformed
 	/**
 	 * Calls the logInController, who is in charge of handling the LogIn.
 	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void logIn() {
 		
 		String username = getTextUser().getText().toString();
 		String password = String.valueOf(getPasswordField().getPassword());

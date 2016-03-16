@@ -47,4 +47,8 @@ public class LogInController {
 	public void setRootController(RootController rootController) {
 		this.rootController = rootController;
 	}
+	
+	public void goToSignUp(){
+		this.getRootController().goToSignUp();
+	}
 }

@@ -13,9 +13,8 @@ public class RootController {
 	
 	public RootController(){
 		new MainView(this);
-		new LogInController(this);
-		getContentPane().revalidate();
-		getContentPane().repaint();
+		new SignUpController(this);
+		this.displayContentPane();
 	}
 	
 	public Container getContentPane(){
@@ -27,7 +26,19 @@ public class RootController {
 	}
 	
 	public void goToSignUp(){
+		this.getContentPane().removeAll();
 		new SignUpController(this);
+		this.displayContentPane();
+	}
+	
+	public void goToLogIn(){
+		this.getContentPane().removeAll();
+		new LogInController(this);
+		this.displayContentPane();
+		
+	}
+	
+	private void displayContentPane(){
 		getContentPane().revalidate();
 		getContentPane().repaint();
 	}

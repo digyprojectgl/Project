@@ -11,6 +11,11 @@ public class SignUpController {
 	RootController rootController;
 	
 	public SignUpController(RootController rootController){
+		this.rootController = rootController;
 		new SignUpView(rootController.getContentPane(), this);
+	}
+	
+	public void goToLogIn(){
+		this.rootController.goToLogIn();
 	}
 }
