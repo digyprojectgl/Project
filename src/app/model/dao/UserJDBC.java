@@ -17,7 +17,6 @@ public class UserJDBC extends User {
 	
 	/**
 	 * Static method.
-	 * No database yet.
 	 * Find a user by his userID. 
 	 * Throws an Exception if not found.
 	 * @param userID

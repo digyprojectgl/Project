@@ -26,20 +26,24 @@ public class RootController {
 	}
 	
 	public void goToSignUp(){
-		this.getContentPane().removeAll();
+		this.eraseContainer();
 		new SignUpController(this);
 		this.displayContentPane();
 	}
 	
 	public void goToLogIn(){
-		this.getContentPane().removeAll();
+		this.eraseContainer();
 		new LogInController(this);
 		this.displayContentPane();
 		
 	}
 	
-	private void displayContentPane(){
+	void displayContentPane(){
 		getContentPane().revalidate();
 		getContentPane().repaint();
+	}
+	
+	void eraseContainer(){
+		this.getContentPane().removeAll();
 	}
 }

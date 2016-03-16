@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
 import UI.views.SignUpView;
+import app.model.User;
 
 
 /**
@@ -23,6 +24,7 @@ public class SignUpController {
 	}
 	
 	public void userChoice(ActionEvent e){
+		this.rootController.eraseContainer();
 		JComboBox cb = (JComboBox)e.getSource();
 		String choice = (String)cb.getSelectedItem();
 		if(choice=="Customer"){
@@ -31,5 +33,10 @@ public class SignUpController {
 		else{
 			new SignUpView(rootController.getContentPane(), this, choice);
 		}
+		this.rootController.displayContentPane();
+	}
+	
+	public User signUpCustomer(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm){
+		return null;
 	}
 }

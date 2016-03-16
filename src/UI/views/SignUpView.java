@@ -107,7 +107,7 @@ public class SignUpView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				signUp();
+				signUpCustomer();
 			}
 		});
 		buttonPanel.add(this.getSubmit());
@@ -140,9 +140,9 @@ public class SignUpView {
 		
 		JPanel buttonPanel = new JPanel();
 		
-		JLabel userType = new JLabel("Sign up as");
+		JLabel userTypeLab = new JLabel("Sign up as");
 		JPanel userTypePanel = new JPanel();
-		
+		this.getTypeBox().setSelectedIndex(1);
 		getTypeBox().addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -151,7 +151,7 @@ public class SignUpView {
 			}
 			
 		});
-		userTypePanel.add(userType);
+		userTypePanel.add(userTypeLab);
 		userTypePanel.add(typeBox);
 		
 		JLabel firstName = new JLabel("First Name");
@@ -205,7 +205,7 @@ public class SignUpView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				signUp();
+				signUpSeller();
 			}
 		});
 		buttonPanel.add(this.getSubmit());
@@ -218,6 +218,7 @@ public class SignUpView {
 		contentPane.add(all, BorderLayout.CENTER);
 	}
 
+	
 	/*
 	 * GETTERS AND SETTERS
 	 */
@@ -368,10 +369,22 @@ public class SignUpView {
 	 *	METHODS 
 	 */
 	
-	private void signUp(){
-		System.out.println(this.getFieldUserID().getText());
+	private void signUpCustomer(){
+		String firstName = this.getFieldFirstName().getText();
+		String lastName = this.getFieldLastName().getText();
+		String userID = this.getFieldUserID().getText();
+		String email = this.getEmail().getText();
+		String phoneNumber = this.getPhoneNumber().getText();
+		String address = this.getAddress().getText();
+		String password = String.valueOf(this.getFieldPassword().getPassword());
+		String confirm = String.valueOf(this.getFieldConfirm().getPassword());
+		this.getSignUpController().signUpCustomer(firstName, lastName, userID, email, phoneNumber, address, password, confirm);
 	}
 
+	private void signUpSeller(){
+		
+	}
+	
 	private void goToLogIn(){
 		getSignUpController().goToLogIn();
 	}
