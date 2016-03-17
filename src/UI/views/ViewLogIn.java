@@ -15,56 +15,95 @@ import UI.controllers.LogInController;
  * @author francois.beiger
  *
  */
-public class ViewLogIn implements ActionListener{
-	JTextArea text_user;
+public class ViewLogIn {
+	JTextField text_user;
 	JPasswordField passwordField;
 	JButton submit;	
+	JButton signUp;
 	LogInController logInController;
 	
 	/**
 	 * Constructor.
 	 * Create all the JFrame components then adds them to the contentPane.
 	 * @param contentPane
+	 * @param logInContainer
 	 */
 	public ViewLogIn(Container contentPane, LogInController logInController){
 		this.logInController = logInController;
-				
-		JPanel contentFields = new JPanel(new GridLayout(2,0));		//Container user + password
+			
+		JPanel all = new JPanel();
 		
-		JPanel userPanel = new JPanel();			//Panel dans lequel on aura les label
-		JPanel passPanel = new JPanel();			//Panel dans lequel on aura les champs password et user_id
+		JPanel totalContent = new JPanel(new GridLayout(2,0));
+		
+		JPanel globalContent = new JPanel(new GridLayout(0,2));		//Container user + password
+		
+		JPanel labelPanel = new JPanel(new GridLayout(2,0));			//Panel dans lequel on aura les label
+		JPanel fieldPanel = new JPanel(new GridLayout(2,0));			//Panel dans lequel on aura les champs password et user_id
+		
+		JPanel buttonPanel = new JPanel();
 		
 		JLabel user_id = new JLabel("User ID");		//Label "User ID"
-		setTextUser(new JTextArea(1,10));	//Text Field dans lequel le user va entrer son id
-		
-		userPanel.add(user_id);						//On ajoute le label et le text area au panel
-		userPanel.add(getTextUser());
-		
-		
+		setTextUser(new JTextField(10));	//Text Field dans lequel le user va entrer son id
 		JLabel password = new JLabel("Password");	//Label "Password"
 		setPasswordField(new JPasswordField(10));//PAssword field
 		
-		passPanel.add(password);					//On ajoute le label et le passwordField
-		passPanel.add(getPasswordField());
+		labelPanel.add(user_id);						//On ajoute le label et le text area au panel
+		labelPanel.add(password);
+		fieldPanel.add(getTextUser());					//On ajoute le label et le passwordField
+		fieldPanel.add(getPasswordField());
 		
-		contentFields.add(userPanel);	//On ajoute les 2 panels au container fields, 
-		contentFields.add(passPanel);
+		globalContent.add(labelPanel);	//On ajoute les 2 panels au container fields, 
+		globalContent.add(fieldPanel);
 		
-		contentPane.add(contentFields, BorderLayout.NORTH);// On ajoute le container au SuperContainer, contrainte CENTER
+		this.setSignUp(new JButton("Sign Up"));
+		this.getSignUp().addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				goToSignUp();
+			}
+		});
+		buttonPanel.add(getSignUp());
+		
 		
 		setButtonSubmit(new JButton("Submit"));		//Bouton 'submit'
-		getButtonSubmit().addActionListener(this);
-		contentPane.add(submit, BorderLayout.SOUTH);
+		getButtonSubmit().addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				logIn();
+			}
+		});
+		buttonPanel.add(getButtonSubmit());
+		
+		totalContent.add(globalContent);
+		totalContent.add(buttonPanel);
+		
+		all.add(totalContent);
+		
+		contentPane.add(all, BorderLayout.CENTER);// On ajoute le container au SuperContainer, contrainte CENTER
+		
+		
 	}
 	
 	
 	//GETTERS & SETTERS
 	
+	public JButton getSignUp() {
+		return signUp;
+	}
+
+
+	public void setSignUp(JButton signUp) {
+		this.signUp = signUp;
+	}
+
+
 	/**
 	 * Get the user_ID
 	 * @return JTextArea
 	 */
-	private JTextArea getTextUser(){
+	private JTextField getTextUser(){
 		return this.text_user;
 	}
 	
@@ -72,7 +111,7 @@ public class ViewLogIn implements ActionListener{
 	 * Set the text_user. Have to place a JTextArea in parameter.
 	 * @param text_user
 	 */
-	private void setTextUser(JTextArea text_user){
+	private void setTextUser(JTextField text_user){
 		this.text_user = text_user;
 	}
 	
@@ -109,14 +148,15 @@ public class ViewLogIn implements ActionListener{
 	}
 
 	
-	
+	private void goToSignUp(){
+		this.logInController.goToSignUp();
+	}
 	
 	//ActionPerformed
 	/**
 	 * Calls the logInController, who is in charge of handling the LogIn.
 	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void logIn() {
 		
 		String username = getTextUser().getText().toString();
 		String password = String.valueOf(getPasswordField().getPassword());

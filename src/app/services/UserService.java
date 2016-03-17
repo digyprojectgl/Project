@@ -10,7 +10,6 @@ import app.model.dao.UserJDBC;
  */
 public class UserService {
 	/**
-	 * Static method.
 	 * Create the UserFactory. Ask it to create a new User.
 	 * Treat the userID (trim(), toLowerCase()).
 	 * Ask the UserJDBC to find a user by his userID.
@@ -22,9 +21,9 @@ public class UserService {
 	 * @throws Exception
 	 */
 	public User handleLogIn(String userID, String password) throws Exception{
-		UserFactory factory = new UserFactory();
 		userID.trim();
 		userID.toLowerCase();
+		UserFactory factory = new UserFactory();
 		User myUser = factory.createUser(userID);
 
 		if(password.equals(myUser.getPassword())){
@@ -33,6 +32,14 @@ public class UserService {
 		else{
 			throw new Exception("Wrong password !");
 		}
+	}
+	
+	public User signUpCustomer(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm){
+		userID.trim();
+		userID.toLowerCase();
+		UserFactory factory = new UserFactory();
+		factory.createUser(firstName, lastName, userID, email, phoneNumber, address, password, confirm);
+		return null;
 		
 	}
 }
