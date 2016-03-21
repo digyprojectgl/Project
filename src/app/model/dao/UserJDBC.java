@@ -24,7 +24,7 @@ public class UserJDBC extends User {
 	 * @throws Exception
 	 */
 	public UserJDBC(String userID) throws Exception{
-		JdbcConnection connect = new JdbcConnection();
+		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
 		ResultSet res = null;
 		
@@ -41,6 +41,10 @@ public class UserJDBC extends User {
 			e.printStackTrace();
 		}
 		connect.close();
+	}
+	
+	public UserJDBC(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm){
+		
 	}
 	
 	@Override

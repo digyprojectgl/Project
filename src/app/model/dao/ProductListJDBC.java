@@ -17,7 +17,7 @@ public class ProductListJDBC extends ProductList {
      * @throws Exception if there is no product to display or the database returns a problem.
      */
     public ProductListJDBC(HashMap<String,String> options){
-        JdbcConnection connection = new JdbcConnection();
+        JdbcConnection connection = JdbcConnection.getInstance();
         connection.openConnection();
         /**
          * TODO complete the end of this method, after working on the database
