@@ -37,6 +37,18 @@ public class RootController {
 		this.displayContentPane();
 		
 	}
+
+	public void goToProductList(){
+		this.eraseContainer();
+		new  ProductListController(this);
+		this.displayContentPane();
+	}
+
+	public void goToCart() {
+		this.eraseContainer();
+		new CartController(this);
+		this.displayContentPane();
+	}
 	
 	void displayContentPane(){
 		getContentPane().revalidate();
