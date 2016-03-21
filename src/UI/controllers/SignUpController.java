@@ -1,5 +1,6 @@
 package UI.controllers;
 import java.awt.event.ActionEvent;
+import java.util.Objects;
 import javax.swing.JComboBox;
 
 import UI.views.SignUpView;
@@ -27,7 +28,7 @@ public class SignUpController {
 		this.rootController.eraseContainer();
 		JComboBox cb = (JComboBox)e.getSource();
 		String choice = (String)cb.getSelectedItem();
-		if(choice=="Customer"){
+		if(Objects.equals(choice, "Customer")){
 			new SignUpView(rootController.getContentPane(), this);
 		}
 		else{
