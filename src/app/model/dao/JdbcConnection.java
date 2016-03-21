@@ -6,6 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
+/**
+ * Implements the design pattern Singleton.
+ * @author francois.beiger
+ *
+ */
 public class JdbcConnection {	
 	
 	private final String DBURL = "jdbc:mysql://db4free.net:3306/digyproject?autoReconnect=true&useSSL=false";
@@ -13,7 +19,13 @@ public class JdbcConnection {
 	private final String DBPASS = "polytech";
 	private Statement streamConnection;
     private ResultSet streamResponse;
+    
+    private static JdbcConnection instance ;
 
+    private JdbcConnection(){
+    	super();
+    }
+    
     public boolean openConnection(){
     	try {
     		// Charge le driver JDBC pour mysql
@@ -98,6 +110,21 @@ public class JdbcConnection {
             return 0;
         }
         return size;
-    }	
+    }
+	
+	
+	/**
+	 * Pattern Singleton
+	 * @return
+	 */
+	public static JdbcConnection getInstance(){
+		if( instance != null){
+			return instance;
+		}
+		else{
+			instance = new JdbcConnection();
+			return instance;
+		}
+	}
 }
 
