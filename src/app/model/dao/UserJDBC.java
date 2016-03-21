@@ -29,11 +29,11 @@ public class UserJDBC extends User {
 		ResultSet res = null;
 		
 		try{
-			String query ="SELECT * FROM User where login ='" + userID + "'";
+			String query ="SELECT * FROM User where idUser ='" + userID + "'";
 			connect.executeRequest(query);
 			while ((res = connect.fetchArray()) != null){
-				this.setUserID(res.getString("login"));
-				this.setPassword(res.getString("mdp"));
+				this.setUserID(res.getString("idUser"));
+				this.setPassword(res.getString("password"));
 
 			}
 		}
