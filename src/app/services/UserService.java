@@ -38,8 +38,14 @@ public class UserService {
 		userID.trim();
 		userID.toLowerCase();
 		UserFactory factory = new UserFactory();
-		factory.createUser(firstName, lastName, userID, email, phoneNumber, address, password);
-		return null;
 		
+		User myUser = factory.createUser(userID);
+		if(myUser.getUserID() != null){
+			throw new Exception("UserID already taken !");
+		}
+		else{
+			factory.createUser(firstName, lastName, userID, email, phoneNumber, address, password);
+			return factory.createUser(userID);
+		}
 	}
 }
