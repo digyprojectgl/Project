@@ -35,7 +35,7 @@ public class LogInController {
 			answer = ("Hi " + loginfacade.handleLogIn(username, password).getUserID() + " !");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			answer = e;
+			answer = e.getMessage();
 		}	
 		return answer;
 	}

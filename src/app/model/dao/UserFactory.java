@@ -17,7 +17,8 @@ public class UserFactory {
 		return new UserJDBC(userID);
 	}
 	
-	public User createUser(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm){
-		return null;
+	public User createUser(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password) throws Exception{
+		new UserJDBC(firstName, lastName, userID, email, phoneNumber, address, password);
+		return  new UserJDBC(userID);
 	}
 }

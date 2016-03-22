@@ -34,12 +34,18 @@ public class UserService {
 		}
 	}
 	
-	public User signUpCustomer(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm){
+	public User signUpCustomer(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm) throws Exception{
 		userID.trim();
 		userID.toLowerCase();
 		UserFactory factory = new UserFactory();
-		factory.createUser(firstName, lastName, userID, email, phoneNumber, address, password, confirm);
-		return null;
 		
+		User myUser = factory.createUser(userID);
+		if(myUser.getUserID() != null){
+			throw new Exception("UserID already taken !");
+		}
+		else{
+			factory.createUser(firstName, lastName, userID, email, phoneNumber, address, password);
+			return factory.createUser(userID);
+		}
 	}
 }
