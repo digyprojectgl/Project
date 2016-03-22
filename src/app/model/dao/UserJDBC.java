@@ -43,8 +43,12 @@ public class UserJDBC extends User {
 		connect.close();
 	}
 	
-	public UserJDBC(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm){
+	public UserJDBC(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password) throws Exception{
+		JdbcConnection connect = JdbcConnection.getInstance();
+		connect.openConnection();
 		
+		String query = "INSERT INTO User VALUES('"+userID +"','"+ password +"','"+ firstName +"','"+ address +"','"+ phoneNumber +"','"+ email +"')";
+		connect.executeRequest(query);
 	}
 	
 	@Override

@@ -4,7 +4,8 @@ import java.util.Objects;
 import javax.swing.JComboBox;
 
 import UI.views.SignUpView;
-import app.model.User;
+import app.facades.SignUpFacade;
+import app.model.*;
 
 
 /**
@@ -37,7 +38,14 @@ public class SignUpController {
 		this.rootController.displayContentPane();
 	}
 	
-	public User signUpCustomer(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm){
-		return null;
+	public Object signUpCustomer(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm){
+		SignUpFacade facade = new SignUpFacade();
+		try{
+			User myUser = facade.signUpCustomer(firstName, lastName, userID, email, phoneNumber, address, password, confirm);
+			return myUser;
+		}
+		catch(Exception e){
+			return e.getMessage();
+		}
 	}
 }
