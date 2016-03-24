@@ -62,12 +62,12 @@ public class SignUpView {
 		userTypePanel.add(userType);
 		userTypePanel.add(typeBox);
 		
-		JLabel firstName = new JLabel("First Name");
-		JLabel lastName = new JLabel("Last Name");
-		JLabel userID = new JLabel("Username");
-		JLabel password = new JLabel("Password");
-		JLabel confirmPassword = new JLabel("Confirm your password");
-		JLabel emailLab = new JLabel("Email");
+		JLabel firstName = new JLabel("First Name*");
+		JLabel lastName = new JLabel("Last Name*");
+		JLabel userID = new JLabel("Username*");
+		JLabel password = new JLabel("Password*");
+		JLabel confirmPassword = new JLabel("Confirm your password*");
+		JLabel emailLab = new JLabel("Email*");
 		JLabel phoneNumberLab = new JLabel("Phone number");
 		JLabel addressLab = new JLabel("Address");
 		
@@ -154,12 +154,12 @@ public class SignUpView {
 		userTypePanel.add(userTypeLab);
 		userTypePanel.add(typeBox);
 		
-		JLabel firstName = new JLabel("First Name");
-		JLabel lastName = new JLabel("Last Name");
-		JLabel userID = new JLabel("Username");
-		JLabel password = new JLabel("Password");
-		JLabel confirmPassword = new JLabel("Confirm your password");
-		JLabel emailLab = new JLabel("Email");
+		JLabel firstName = new JLabel("First Name*");
+		JLabel lastName = new JLabel("Last Name*");
+		JLabel userID = new JLabel("Username*");
+		JLabel password = new JLabel("Password*");
+		JLabel confirmPassword = new JLabel("Confirm your password*");
+		JLabel emailLab = new JLabel("Email*");
 		JLabel phoneNumberLab = new JLabel("Phone number");
 		JLabel addressLab = new JLabel("Address");
 		JLabel siretLab = new JLabel("SIRET");

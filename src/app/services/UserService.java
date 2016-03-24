@@ -35,11 +35,29 @@ public class UserService {
 	}
 	
 	public User signUpCustomer(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm) throws Exception{
+		if(userID==null){
+			throw new Exception("Username is a required field !");
+		}
 		userID.trim();
 		userID.toLowerCase();
+		
 		if(!password.equals(confirm)){
 			throw new Exception("Passwords are not equals !");
 		}
+		
+		if(firstName==null){
+			throw new Exception("First name is a required field !");
+		}
+		
+		if(lastName==null){
+			throw new Exception("Last name is a required field !");
+		}
+		
+		if(email==null){
+			throw new Exception("E-mail is a required field !");
+		}
+		
+		
 		UserFactory factory = new UserFactory();
 		User myUser = factory.createUser(userID);
 		if(myUser.getUserID() != null){

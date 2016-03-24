@@ -1,8 +1,9 @@
 package UI.views;
 import java.awt.BorderLayout;
 import java.awt.Container;
-
 import javax.swing.JTextField;
+import UI.controllers.HomeViewController;
+import app.model.User;
 
 /**
  * Class the HomeView.
@@ -11,12 +12,17 @@ import javax.swing.JTextField;
  *
  */
 public class HomeView {
-	public HomeView(Container contentPane, String msg){
-		contentPane.removeAll();
+	private HomeViewController homeViewController;
+	
+	/**
+	 * HomeView Constructor for the Customer.
+	 * @param contentPane
+	 * @param homeViewController
+	 */
+	public HomeView(Container contentPane, HomeViewController homeViewController, User myCustomer){
+		this.homeViewController = homeViewController;
 		JTextField message = new JTextField();
-		message.setText(msg);
+		message.setText("Hi " + myCustomer.getUserID() + " !");
 		contentPane.add(message, BorderLayout.CENTER);
-		contentPane.revalidate();
-		contentPane.repaint();
 	}
 }

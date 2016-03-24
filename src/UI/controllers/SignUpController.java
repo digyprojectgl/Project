@@ -41,9 +41,11 @@ public class SignUpController {
 	public void signUpCustomer(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm){
 		SignUpFacade facade = new SignUpFacade();
 		try{
-			Customer myUser = (Customer)facade.signUpCustomer(firstName, lastName, userID, email, phoneNumber, address, password, confirm);
+			User myUser = facade.signUpCustomer(firstName, lastName, userID, email, phoneNumber, address, password, confirm);
+			this.rootController.goToHomeCustomer(myUser);
 		}
 		catch(Exception e){
+			this.rootController.eraseContainer();
 			SignUpView myView = new SignUpView(rootController.getContentPane(), this);
 			this.rootController.displayContentPane();
 			myView.displayError(e.getMessage());

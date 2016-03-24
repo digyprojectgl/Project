@@ -2,6 +2,7 @@ package UI.controllers;
 import java.awt.Container;
 
 import UI.MainView;
+import app.model.User;
 
 /**
  * Controller who handle controllers, by sending the information to the right one.
@@ -47,6 +48,12 @@ public class RootController {
 	public void goToCart() {
 		this.eraseContainer();
 		new CartController(this);
+		this.displayContentPane();
+	}
+	
+	public void goToHomeCustomer(User myUser){
+		this.eraseContainer();
+		new HomeViewController(this, myUser);
 		this.displayContentPane();
 	}
 	
