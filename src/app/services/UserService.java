@@ -37,8 +37,10 @@ public class UserService {
 	public User signUpCustomer(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm) throws Exception{
 		userID.trim();
 		userID.toLowerCase();
+		if(!password.equals(confirm)){
+			throw new Exception("Passwords are not equals !");
+		}
 		UserFactory factory = new UserFactory();
-		
 		User myUser = factory.createUser(userID);
 		if(myUser.getUserID() != null){
 			throw new Exception("UserID already taken !");

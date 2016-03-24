@@ -378,8 +378,7 @@ public class SignUpView {
 		String address = this.getAddress().getText();
 		String password = String.valueOf(this.getFieldPassword().getPassword());
 		String confirm = String.valueOf(this.getFieldConfirm().getPassword());
-		Object answer = this.getSignUpController().signUpCustomer(firstName, lastName, userID, email, phoneNumber, address, password, confirm);
-		System.out.print(answer);
+		this.getSignUpController().signUpCustomer(firstName, lastName, userID, email, phoneNumber, address, password, confirm);
 	}
 
 	private void signUpSeller(){
@@ -392,6 +391,10 @@ public class SignUpView {
 	
 	private void userChoice(ActionEvent e){
 		this.getSignUpController().userChoice(e);
+	}
+	
+	public void displayError(String exception){
+		JOptionPane.showMessageDialog(null, exception, "Your registration hasn't been performed.", JOptionPane.ERROR_MESSAGE);
 	}
 	
 }
