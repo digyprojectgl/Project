@@ -1,6 +1,7 @@
 package UI.views;
 
 import UI.controllers.ProductListController;
+import UI.core.ViewInterface;
 import app.model.Product;
 import app.model.ProductList;
 
@@ -15,7 +16,7 @@ import java.util.HashMap;
  *
  * @author Arthur
  */
-public class ProductListView {
+public class ProductListView implements ViewInterface {
     private ProductListController productListController;
 
     JButton search;
@@ -55,12 +56,13 @@ public class ProductListView {
         this.category = category;
     }
 
-    public ProductListView(Container contentPane, final ProductListController productListController) {
-        /*
-        Initialize the controller
-        */
+    public ProductListView(ProductListController productListController) {
         this.productListController = productListController;
-
+    }
+    
+    public void render(Container contentPane) {
+    	
+ 
         /*
         Set the JPanel containing all the elements
          */
@@ -132,5 +134,11 @@ public class ProductListView {
             JOptionPane.showMessageDialog(null, item, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+	@Override
+	public String getLayout() {
+		return "main";
+	}
+
 
 }

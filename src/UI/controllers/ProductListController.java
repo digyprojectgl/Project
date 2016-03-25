@@ -1,5 +1,6 @@
 package UI.controllers;
 
+import UI.core.RootController;
 import UI.views.ProductListView;
 import app.facades.ProductListFacade;
 
@@ -10,15 +11,14 @@ import java.util.HashMap;
  *
  * @author Arthur
  */
-public class ProductListController {
+public class ProductListController extends RootController {
     private ProductListFacade productListFacade;
-    private RootController rootController;
     private ProductListView productListView;
 
-    public ProductListController(RootController rootController) {
-        this.rootController = rootController;
-        productListView = new ProductListView(this.rootController.getContentPane(),this);
+    public ProductListController() {
         productListFacade = new ProductListFacade();
+        this.productListView = new ProductListView(this);
+        this.render(productListView);
     }
 
     public void obtainProductList(HashMap<String,String> options){

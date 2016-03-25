@@ -6,8 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import UI.controllers.SignUpController;
+import UI.core.ViewInterface;
 
-public class SignUpView {
+public class SignUpView implements ViewInterface {
 	SignUpController signUpController;
 	JTextField fieldFirstName = new JTextField(15);
 	JTextField fieldLastName = new JTextField(15);
@@ -25,9 +26,10 @@ public class SignUpView {
 	JButton submit = new JButton("Submit");	
 	JButton alreadySignUp = new JButton("Already sign up ?");
 	
-	String[] type = {"Customer", "Seller"};
-	JComboBox typeBox = new JComboBox(type);
+	String[] types = {"Customer", "Seller"};
+	JComboBox typeBox = new JComboBox(types);
 	
+	String type;
 	
 	/**
 	 * Constructor for the Customer.
@@ -35,9 +37,23 @@ public class SignUpView {
 	 * @param contentPane
 	 * @param signUpController
 	 */
-	public SignUpView(Container contentPane, SignUpController signUpController){
+	public SignUpView(SignUpController signUpController, String type) {
 		this.signUpController = signUpController;
-		
+		this.type = type;
+	}
+	
+	public void render(Container contentPane) {
+		switch(this.type) {
+			case "customer":
+				this.renderCustomer(contentPane);
+				break;
+			case "seller":
+				this.renderSeller(contentPane);
+				break;
+		}
+	}
+	
+	public void renderCustomer(Container contentPane) {
 		JPanel all = new JPanel();
 		JPanel totalPanel = new JPanel(new GridLayout(2,0));
 		
@@ -119,17 +135,15 @@ public class SignUpView {
 		contentPane.add(userTypePanel, BorderLayout.NORTH);
 		contentPane.add(all, BorderLayout.CENTER);
 	}
+		
 	
 	
 	/**
 	 * Constructor for the Seller
 	 * @param contentPane
 	 * @param signUpController
-	 * @param s
 	 */
-	public SignUpView(Container contentPane, SignUpController signUpController, String s){
-		this.signUpController = signUpController;
-		
+	public void renderSeller(Container contentPane) {	
 		JPanel all = new JPanel();
 		JPanel totalPanel = new JPanel(new GridLayout(2,0));
 		
@@ -243,13 +257,13 @@ public class SignUpView {
 	}
 
 
-	public String[] getType() {
-		return type;
+	public String[] getTypes() {
+		return types;
 	}
 
 
-	public void setType(String[] type) {
-		this.type = type;
+	public void setTypes(String[] type) {
+		this.types = types;
 	}
 
 
@@ -395,6 +409,11 @@ public class SignUpView {
 	
 	public void displayError(String exception){
 		JOptionPane.showMessageDialog(null, exception, "Your registration hasn't been performed.", JOptionPane.ERROR_MESSAGE);
+	}
+
+	@Override
+	public String getLayout() {
+		return "login";
 	}
 	
 }

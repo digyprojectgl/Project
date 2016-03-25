@@ -1,4 +1,5 @@
-import UI.controllers.RootController;
+import UI.controllers.LogInController;
+import UI.core.RootController;
 
 
 /**
@@ -9,6 +10,6 @@ import UI.controllers.RootController;
  */
 public class Digy {
 	public static void main(String args[]){
-		new RootController();
+		new LogInController();
 	}
 }

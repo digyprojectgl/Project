@@ -1,15 +1,12 @@
 package UI.controllers;
+import UI.core.RootController;
 import UI.views.HomeView;
 import app.model.Customer;
 import app.model.User;
 
-public class HomeViewController {
-	RootController rootController;
+public class HomeViewController extends RootController {
 	
-	HomeViewController(RootController rootController, User myUser){
-		this.rootController = rootController;
-		new HomeView(this.rootController.getContentPane(), this, myUser);
-
-		
+	public HomeViewController(){
+		this.render(new HomeView());
 	}
 }

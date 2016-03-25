@@ -1,5 +1,6 @@
 package UI.controllers;
 
+import UI.core.RootController;
 import UI.views.ViewLogIn;
 import app.facades.LogInFacade;
 
@@ -9,14 +10,12 @@ import app.facades.LogInFacade;
  * @author francois.beiger
  *
  */
-public class LogInController {
+public class LogInController extends RootController {
 	private LogInFacade loginfacade;
-	private RootController rootController;
-
 	
-	public LogInController(RootController rootController){
-		this.setRootController(rootController);
-		new ViewLogIn(rootController.getContentPane(), this);
+	public LogInController(){
+		loginfacade = new LogInFacade();
+		this.render(new ViewLogIn(this));
 	}
 	
 	/**
@@ -29,7 +28,7 @@ public class LogInController {
 	public Object handleLogIn(String username, String password){
 		//Todo appel à la façade puis mets à jour la vue
 
-		loginfacade = new LogInFacade();
+		
 		Object answer;
 		try {
 			answer = ("Hi " + loginfacade.handleLogIn(username, password).getUserID() + " !");
@@ -39,16 +38,8 @@ public class LogInController {
 		}	
 		return answer;
 	}
-
-	public RootController getRootController() {
-		return rootController;
-	}
-
-	public void setRootController(RootController rootController) {
-		this.rootController = rootController;
-	}
 	
 	public void goToSignUp(){
-		this.getRootController().goToSignUp();
+		this.goTo("signup");
 	}
 }

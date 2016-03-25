@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.util.Objects;
 import javax.swing.JComboBox;
 
+import UI.core.RootController;
 import UI.views.SignUpView;
 import app.facades.SignUpFacade;
 import app.model.*;
@@ -13,41 +14,36 @@ import app.model.*;
  * @author francois
  *
  */
-public class SignUpController {
-	RootController rootController;
-	
-	public SignUpController(RootController rootController){
-		this.rootController = rootController;
-		new SignUpView(rootController.getContentPane(), this);
+public class SignUpController extends RootController {
+	public SignUpController(){
+		this.render(new SignUpView(this, "customer"));
 	}
 	
 	public void goToLogIn(){
-		this.rootController.goToLogIn();
+		this.goTo("login");
 	}
 	
 	public void userChoice(ActionEvent e){
-		this.rootController.eraseContainer();
 		JComboBox cb = (JComboBox)e.getSource();
 		String choice = (String)cb.getSelectedItem();
+		System.out.println(choice);
 		if(Objects.equals(choice, "Customer")){
-			new SignUpView(rootController.getContentPane(), this);
+			System.out.println(4);
+			this.render(new SignUpView(this, "customer"));
 		}
 		else{
-			new SignUpView(rootController.getContentPane(), this, choice);
+			this.render(new SignUpView(this, "seller"));
 		}
-		this.rootController.displayContentPane();
 	}
 	
 	public void signUpCustomer(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm){
 		SignUpFacade facade = new SignUpFacade();
 		try{
 			User myUser = facade.signUpCustomer(firstName, lastName, userID, email, phoneNumber, address, password, confirm);
-			this.rootController.goToHomeCustomer(myUser);
+			this.goTo("home");
 		}
 		catch(Exception e){
-			this.rootController.eraseContainer();
-			SignUpView myView = new SignUpView(rootController.getContentPane(), this);
-			this.rootController.displayContentPane();
+			SignUpView myView = new SignUpView(this, "customer");
 			myView.displayError(e.getMessage());
 		}
 	}

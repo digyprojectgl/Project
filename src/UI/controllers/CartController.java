@@ -10,7 +10,7 @@ import app.facades.CartFacade;
 public class CartController {
     private CartFacade cartFacade = new CartFacade();
 
-    public CartController(RootController rootController){
+    public CartController(){
 
     }
 }
