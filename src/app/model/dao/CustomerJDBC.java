@@ -12,7 +12,7 @@ public class CustomerJDBC extends Customer{
 	 * @param userID
 	 * @throws Exception
 	 */
-	public CustomerJDBC(String userID) throws Exception{
+	public CustomerJDBC(String userID){
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
 		ResultSet res = null;

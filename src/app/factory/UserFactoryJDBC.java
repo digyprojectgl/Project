@@ -8,9 +8,9 @@ import app.model.dao.UserJDBC;
  * @author francois.beiger
  *
  */
-public class UserFactory {
+public class UserFactoryJDBC {
 
-	public UserFactory(){
+	public UserFactoryJDBC(){
 		
 	}
 	

@@ -1,4 +1,4 @@
-package app.model.dao;
+package app.factory;
 
 import app.model.Customer;
 

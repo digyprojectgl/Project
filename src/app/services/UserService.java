@@ -1,8 +1,9 @@
 package app.services;
-import app.factory.UserFactory;
+import app.factory.CustomerFactory;
+import app.factory.CustomerJDBCFactory;
+import app.factory.UserFactoryJDBC;
 import app.model.Customer;
 import app.model.User;
-import app.model.dao.CustomerFactory;
 import app.model.dao.UserJDBC;
 
 /**
@@ -31,8 +32,17 @@ public class UserService {
 		//Username treatment
 		userID.trim();
 		userID.toLowerCase();
-		UserFactory factory = new UserFactory();
 		
+		//We have to check if the user is a Seller/Trader or Admin
+		CustomerJDBCFactory customerJDBCFactory = new CustomerJDBCFactory();
+		Customer myCustomer = customerJDBCFactory.createCustomerJDBC(userID);
+		
+		//If he's a customer
+		if(myCustomer.getUserID() == userID){
+			CustomerFactory customerFactory = new CustomerFactory();
+		}
+		
+		UserFactoryJDBC factory = new UserFactoryJDBC();
 		//Get the user, throws an error if the user isn't into the DB. 
 		User myUser = factory.createUser(userID);
 
@@ -44,7 +54,6 @@ public class UserService {
 			throw new Exception("Wrong password !");
 		}
 		
-		//The user is in the DB, we have to check if he is a Seller/Trader or Admin
 		
 		
 		return myUser;
@@ -92,7 +101,7 @@ public class UserService {
 			throw new Exception("E-mail is a required field !");
 		}
 		
-		UserFactory userFactory = new UserFactory();
+		UserFactoryJDBC userFactory = new UserFactoryJDBC();
 		
 		//Get the user in the DB
 		User myUser = userFactory.createUser(userID);
