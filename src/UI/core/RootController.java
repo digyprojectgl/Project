@@ -46,7 +46,6 @@ public class RootController {
 				break;
 		}
 		
-		System.out.println(name);
 		currentLayout.render(getFrame());
 		currentLayoutName = name;
 		this.displayContentPane(currentLayout.getContainer());

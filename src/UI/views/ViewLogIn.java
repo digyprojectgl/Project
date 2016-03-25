@@ -34,7 +34,6 @@ public class ViewLogIn implements ViewInterface {
 	}
 	
 	public void render(Container contentPane) {
-		System.out.println("3");
 		JPanel all = new JPanel();
 		
 		JPanel totalContent = new JPanel(new GridLayout(2,0));
