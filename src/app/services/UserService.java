@@ -29,38 +29,35 @@ public class UserService {
 			throw new Exception("Username empty !");
 		}
 		
+		if(password.isEmpty()){
+			throw new Exception("Password empty !");
+		}
+		
 		//Username treatment
 		userID.trim();
 		userID.toLowerCase();
 		
 		//We have to check if the user is a Seller/Trader or Admin
-		CustomerJDBCFactory customerJDBCFactory = new CustomerJDBCFactory();
-		Customer customerJDBC = customerJDBCFactory.createCustomerJDBC(userID);
 		
 		//case customer
+		CustomerJDBCFactory customerJDBCFactory = new CustomerJDBCFactory();
+		Customer customerJDBC = customerJDBCFactory.createCustomerJDBC(userID);
 		if(customerJDBC.getUserID() == userID){
-			CustomerFactory customerFactory = new CustomerFactory();
-			Customer myCustomer = customerFactory.createCustomer();
-			myCustomer.setUserID(userID);
-			
-			
+			//Check the passwords
+			if(!password.equals(customerJDBC.getPassword())){
+				throw new Exception("Wrong password !");
+			}
+			return customerJDBC;
 		}
 		
-		UserFactoryJDBC factory = new UserFactoryJDBC();
-		//Get the user, throws an error if the user isn't into the DB. 
-		User myUser = factory.createUser(userID);
+		//case seller
+		
 
-		if(password.isEmpty()){
-			throw new Exception("Password empty !");
-		}
-		
-		if(!password.equals(myUser.getPassword())){
-			throw new Exception("Wrong password !");
-		}
 		
 		
 		
-		return myUser;
+		
+		return customerJDBC;
 	}
 	
 	/**
@@ -108,7 +105,7 @@ public class UserService {
 		UserFactoryJDBC userFactory = new UserFactoryJDBC();
 		
 		//Get the user in the DB
-		User myUser = userFactory.createUser(userID);
+		User myUser = userFactory.createUserJDBC(userID);
 		if(myUser.getUserID() != null){
 			throw new Exception("UserID already taken !");
 		}

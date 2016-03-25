@@ -14,11 +14,12 @@ public class UserFactoryJDBC {
 		
 	}
 	
-	public User createUser(String userID) throws Exception{
+	
+	public User createUserJDBC(String userID) throws Exception{
 		return new UserJDBC(userID);
 	}
 	
-	public User createUser(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password) throws Exception{
+	public User createUserJDBC(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password) throws Exception{
 		new UserJDBC(firstName, lastName, userID, email, phoneNumber, address, password);
 		return  new UserJDBC(userID);
 	}
