@@ -8,6 +8,11 @@ import java.util.Date;
  */
 public class Customer extends User {
 
+	public Customer(String userID, String password, String lastName, String firstName, String adress, String tel, String email){
+		super(userID, password, lastName, firstName, adress, tel, email);
+	}
+	
+	
     @Override
     public Comment postComment(User from, String message) {
         return null;

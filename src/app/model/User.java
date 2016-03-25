@@ -6,15 +6,17 @@ package app.model;
 public abstract class User {
     public String userID;
     public String password;
-    public String name;
+    public String firstName;
+    public String lastName;
     private String adress;
     private String tel;
     private String email;
 
-    public User(String userID, String password, String name, String adress, String tel, String email){
+    public User(String userID, String password, String lastName, String firstName, String adress, String tel, String email){
     	this.userID = userID;
     	this.password = password;
-    	this.name = name;
+    	this.firstName = firstName;
+    	this.lastName = lastName;
     	this.adress = adress;
     	this.tel = tel;
     	this.email = email;
@@ -23,7 +25,8 @@ public abstract class User {
     public User(){
     	this.userID = null;
     	this.password = null;
-    	this.name = null;
+    	this.firstName = null;
+    	this.lastName = null;
     	this.adress = null;
     	this.tel = null;
     	this.email = null;
