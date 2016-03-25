@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -69,11 +71,42 @@ public class MainLayout extends RootController implements LayoutInterface {
 	
 	public JPanel buildMenu() {
 		JPanel menu = new JPanel(new FlowLayout());
-		menu.add(new JButton("Home"));
-		menu.add(new JButton("Products"));
-		menu.add(new JButton("Mon compte"));
-		menu.add(new JButton("Notifications"));
-		menu.add(new JButton("Cart"));
+		MenuItem items[] = {
+				new MenuItem("Home", "home"),
+				new MenuItem("Products", "productList"),
+				new MenuItem("My account", "account"),
+				new MenuItem("Notifications", "notifications"),
+				new MenuItem("Cart", "cart")
+		};	
+		for(MenuItem item: items) {
+			JButton button = new JButton(item.label);
+			button.addActionListener(new Navigate(this, item.action));
+			menu.add(button);
+		}
 		return menu;
+	}
+	
+	class MenuItem {
+		public String label;
+		public String action;
+		
+		public MenuItem(String label, String action) {
+			this.label = label;
+			this.action = action;
+		}
+	}
+	
+	class Navigate implements ActionListener{
+		protected String action;
+		protected RootController controller;
+		
+		public Navigate(RootController controller, String action) {
+			this.controller = controller;
+			this.action = action;
+		}
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("test");
+			this.controller.goTo(action);
+		}
 	}
 }
