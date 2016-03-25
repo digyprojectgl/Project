@@ -1,9 +1,6 @@
 bin
 .idea/
-<<<<<<< HEAD
 lib
-=======
->>>>>>> origin/master
 .settings/
 .project
 Digy Project.iml
