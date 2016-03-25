@@ -18,8 +18,9 @@ import javax.swing.JPanel;
 
 import UI.core.Frame;
 import UI.core.LayoutInterface;
+import UI.core.RootController;
 
-public class MainLayout implements LayoutInterface {
+public class MainLayout extends RootController implements LayoutInterface {
 
 	Container contentPane;
 	
@@ -49,8 +50,8 @@ public class MainLayout implements LayoutInterface {
 		Image scaledImage = myPicture.getScaledInstance(140, 90, Image.SCALE_SMOOTH);
 		JLabel picLabel = new JLabel(new ImageIcon(scaledImage));
 		header.add(picLabel, BorderLayout.NORTH);
-		header.add(this.buildMenu(), BorderLayout.CENTER);
-		
+		header.add(this.buildMenu(), BorderLayout.SOUTH);
+		header.add(new JLabel("Hi,  " + getUser().getUserID()), BorderLayout.CENTER);
 		footer.add(new JLabel("footer"));
 		
 		layout.add(header, BorderLayout.NORTH);
