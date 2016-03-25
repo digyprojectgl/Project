@@ -64,6 +64,7 @@ public class MainLayout extends RootController implements LayoutInterface {
 		this.contentPane = content;
 		
 		frame.setSize(900, 600);
+		frame.center();
 	}
 	
 	public JPanel buildMenu() {

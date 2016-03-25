@@ -17,15 +17,13 @@ import app.model.User;
 public class HomeView implements ViewInterface {
 	
 	private HomeViewController homeViewController;
-	private User currentUser;
 	
 	/**
 	 * HomeView Constructor for the Customer.
 	 * @param contentPane
 	 * @param homeViewController
 	 */
-	public HomeView(User currentUser){
-		this.currentUser = currentUser;
+	public HomeView(){
 		/*
 		this.homeViewController = homeViewController;
 		JTextField message = new JTextField();
@@ -41,6 +39,6 @@ public class HomeView implements ViewInterface {
 
 	@Override
 	public void render(Container contentPane) {
-		contentPane.add(new JLabel("Hi " + currentUser.getUserID()));
+		contentPane.add(new JLabel());
 	}
 }

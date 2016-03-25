@@ -37,11 +37,13 @@ public class SignUpController extends RootController {
 	public void signUpCustomer(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm){
 		SignUpFacade facade = new SignUpFacade();
 		try{
-			User myUser = facade.signUpCustomer(firstName, lastName, userID, email, phoneNumber, address, password, confirm);
+			Customer myCustomer = facade.signUpCustomer(firstName, lastName, userID, email, phoneNumber, address, password, confirm);
+			setUser(myCustomer);
 			this.goTo("home");
 		}
 		catch(Exception e){
 			SignUpView myView = new SignUpView(this, "customer");
+			this.render(myView);
 			myView.displayError(e.getMessage());
 		}
 	}
