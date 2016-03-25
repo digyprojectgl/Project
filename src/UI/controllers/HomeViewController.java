@@ -8,6 +8,6 @@ public class HomeViewController extends RootController {
 	
 	public HomeViewController(){
 		
-		this.render(new HomeView());
+		this.render(new HomeView(this.getUser()));
 	}
 }

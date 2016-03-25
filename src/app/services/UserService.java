@@ -1,8 +1,12 @@
 package app.services;
+import app.factory.AdminFactory;
 import app.factory.CustomerFactory;
 import app.factory.CustomerJDBCFactory;
+import app.factory.SellerJDBCFactory;
 import app.factory.UserFactoryJDBC;
+import app.model.Admin;
 import app.model.Customer;
+import app.model.Seller;
 import app.model.User;
 import app.model.dao.UserJDBC;
 
@@ -37,27 +41,44 @@ public class UserService {
 		userID.trim();
 		userID.toLowerCase();
 		
-		//We have to check if the user is a Seller/Trader or Admin
+		//First we get the User, if the user exists
+		UserFactoryJDBC userFactoryJDBC = new UserFactoryJDBC();
+		User myUser = userFactoryJDBC.createUserJDBC(userID);
 		
-		//case customer
-		CustomerJDBCFactory customerJDBCFactory = new CustomerJDBCFactory();
-		Customer customerJDBC = customerJDBCFactory.createCustomerJDBC(userID);
-		if(customerJDBC.getUserID() == userID){
-			//Check the passwords
-			if(!password.equals(customerJDBC.getPassword())){
-				throw new Exception("Wrong password !");
-			}
-			return customerJDBC;
+		//We have to check if the userId is_set
+		if(myUser.getUserID() == null){
+			throw new Exception("Username doesn't exists !");
 		}
 		
-		//case seller
-		
-
-		
-		
-		
-		
-		return customerJDBC;
+		//Check passwords
+		if(password.equals(myUser.getPassword())){
+			System.out.println(myUser.getType());
+			String admin = "admin";
+			String seller = "seller";
+			String customer = "customer";
+			
+			//We have to check if the user is a Seller/Trader or Admin
+			if(myUser.getType().equals(customer)){
+				CustomerFactory customerFactory = new CustomerFactory();
+				Customer myCustomer = customerFactory.createCustomer(myUser.getUserID(), myUser.getFirstName(), myUser.getLastName(), myUser.getPassword(), myUser.getEmail(), myUser.getTel(), myUser.getAdress());
+				return myCustomer;
+			}
+			else if(myUser.getType().equals(admin)){
+				AdminFactory adminFactory = new AdminFactory();
+				Admin myAdmin = adminFactory.createAdmin(myUser.getUserID(), myUser.getFirstName(), myUser.getLastName(), myUser.getPassword(), myUser.getEmail(), myUser.getTel(), myUser.getAdress());
+				System.out.println("Je suis admin.");
+				return myAdmin;
+			}
+			else if(myUser.getType().equals(seller)){
+				SellerJDBCFactory sellerJDBCFactory = new SellerJDBCFactory();
+				Seller mySeller = sellerJDBCFactory.createSellerJDBC(userID);
+				return mySeller;
+			}
+		}
+		else{
+			throw new Exception("Wrong password !");
+		}
+		throw new Exception("Wrong log in");
 	}
 	
 	/**

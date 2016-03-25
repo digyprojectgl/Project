@@ -8,6 +8,7 @@ public abstract class User {
     public String password;
     public String firstName;
     public String lastName;
+    private String type;
     private String address;
     private String tel;
     private String email;
@@ -94,4 +95,12 @@ public abstract class User {
     public abstract void deleteComment(Comment comment);
 
     public abstract Notification notify(String content);
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 }
