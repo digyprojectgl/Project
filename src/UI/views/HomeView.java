@@ -2,7 +2,11 @@ package UI.views;
 import java.awt.BorderLayout;
 import java.awt.Container;
 
+import javax.swing.JLabel;
 import javax.swing.JTextField;
+import UI.controllers.HomeViewController;
+import UI.core.ViewInterface;
+import app.model.User;
 
 /**
  * Class the HomeView.
@@ -10,13 +14,31 @@ import javax.swing.JTextField;
  * @author francois.beiger
  *
  */
-public class HomeView {
-	public HomeView(Container contentPane, String msg){
-		contentPane.removeAll();
+public class HomeView implements ViewInterface {
+	
+	private HomeViewController homeViewController;
+	
+	/**
+	 * HomeView Constructor for the Customer.
+	 * @param contentPane
+	 * @param homeViewController
+	 */
+	public HomeView(){
+		/*
+		this.homeViewController = homeViewController;
 		JTextField message = new JTextField();
-		message.setText(msg);
+		message.setText("Hi " + myCustomer.getUserID() + " !");
 		contentPane.add(message, BorderLayout.CENTER);
-		contentPane.revalidate();
-		contentPane.repaint();
+		*/
+	}
+
+	@Override
+	public String getLayout() {
+		return "main";
+	}
+
+	@Override
+	public void render(Container contentPane) {
+		contentPane.add(new JLabel());
 	}
 }

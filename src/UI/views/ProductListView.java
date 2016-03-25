@@ -1,6 +1,7 @@
 package UI.views;
 
 import UI.controllers.ProductListController;
+import UI.core.ViewInterface;
 import app.model.Product;
 import app.model.ProductList;
 
@@ -15,7 +16,7 @@ import java.util.HashMap;
  *
  * @author Arthur
  */
-public class ProductListView {
+public class ProductListView implements ViewInterface {
     private ProductListController productListController;
 
     JButton search;
@@ -55,16 +56,17 @@ public class ProductListView {
         this.category = category;
     }
 
-    public ProductListView(Container contentPane, final ProductListController productListController) {
-        /*
-        Initialize the controller
-        */
+    public ProductListView(ProductListController productListController) {
         this.productListController = productListController;
-
+    }
+    
+    public void render(Container contentPane) {
+    	
+ 
         /*
         Set the JPanel containing all the elements
          */
-        JPanel globalPanel = new JPanel(new BorderLayout());
+        JPanel globalPanel = new JPanel();
 
         /*
         Set the JPanel containing the search bar
@@ -90,14 +92,7 @@ public class ProductListView {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                HashMap<String,String> options = new HashMap<String, String>();
-                if (!getNameOrDescription().getText().isEmpty()) {
-                    options.put("name", getNameOrDescription().getText());
-                }
-                if (!getCategory().getText().isEmpty()) {
-                    options.put("category", getCategory().getText());
-                }
-                productListController.obtainProductList(options);
+                displayProductList();
             }
         });
 
@@ -121,16 +116,31 @@ public class ProductListView {
         /*
         Add the global panel to the contentPane
          */
+
         contentPane.add(globalPanel, BorderLayout.CENTER);
     }
 
-    public void displayProductList(Object item) {
-        if ((item instanceof ProductList)) {
+    public void displayProductList() {
+        HashMap<String,String> options = new HashMap<>();
+        if (!getNameOrDescription().getText().isEmpty()) {
+            options.put("name", getNameOrDescription().getText().trim());
+        }
+        if (!getCategory().getText().isEmpty()) {
+            options.put("category", getCategory().getText().trim());
+        }
+        Object item = this.productListController.obtainProductList(options);
+        if (item instanceof Exception) {
+            JOptionPane.showMessageDialog(this.getAnswer(), item, "Java ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
             ProductList products = (ProductList) item;
             this.getAnswer().add(new JList<Product>(products.productList));
-        } else {
-            JOptionPane.showMessageDialog(null, item, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+	@Override
+	public String getLayout() {
+		return "main";
+	}
+
 
 }

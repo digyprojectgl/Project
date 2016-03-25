@@ -1,5 +1,6 @@
 package UI.controllers;
 
+import UI.core.RootController;
 import app.facades.CartFacade;
 
 /**
@@ -7,10 +8,10 @@ import app.facades.CartFacade;
  *
  * @author Arthur
  */
-public class CartController {
-    private CartFacade cartFacade = new CartFacade();
+public class CartController extends RootController {
+    private CartFacade cartFacade;
 
-    public CartController(RootController rootController){
-
+    public CartController(){
+        this.cartFacade = new CartFacade();
     }
 }

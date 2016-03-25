@@ -8,19 +8,14 @@ import java.util.Objects;
 
 import javax.swing.JComboBox;
 
+import UI.core.RootController;
 import UI.views.ViewProposeProduct;
 import app.facades.ProposeProductFacade;
 import app.model.*;
 
-public class ProposeProductController {
-	private RootController rootController;
-	
-	public ProposeProductController(RootController rootController){
-		this.rootController = rootController;
-		new ViewProposeProduct(rootController.getContentPane(), this);
-		/**
-		 * @todo
-		 */
+public class ProposeProductController extends RootController {
+	public ProposeProductController(){
+		this.render(new ViewProposeProduct());
 	}
 	
 	public Object proposeProduct(String label, String description){
