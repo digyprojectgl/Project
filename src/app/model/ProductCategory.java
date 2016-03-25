@@ -5,8 +5,19 @@ package app.model;
  *
  * @author Arthur
  */
-public abstract class ProductCategory {
-    /**
-     * TODO complete this class
-     */
+public class ProductCategory {
+    private String label;
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public ProductCategory(String label) {
+        this.label = label;
+    }
+
 }

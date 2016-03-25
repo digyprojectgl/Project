@@ -21,8 +21,8 @@ public class ProductListController {
         productListFacade = new ProductListFacade();
     }
 
-    public void obtainProductList(HashMap<String,String> options){
-        this.productListView.displayProductList(this.productListFacade.obtainProductList(options));
+    public Object obtainProductList(HashMap<String,String> options){
+        return this.productListFacade.obtainProductList(options);
     }
 
 }

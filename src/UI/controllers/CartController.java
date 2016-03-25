@@ -8,9 +8,13 @@ import app.facades.CartFacade;
  * @author Arthur
  */
 public class CartController {
-    private CartFacade cartFacade = new CartFacade();
+    private CartFacade cartFacade;
+    private RootController rootController;
 
     public CartController(RootController rootController){
+        this.rootController = rootController;
+        this.cartFacade = new CartFacade();
+
 
     }
 }
