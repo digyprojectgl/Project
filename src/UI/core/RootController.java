@@ -4,6 +4,7 @@ import java.awt.Container;
 import UI.controllers.CartController;
 import UI.controllers.HomeViewController;
 import UI.controllers.LogInController;
+import UI.controllers.NotificationsController;
 import UI.controllers.ProductListController;
 import UI.controllers.SignUpController;
 import UI.layouts.LoginLayout;
@@ -70,6 +71,9 @@ public class RootController {
 			case "productList":
 				new ProductListController();
 				break;	
+			case "notifications":
+				new NotificationsController();
+				break;
 		}
 	}
 	

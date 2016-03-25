@@ -5,6 +5,8 @@ import UI.core.ViewInterface;
 
 import java.awt.*;
 
+import javax.swing.JLabel;
+
 /**
  * Created on 25/03/2016.
  *
@@ -25,6 +27,7 @@ public class CartView implements ViewInterface {
 
     @Override
     public void render(Container contentPane) {
+    	contentPane.add(new JLabel("cart"));
         // TODO: 25/03/2016 complete the function 
     }
 }

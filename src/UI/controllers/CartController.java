@@ -1,6 +1,8 @@
 package UI.controllers;
 
 import UI.core.RootController;
+import UI.views.CartView;
+import UI.views.SignUpView;
 import app.facades.CartFacade;
 
 /**
@@ -13,5 +15,7 @@ public class CartController extends RootController {
 
     public CartController(){
         this.cartFacade = new CartFacade();
+        
+        this.render(new CartView(this));
     }
 }

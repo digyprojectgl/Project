@@ -54,6 +54,10 @@ public class MainLayout extends RootController implements LayoutInterface {
 		header.add(picLabel, BorderLayout.NORTH);
 		header.add(this.buildMenu(), BorderLayout.SOUTH);
 		header.add(new JLabel("Hi,  " + getUser().getUserID()), BorderLayout.CENTER);
+		
+		JButton deconnect = new JButton("Deconnexion");
+		deconnect.addActionListener(new Deconnect(this));
+		header.add(deconnect, BorderLayout.EAST);
 		footer.add(new JLabel("footer"));
 		
 		layout.add(header, BorderLayout.NORTH);
@@ -74,7 +78,7 @@ public class MainLayout extends RootController implements LayoutInterface {
 		MenuItem items[] = {
 				new MenuItem("Home", "home"),
 				new MenuItem("Products", "productList"),
-				new MenuItem("My account", "account"),
+				new MenuItem("My account", "login"),
 				new MenuItem("Notifications", "notifications"),
 				new MenuItem("Cart", "cart")
 		};	
@@ -108,5 +112,18 @@ public class MainLayout extends RootController implements LayoutInterface {
 			System.out.println("test");
 			this.controller.goTo(action);
 		}
+	}
+	
+	class Deconnect implements ActionListener{
+		protected RootController controller;
+		public Deconnect(RootController controller) {
+			this.controller = controller;
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			this.controller.goTo("login");
+		}
+		
 	}
 }
