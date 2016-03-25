@@ -3,14 +3,17 @@ package UI.controllers;
 import java.util.ArrayList;
 import app.model.Product;
 import app.facades.OfferFacade;
+import UI.core.RootController;
 
-public class ManageOfferController {
+public class ManageOfferController extends RootController {
     private OfferFacade offerFacade = new OfferFacade();
-    public ManageOfferController(RootController rootController){
+    
+    public ManageOfferController(){
     }
-	public static void createOffer(Product prod, float prix, int qte) {
+    
+	public void createOffer(Product prod, float prix, int qte) {
 		
-		ManageOfferFacade.createOffer(prod, prix, qte);
+		offerFacade.createOffer(prod, prix, qte);
 		
 	}
 	public static ArrayList<Product> getProductList() {

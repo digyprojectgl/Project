@@ -6,9 +6,9 @@ import app.services.OfferService;
 public class OfferFacade {
     private OfferService offerService;
 
-	public static void createOffer(Product prod, float prix, int qte) {
+	public void createOffer(Product prod, float prix, int qte) {
 
-		
+		offerService.createOffer(prod, prix, qte);
 		
 	}
 }

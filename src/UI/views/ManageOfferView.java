@@ -1,6 +1,8 @@
 package UI.views;
 
 import UI.controllers.ManageOfferController;
+import UI.core.ViewInterface;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,10 +11,10 @@ import java.util.ArrayList;
 
 import app.model.Offer;
 import app.model.Product;
-public class ManageOfferView{
+public class ManageOfferView implements ViewInterface{
 	
 	ArrayList<Product> products = new ArrayList<Product>();
-	
+	ManageOfferController moc = new ManageOfferController();
 
 	JPanel manageOffer;
 	JButton createOffer;
@@ -54,8 +56,22 @@ public class ManageOfferView{
 				Product selectedProduct = (Product)productOffer.getSelectedItem();
 				String prix = priceOffer.getText();
 				String qte = qtyOffer.getText();
-				ManageOfferController.createOffer(selectedProduct,Float.parseFloat(prix), Integer.parseInt(qte));
+				moc.createOffer(selectedProduct,Float.parseFloat(prix), Integer.parseInt(qte));
 			}
 		});
+	}
+
+
+	@Override
+	public String getLayout() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void render(Container contentPane) {
+		// TODO Auto-generated method stub
+		
 	}
 }
