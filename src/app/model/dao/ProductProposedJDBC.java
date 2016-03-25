@@ -1,5 +1,5 @@
 package app.model.dao;
-
+import app.model.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -20,11 +20,12 @@ public class ProductProposedJDBC extends Product {
 	 * create new product proposed(not valid)
 	 */
 	public ProductProposedJDBC(String label, String description) throws Exception{
+		super(label, description, new ProductCategory(""));
 	        JdbcConnection connection = JdbcConnection.getInstance();
 	        connection.openConnection();
 		/**
 		 * @todo create nouveau produit
 		 */
-		connect.close();
+		connection.close();
 	}
 }
