@@ -1,3 +1,5 @@
 bin
 .idea/
-.classpath
+.settings/
+.project
+Digy Project.iml
