@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import UI.controllers.LogInController;
+import UI.core.ViewInterface;
 
 
 /**
@@ -15,7 +16,7 @@ import UI.controllers.LogInController;
  * @author francois.beiger
  *
  */
-public class ViewLogIn {
+public class ViewLogIn implements ViewInterface {
 	JTextField text_user;
 	JPasswordField passwordField;
 	JButton submit;	
@@ -28,9 +29,12 @@ public class ViewLogIn {
 	 * @param contentPane
 	 * @param logInContainer
 	 */
-	public ViewLogIn(Container contentPane, LogInController logInController){
+	public ViewLogIn(LogInController logInController){
 		this.logInController = logInController;
-			
+	}
+	
+	public void render(Container contentPane) {
+		System.out.println("3");
 		JPanel all = new JPanel();
 		
 		JPanel totalContent = new JPanel(new GridLayout(2,0));
@@ -86,6 +90,9 @@ public class ViewLogIn {
 		
 	}
 	
+	public String getLayout() {
+		return "login";
+	}
 	
 	//GETTERS & SETTERS
 	
@@ -160,12 +167,6 @@ public class ViewLogIn {
 		
 		String username = getTextUser().getText().toString();
 		String password = String.valueOf(getPasswordField().getPassword());
-		Object answer = logInController.handleLogIn(username, password);
-		if(answer instanceof Exception){ //It's an error
-			JOptionPane.showMessageDialog(null, answer, "You're not connected", JOptionPane.ERROR_MESSAGE);
-		}
-		else{ //It's good
-			JOptionPane.showMessageDialog(null, answer, "Welcome to Digy !", JOptionPane.INFORMATION_MESSAGE);
-		}
+		logInController.handleLogIn(username, password);
 	}
 }

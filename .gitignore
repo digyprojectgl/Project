@@ -2,3 +2,6 @@ bin
 .idea/
 lib
 .idea/workspace.xml
+.settings/
+.project
+Digy Project.iml
