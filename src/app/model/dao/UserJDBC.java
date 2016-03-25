@@ -43,6 +43,28 @@ public class UserJDBC extends User {
 		connect.close();
 	}
 	
+	public UserJDBC getUserByUserId(String userID){
+		JdbcConnection connect = JdbcConnection.getInstance();
+		connect.openConnection();
+		ResultSet res = null;
+		try{
+			String query ="SELECT * FROM User where idUser ='" + userID + "'";
+			connect.executeRequest(query);
+			while ((res = connect.fetchArray()) != null){
+				this.setUserID(res.getString("idUser"));
+				this.setPassword(res.getString("password"));
+				this.setAdress(res.getString("address"));
+				
+
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		connect.close();
+		return this;
+	}
+	
 	public UserJDBC(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password) throws Exception{
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();

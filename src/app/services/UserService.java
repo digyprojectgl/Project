@@ -35,11 +35,15 @@ public class UserService {
 		
 		//We have to check if the user is a Seller/Trader or Admin
 		CustomerJDBCFactory customerJDBCFactory = new CustomerJDBCFactory();
-		Customer myCustomer = customerJDBCFactory.createCustomerJDBC(userID);
+		Customer customerJDBC = customerJDBCFactory.createCustomerJDBC(userID);
 		
-		//If he's a customer
-		if(myCustomer.getUserID() == userID){
+		//case customer
+		if(customerJDBC.getUserID() == userID){
 			CustomerFactory customerFactory = new CustomerFactory();
+			Customer myCustomer = customerFactory.createCustomer();
+			myCustomer.setUserID(userID);
+			
+			
 		}
 		
 		UserFactoryJDBC factory = new UserFactoryJDBC();

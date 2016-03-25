@@ -8,7 +8,7 @@ public abstract class User {
     public String password;
     public String firstName;
     public String lastName;
-    private String adress;
+    private String address;
     private String tel;
     private String email;
 
@@ -17,7 +17,7 @@ public abstract class User {
     	this.password = password;
     	this.firstName = firstName;
     	this.lastName = lastName;
-    	this.adress = adress;
+    	this.address = adress;
     	this.tel = tel;
     	this.email = email;
     }
@@ -27,7 +27,7 @@ public abstract class User {
     	this.password = null;
     	this.firstName = null;
     	this.lastName = null;
-    	this.adress = null;
+    	this.address = null;
     	this.tel = null;
     	this.email = null;
     }
@@ -49,7 +49,47 @@ public abstract class User {
     	this.password = password;
     }
     
-    public abstract Comment postComment(User from, String message);
+    public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getAdress() {
+		return address;
+	}
+
+	public void setAdress(String adress) {
+		this.address = adress;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public abstract Comment postComment(User from, String message);
 
     public abstract void deleteComment(Comment comment);
 
