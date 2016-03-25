@@ -12,6 +12,10 @@ public class Customer extends User {
 		super(userID, password, lastName, firstName, adress, tel, email);
 	}
 	
+	public Customer(){
+		super();
+	}
+	
 	
     @Override
     public Comment postComment(User from, String message) {

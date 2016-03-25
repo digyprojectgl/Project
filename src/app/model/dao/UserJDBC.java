@@ -16,7 +16,7 @@ import app.model.User;
 public class UserJDBC extends User {
 	
 	/**
-	 * Static method.
+	 * 
 	 * Find a user by his userID. 
 	 * Throws an Exception if not found.
 	 * @param userID

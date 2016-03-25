@@ -27,25 +27,31 @@ public class UserService {
 		if(userID.isEmpty()){
 			throw new Exception("Username empty !");
 		}
+		
+		//Username treatment
 		userID.trim();
 		userID.toLowerCase();
 		UserFactory factory = new UserFactory();
+		
+		//Get the user, throws an error if the user isn't into the DB. 
 		User myUser = factory.createUser(userID);
 
 		if(password.isEmpty()){
 			throw new Exception("Password empty !");
 		}
 		
-		if(password.equals(myUser.getPassword())){
-			return myUser;
-		}
-		else{
+		if(!password.equals(myUser.getPassword())){
 			throw new Exception("Wrong password !");
 		}
+		
+		//The user is in the DB, we have to check if he is a Seller/Trader or Admin
+		
+		
+		return myUser;
 	}
 	
 	/**
-	 * 
+	 * Method called when the customer wants to sign up.
 	 * @param firstName
 	 * @param lastName
 	 * @param userID
