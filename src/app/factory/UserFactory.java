@@ -1,6 +1,7 @@
-package app.model.dao;
+package app.factory;
 
 import app.model.User;
+import app.model.dao.UserJDBC;
 
 /**
  * Factory in charge of the User.
