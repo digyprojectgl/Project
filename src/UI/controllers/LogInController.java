@@ -3,6 +3,7 @@ package UI.controllers;
 import UI.core.RootController;
 import UI.views.ViewLogIn;
 import app.facades.LogInFacade;
+import app.model.User;
 
 /**
  * Class who is in charge of the LogInView.
@@ -25,18 +26,16 @@ public class LogInController extends RootController {
 	 * @param username
 	 * @param password
 	 */
-	public Object handleLogIn(String username, String password){
+	public void handleLogIn(String username, String password){
 		//Todo appel à la façade puis mets à jour la vue
-
-		
-		Object answer;
+		User user;
 		try {
-			answer = ("Hi " + loginfacade.handleLogIn(username, password).getUserID() + " !");
+			user = loginfacade.handleLogIn(username, password);
+			setUser(user);
+			this.goTo("home");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			answer = e.getMessage();
-		}	
-		return answer;
+			
+		}
 	}
 	
 	public void goToSignUp(){

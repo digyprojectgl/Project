@@ -1,6 +1,8 @@
 package UI.views;
 import java.awt.BorderLayout;
 import java.awt.Container;
+
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import UI.controllers.HomeViewController;
 import UI.core.ViewInterface;
@@ -15,13 +17,15 @@ import app.model.User;
 public class HomeView implements ViewInterface {
 	
 	private HomeViewController homeViewController;
+	private User currentUser;
 	
 	/**
 	 * HomeView Constructor for the Customer.
 	 * @param contentPane
 	 * @param homeViewController
 	 */
-	public HomeView(){	
+	public HomeView(User currentUser){
+		this.currentUser = currentUser;
 		/*
 		this.homeViewController = homeViewController;
 		JTextField message = new JTextField();
@@ -37,6 +41,6 @@ public class HomeView implements ViewInterface {
 
 	@Override
 	public void render(Container contentPane) {
-		
+		contentPane.add(new JLabel("Hi " + currentUser.getUserID()));
 	}
 }

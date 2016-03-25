@@ -16,6 +16,7 @@ public class LoginLayout implements LayoutInterface {
 
 	@Override
 	public void render(Frame frame) {
+		frame.setSize(400,500);
 		this.contentPane = frame.getContentPane();
 		
 	}

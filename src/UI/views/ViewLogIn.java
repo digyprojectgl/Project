@@ -167,12 +167,6 @@ public class ViewLogIn implements ViewInterface {
 		
 		String username = getTextUser().getText().toString();
 		String password = String.valueOf(getPasswordField().getPassword());
-		Object answer = logInController.handleLogIn(username, password);
-		if(answer instanceof Exception){ //It's an error
-			JOptionPane.showMessageDialog(null, answer, "You're not connected", JOptionPane.ERROR_MESSAGE);
-		}
-		else{ //It's good
-			JOptionPane.showMessageDialog(null, answer, "Welcome to Digy !", JOptionPane.INFORMATION_MESSAGE);
-		}
+		logInController.handleLogIn(username, password);
 	}
 }

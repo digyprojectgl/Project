@@ -31,6 +31,7 @@ public class RootController {
 	public void setLayout(String name) {
 		if(frame != null) {
 			this.eraseContainer(frame.getContentPane());
+			this.eraseContainer(currentLayout.getContainer());
 		}
 		
 		switch(name) {
@@ -48,7 +49,9 @@ public class RootController {
 		System.out.println(name);
 		currentLayout.render(getFrame());
 		currentLayoutName = name;
+		this.displayContentPane(currentLayout.getContainer());
 		this.displayContentPane(frame.getContentPane());
+		
 	}
 	
 	public void router(String view, String[] params) {
@@ -94,7 +97,7 @@ public class RootController {
 		currentUser = user;
 	}
 	
-	public static User getUser(User user) {
+	public static User getUser() {
 		return currentUser;
 	}
 	
