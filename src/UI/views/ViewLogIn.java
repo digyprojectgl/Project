@@ -168,4 +168,8 @@ public class ViewLogIn implements ViewInterface {
 		String password = String.valueOf(getPasswordField().getPassword());
 		logInController.handleLogIn(username, password);
 	}
+	
+	public void displayErrors(String e){
+		JOptionPane.showMessageDialog(null, e, "Your log in hasn't been performed.", JOptionPane.ERROR_MESSAGE);
+	}
 }

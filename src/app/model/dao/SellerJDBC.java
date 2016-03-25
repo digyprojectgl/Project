@@ -5,32 +5,18 @@ import java.sql.SQLException;
 
 import app.model.Comment;
 import app.model.Notification;
+import app.model.Seller;
 import app.model.User;
 
-/**
- * Class in charge of linking the model to the database.
- * No database provide for the moment.
- * @author francois.beiger
- *
- */
-public class UserJDBC extends User {
+public class SellerJDBC extends Seller{
 	
-
-	/**
-	 * 
-	 * Find a user by his userID. 
-	 * Throws an Exception if not found.
-	 * @param userID
-	 * @return User
-	 * @throws Exception
-	 */
-	public UserJDBC(String userID) throws Exception{
+	public SellerJDBC(String userID){
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
 		ResultSet res = null;
 		
 		try{
-			String query ="SELECT * FROM User where idUser ='" + userID + "'";
+			String query ="SELECT * FROM User where idUser ='" + userID + "' AND type = 'seller';";
 			connect.executeRequest(query);
 			while ((res = connect.fetchArray()) != null){
 				this.setUserID(res.getString("idUser"));
@@ -40,24 +26,17 @@ public class UserJDBC extends User {
 				this.setFirstName("firstName");
 				this.setLastName(res.getString("lastName"));
 				this.setEmail(res.getString("email"));
-				this.setType(res.getString("type"));
+				this.setProfil(res.getString("profil"));
+				this.setSiret(res.getString("siret"));
+				this.setWebAddress(res.getString("webaddress"));
 			}
 		}
 		catch(SQLException e){
-			throw e;
+			e.printStackTrace();
 		}
 		connect.close();
 	}
-	
-	public UserJDBC(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password) throws Exception{
-		JdbcConnection connect = JdbcConnection.getInstance();
-		connect.openConnection();
-		String insertUser = "INSERT INTO User VALUES('"+userID +"','"+ password +"','"+ firstName +"','"+ address +"','"+ phoneNumber +"','"+ email +"')";
-		connect.executeRequest(insertUser);
-		String insertCustomer = "INSERT INTO Customer VALUES('" + userID + "')";
-		connect.executeRequest(insertCustomer);
-	}
-	
+
 	@Override
 	public Comment postComment(User from, String message) {
 		// TODO Auto-generated method stub
@@ -67,7 +46,7 @@ public class UserJDBC extends User {
 	@Override
 	public void deleteComment(Comment comment) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -75,5 +54,4 @@ public class UserJDBC extends User {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }
