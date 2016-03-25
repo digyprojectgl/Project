@@ -1,8 +1,8 @@
 package app.services;
+import app.factory.UserFactory;
 import app.model.Customer;
 import app.model.User;
 import app.model.dao.CustomerFactory;
-import app.model.dao.UserFactory;
 import app.model.dao.UserJDBC;
 
 /**
