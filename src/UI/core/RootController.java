@@ -2,6 +2,7 @@ package UI.core;
 import java.awt.Container;
 
 import UI.controllers.CartController;
+import UI.controllers.EditProfileController;
 import UI.controllers.HomeViewController;
 import UI.controllers.LogInController;
 import UI.controllers.NotificationsController;
@@ -73,6 +74,9 @@ public class RootController {
 				break;	
 			case "notifications":
 				new NotificationsController();
+				break;
+			case "edit":
+				new EditProfileController();
 				break;
 		}
 	}

@@ -23,13 +23,14 @@ public class HomeView implements ViewInterface {
 	 * @param contentPane
 	 * @param homeViewController
 	 */
-	public HomeView(User myUser){
+	public HomeView(HomeViewController homeViewController, User myUser){
 		/*
 		this.homeViewController = homeViewController;
 		JTextField message = new JTextField();
 		message.setText("Hi " + myCustomer.getUserID() + " !");
 		contentPane.add(message, BorderLayout.CENTER);
 		*/
+		this.homeViewController = homeViewController;
 		this.myUser = myUser;
 	}
 
@@ -40,6 +41,6 @@ public class HomeView implements ViewInterface {
 
 	@Override
 	public void render(Container contentPane) {
-		contentPane.add(new JLabel(myUser.getClass().toString()));
+		contentPane.add(new JLabel(myUser.getClass().getName()));
 	}
 }

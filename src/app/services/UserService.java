@@ -52,12 +52,12 @@ public class UserService {
 		
 		//Check passwords
 		if(password.equals(myUser.getPassword())){
-			System.out.println(myUser.getType());
 			String admin = "admin";
 			String seller = "seller";
 			String customer = "customer";
 			
 			//We have to check if the user is a Seller/Trader or Admin
+			// TODO: factoryAdmin, factoryCustomer are useless
 			if(myUser.getType().equals(customer)){
 				CustomerFactory customerFactory = new CustomerFactory();
 				Customer myCustomer = customerFactory.createCustomer(myUser.getUserID(), myUser.getFirstName(), myUser.getLastName(), myUser.getPassword(), myUser.getEmail(), myUser.getTel(), myUser.getAdress());
@@ -66,7 +66,6 @@ public class UserService {
 			else if(myUser.getType().equals(admin)){
 				AdminFactory adminFactory = new AdminFactory();
 				Admin myAdmin = adminFactory.createAdmin(myUser.getUserID(), myUser.getFirstName(), myUser.getLastName(), myUser.getPassword(), myUser.getEmail(), myUser.getTel(), myUser.getAdress());
-				System.out.println("Je suis admin.");
 				return myAdmin;
 			}
 			else if(myUser.getType().equals(seller)){

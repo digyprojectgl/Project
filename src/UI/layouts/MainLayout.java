@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -55,9 +57,14 @@ public class MainLayout extends RootController implements LayoutInterface {
 		header.add(this.buildMenu(), BorderLayout.SOUTH);
 		header.add(new JLabel("Hi,  " + getUser().getUserID()), BorderLayout.CENTER);
 		
+		JPanel buttonsEdit = new JPanel();
+		JButton edit = new JButton("Edit profile");
+		edit.addActionListener(new Edit(this));
 		JButton deconnect = new JButton("Deconnexion");
 		deconnect.addActionListener(new Deconnect(this));
-		header.add(deconnect, BorderLayout.EAST);
+		buttonsEdit.add(edit);
+		buttonsEdit.add(deconnect);
+		header.add(buttonsEdit, BorderLayout.EAST);
 		footer.add(new JLabel("footer"));
 		
 		layout.add(header, BorderLayout.NORTH);
@@ -78,7 +85,7 @@ public class MainLayout extends RootController implements LayoutInterface {
 		MenuItem items[] = {
 				new MenuItem("Home", "home"),
 				new MenuItem("Products", "productList"),
-				new MenuItem("My account", "login"),
+				new MenuItem("My account", "account"),
 				new MenuItem("Notifications", "notifications"),
 				new MenuItem("Cart", "cart")
 		};	
@@ -123,7 +130,18 @@ public class MainLayout extends RootController implements LayoutInterface {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			this.controller.goTo("login");
+		}	
+	}
+	
+	class Edit implements ActionListener{
+		protected RootController controller;
+		public Edit(RootController controller){
+			this.controller = controller;
 		}
-		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			this.controller.goTo("edit");
+		}
 	}
 }
