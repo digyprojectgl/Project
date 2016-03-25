@@ -26,9 +26,7 @@ public class SignUpController extends RootController {
 	public void userChoice(ActionEvent e){
 		JComboBox cb = (JComboBox)e.getSource();
 		String choice = (String)cb.getSelectedItem();
-		System.out.println(choice);
 		if(Objects.equals(choice, "Customer")){
-			System.out.println(4);
 			this.render(new SignUpView(this, "customer"));
 		}
 		else{

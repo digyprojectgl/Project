@@ -11,13 +11,11 @@ public class LoginLayout implements LayoutInterface {
 	
 	@Override
 	public Container getContainer() {
-		System.out.println("2");
 		return contentPane;
 	}
 
 	@Override
 	public void render(Frame frame) {
-		System.out.println("2");
 		this.contentPane = frame.getContentPane();
 		
 	}

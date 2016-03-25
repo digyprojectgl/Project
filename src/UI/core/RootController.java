@@ -41,7 +41,7 @@ public class RootController {
 				currentLayout = new MainLayout();
 				break;
 			default:
-				System.out.println("error");
+				//TODO: throw UnknownLayoutException
 				break;
 		}
 		
