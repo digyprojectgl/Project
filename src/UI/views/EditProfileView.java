@@ -38,6 +38,7 @@ public class EditProfileView implements ViewInterface{
 	
 	public EditProfileView(EditProfileController editProfileController){
 		myUser = this.editProfileController.getUser();
+		this.viewDidLoad();
 	}
 	
 	@Override
@@ -68,12 +69,13 @@ public class EditProfileView implements ViewInterface{
 		
 		JPanel buttonPanel = new JPanel();
 		
-		JLabel firstName = new JLabel("First Name*");
-		JLabel lastName = new JLabel("Last Name*");
-		JLabel userID = new JLabel("Username*");
-		JLabel password = new JLabel("Password*");
-		JLabel confirmPassword = new JLabel("Confirm your password*");
-		JLabel emailLab = new JLabel("Email*");
+		
+		JLabel firstName = new JLabel("First Name");
+		JLabel lastName = new JLabel("Last Name");
+		JLabel userID = new JLabel("Username");
+		JLabel password = new JLabel("Password");
+		JLabel confirmPassword = new JLabel("Confirm your password");
+		JLabel emailLab = new JLabel("Email");
 		JLabel phoneNumberLab = new JLabel("Phone number");
 		JLabel addressLab = new JLabel("Address");
 		
@@ -128,12 +130,12 @@ public class EditProfileView implements ViewInterface{
 		JPanel buttonPanel = new JPanel();
 		
 		
-		JLabel firstName = new JLabel("First Name*");
-		JLabel lastName = new JLabel("Last Name*");
-		JLabel userID = new JLabel("Username*");
-		JLabel password = new JLabel("Password*");
-		JLabel confirmPassword = new JLabel("Confirm your password*");
-		JLabel emailLab = new JLabel("Email*");
+		JLabel firstName = new JLabel("First Name");
+		JLabel lastName = new JLabel("Last Name");
+		JLabel userID = new JLabel("Username");
+		JLabel password = new JLabel("Password");
+		JLabel confirmPassword = new JLabel("Confirm your password");
+		JLabel emailLab = new JLabel("Email");
 		JLabel phoneNumberLab = new JLabel("Phone number");
 		JLabel addressLab = new JLabel("Address");
 		JLabel siretLab = new JLabel("SIRET");
@@ -152,7 +154,7 @@ public class EditProfileView implements ViewInterface{
 		
 
 		fieldPanel.add(getFieldFirstName());
-		fieldPanel.add(getFieldLastName());
+		fieldPanel.add(getFieldLastName()); 
 		fieldPanel.add(getFieldUserID());
 		fieldPanel.add(getEmail());
 		fieldPanel.add(getPhoneNumber());
@@ -171,7 +173,7 @@ public class EditProfileView implements ViewInterface{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				updateChanges();
+				updateChangesSeller();
 			}
 		});
 		buttonPanel.add(this.getSubmit());
@@ -182,8 +184,36 @@ public class EditProfileView implements ViewInterface{
 	
 		contentPane.add(all, BorderLayout.CENTER);
 	}
+	
+	/**
+	 * Function called once, for loading datas into the TExtFields.
+	 */
+	private void viewDidLoad(){
+		//Disable the TextField
+		this.getFieldUserID().setEditable(false);
+		this.getFieldFirstName().setText(this.getMyUser().getFirstName());
+		this.getFieldLastName().setText(this.getMyUser().getLastName());
+		this.getFieldUserID().setText(this.getMyUser().getUserID());
+		this.getAddress().setText(this.getMyUser().getAdress());
+		this.getEmail().setText(this.getMyUser().getEmail());
+		this.getPhoneNumber().setText(this.getMyUser().getTel());
+		if(this.getMyUser() instanceof Seller){
+			this.getSiret().setText(((Seller)this.getMyUser()).getSiret());
+			this.getWebAddress().setText(((Seller)this.getMyUser()).getWebAddress());
+		}
+	}
 
+	/**
+	 * Function called for updating the Admin/Customer.
+	 */
 	private void updateChanges(){
+		
+	}
+	
+	/**
+	 * Function called for updating the Seller
+	 */
+	private void updateChangesSeller(){
 		
 	}
 	
