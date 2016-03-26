@@ -396,7 +396,17 @@ public class SignUpView implements ViewInterface {
 	}
 
 	private void signUpSeller(){
-		
+		String firstName = this.getFieldFirstName().getText();
+		String lastName = this.getFieldLastName().getText();
+		String userID = this.getFieldUserID().getText();
+		String email = this.getEmail().getText();
+		String phoneNumber = this.getPhoneNumber().getText();
+		String address = this.getAddress().getText();
+		String password = String.valueOf(this.getFieldPassword().getPassword());
+		String confirm = String.valueOf(this.getFieldConfirm().getPassword());
+		String siret = this.getSiret().getText();
+		String webaddress = this.getWebAddress().getText();
+		this.getSignUpController().signUpSeller(firstName, lastName, userID, email, phoneNumber, address, password, confirm, siret, webaddress);
 	}
 	
 	private void goToLogIn(){

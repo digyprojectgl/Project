@@ -10,6 +10,10 @@ import app.model.User;
 
 public class SellerJDBC extends Seller{
 	
+	/**
+	 * Return a Seller by his UserId
+	 * @param userID
+	 */
 	public SellerJDBC(String userID){
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
@@ -26,7 +30,6 @@ public class SellerJDBC extends Seller{
 				this.setFirstName("firstName");
 				this.setLastName(res.getString("lastName"));
 				this.setEmail(res.getString("email"));
-				this.setProfil(res.getString("profil"));
 				this.setSiret(res.getString("siret"));
 				this.setWebAddress(res.getString("webaddress"));
 			}
@@ -35,6 +38,22 @@ public class SellerJDBC extends Seller{
 			e.printStackTrace();
 		}
 		connect.close();
+	}
+	
+	public SellerJDBC(){
+		super();
+	}
+	
+	/**
+	 * Insert the seller into the DB.
+	 * @throws Exception
+	 */
+	public void inserSeller() throws Exception{
+		JdbcConnection connect = JdbcConnection.getInstance();
+		connect.openConnection();
+		//DB Structure : userID, password, firstName, lastName, address, tel, email, type, siret, webaddress 
+		String insertSeller = "INSERT INTO User VALUES('"+this.getUserID() +"','"+ this.getPassword() +"','"+ this.getFirstName() + "','" + this.getLastName() +"','"+ this.getAdress() +"','"+ this.getTel() +"','"+ this.getEmail() + "','seller' , '"+ this.getSiret() + "','" + this.getWebAddress() +"')";
+		connect.executeRequest(insertSeller);
 	}
 
 	@Override

@@ -24,12 +24,6 @@ public class HomeView implements ViewInterface {
 	 * @param homeViewController
 	 */
 	public HomeView(HomeViewController homeViewController, User myUser){
-		/*
-		this.homeViewController = homeViewController;
-		JTextField message = new JTextField();
-		message.setText("Hi " + myCustomer.getUserID() + " !");
-		contentPane.add(message, BorderLayout.CENTER);
-		*/
 		this.homeViewController = homeViewController;
 		this.myUser = myUser;
 	}

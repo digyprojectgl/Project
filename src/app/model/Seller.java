@@ -9,7 +9,13 @@ public abstract class Seller extends User {
 
 	public String siret;
 	public String webAddress;
-	public String profil;
+	
+	public Seller(){
+		super();
+		this.siret = null;
+		this.webAddress = null;
+	}
+	
 	public String getSiret() {
 		return siret;
 	}
@@ -21,12 +27,6 @@ public abstract class Seller extends User {
 	}
 	public void setWebAddress(String webAddress) {
 		this.webAddress = webAddress;
-	}
-	public String getProfil() {
-		return profil;
-	}
-	public void setProfil(String profil) {
-		this.profil = profil;
 	} 
 	
 	

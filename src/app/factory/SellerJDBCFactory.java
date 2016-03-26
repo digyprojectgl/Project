@@ -5,7 +5,11 @@ import app.model.dao.SellerJDBC;
 
 public class SellerJDBCFactory {
 	
-	public Seller createSellerJDBC(String userID){
+	public SellerJDBC createSellerJDBC(String userID){
 		return new SellerJDBC(userID);
+	}
+	
+	public SellerJDBC createSellerJDBC(){
+		return new SellerJDBC();
 	}
 }

@@ -37,25 +37,40 @@ public class UserJDBC extends User {
 				this.setPassword(res.getString("password"));
 				this.setAdress(res.getString("address"));
 				this.setTel(res.getString("tel"));
-				this.setFirstName("firstName");
+				this.setFirstName(res.getString("firstName"));
 				this.setLastName(res.getString("lastName"));
 				this.setEmail(res.getString("email"));
 				this.setType(res.getString("type"));
 			}
 		}
 		catch(SQLException e){
-			throw e;
+			throw (Exception)e;
 		}
 		connect.close();
 	}
 	
-	public UserJDBC(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password) throws Exception{
+	public UserJDBC(){
+		super();
+	}
+	
+	/**
+	 * Insert the user into the DB.
+	 * @throws Exception
+	 */
+	public void insertCustomer() throws Exception{
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
-		String insertUser = "INSERT INTO User VALUES('"+userID +"','"+ password +"','"+ firstName +"','"+ address +"','"+ phoneNumber +"','"+ email +"')";
+		//DB Structure : userID, password, firstName, lastName, address, tel, email, type, siret, webaddress 
+		String insertUser = "INSERT INTO User VALUES('"+this.getUserID() +"','"+ this.getPassword() +"','"+ this.getFirstName() + "','" + this.getLastName() +"','"+ this.getAdress() +"','"+ this.getTel() +"','"+ this.getEmail() + "','customer' , '" + null + "' , '" + null + "')";
 		connect.executeRequest(insertUser);
-		String insertCustomer = "INSERT INTO Customer VALUES('" + userID + "')";
-		connect.executeRequest(insertCustomer);
+	}
+	
+	
+	/**
+	 * Save the user into the DB.
+	 */
+	public void saveUser(){
+		
 	}
 	
 	@Override
