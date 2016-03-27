@@ -4,13 +4,13 @@ package UI.controllers;
  */
 
 import UI.core.RootController;
-import UI.views.ViewProposeProduct;
+import UI.views.ProposeProductView;
 import app.facades.ProposeProductFacade;
 import app.model.*;
 
 public class ProposeProductController extends RootController {
 	public ProposeProductController(){
-		this.render(new ViewProposeProduct(this));
+		this.render(new ProposeProductView(this));
 	}
 	
 	public Object proposeProduct(String label, String description, ProductCategory category){
