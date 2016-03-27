@@ -64,6 +64,7 @@ public class RootController {
 				new HomeViewController();
 				break;
 			case "login":
+				RootController.setUser(null);
 				new LogInController();
 				break;
 			case "cart":

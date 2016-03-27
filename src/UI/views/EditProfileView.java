@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -38,6 +39,7 @@ public class EditProfileView implements ViewInterface{
 	
 	public EditProfileView(EditProfileController editProfileController){
 		myUser = this.editProfileController.getUser();
+		this.setEditProfileController(editProfileController);
 		this.viewDidLoad();
 	}
 	
@@ -106,7 +108,7 @@ public class EditProfileView implements ViewInterface{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				updateChanges();
+				updateUser();
 			}
 		});
 		buttonPanel.add(this.getSubmit());
@@ -173,7 +175,7 @@ public class EditProfileView implements ViewInterface{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				updateChangesSeller();
+				updateUser();
 			}
 		});
 		buttonPanel.add(this.getSubmit());
@@ -206,17 +208,29 @@ public class EditProfileView implements ViewInterface{
 	/**
 	 * Function called for updating the Admin/Customer.
 	 */
-	private void updateChanges(){
-		
+	private void updateUser(){
+		String firstName = this.getFieldFirstName().getText();
+		String lastName = this.getFieldLastName().getText();
+		String userID = this.getFieldUserID().getText();
+		String email = this.getEmail().getText();
+		String phoneNumber = this.getPhoneNumber().getText();
+		String address = this.getAddress().getText();
+		String password = String.valueOf(this.getFieldPassword().getPassword());
+		String confirm = String.valueOf(this.getFieldConfirm().getPassword());
+		String siret = this.getSiret().getText();
+		String webaddress = this.getWebAddress().getText();
+		this.getEditProfileController().updateUser(getMyUser(), firstName, lastName, userID, email, phoneNumber, address, password, confirm, siret, webaddress);
 	}
 	
-	/**
-	 * Function called for updating the Seller
-	 */
-	private void updateChangesSeller(){
-		
+	public void displayError(String e){
+		JOptionPane.showMessageDialog(null, e, "Changes haven't been performed.", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	public void displayMessage(String m){
+		JOptionPane.showMessageDialog(null, m, "Your changes have been made !", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+
 	public EditProfileController getEditProfileController() {
 		return editProfileController;
 	}
@@ -320,7 +334,6 @@ public class EditProfileView implements ViewInterface{
 	public void setSubmit(JButton submit) {
 		this.submit = submit;
 	}
-	
 	
 
 }
