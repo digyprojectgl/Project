@@ -85,9 +85,11 @@ public class UserService {
 				return myAdmin;
 			}
 			else if(myUser.getType().equals(seller)){
-				SellerJDBCFactory sellerJDBCFactory = new SellerJDBCFactory();
-				Seller mySeller = sellerJDBCFactory.createSellerJDBC(userID);
-				return mySeller;
+				Seller newSeller = this.getSellerFactory().createSellerJDBC(userID);
+				Seller returnSeller = new Seller(newSeller.getUserID(), newSeller.getPassword(), 
+						newSeller.getLastName(), newSeller.getFirstName(), newSeller.getAdress(), 
+						newSeller.getTel(), newSeller.getEmail(), newSeller.getSiret(), newSeller.getWebAddress());
+				return returnSeller;
 			}
 		}
 		else{
@@ -134,8 +136,9 @@ public class UserService {
 				throw new Exception("Error with the insertion in the DB.");
 			}
 			
-			Customer myCustomer = new Customer(anUser.getUserID(), anUser.getFirstName(), anUser.getLastName(), anUser.getPassword(), anUser.getEmail(), anUser.getTel(), anUser.getAdress());
-			System.out.println(myCustomer.getUserID());
+			Customer myCustomer = new Customer(anUser.getUserID(), anUser.getFirstName(), 
+					anUser.getLastName(), anUser.getPassword(), anUser.getEmail(), 
+					anUser.getTel(), anUser.getAdress());
 			return myCustomer;
 		}
 	}
@@ -175,11 +178,30 @@ public class UserService {
 			aSeller.setTel(phoneNumber);
 			aSeller.setSiret(siret);
 			aSeller.setWebAddress(webaddress);
-			return aSeller;
+			aSeller.inserSeller();
+			Seller returnSeller = new Seller(aSeller.getUserID(), aSeller.getPassword(), 
+					aSeller.getLastName(), aSeller.getFirstName(), aSeller.getAdress(), 
+					aSeller.getTel(), aSeller.getEmail(), aSeller.getSiret(), aSeller.getWebAddress());
+			return returnSeller;
 		}
 	}
 
-	
+	/**
+	 * Check if there is changes and call the updateUser() method for an UserJDBC.
+	 * @param myUser
+	 * @param firstName
+	 * @param lastName
+	 * @param userID
+	 * @param email
+	 * @param phoneNumber
+	 * @param address
+	 * @param password
+	 * @param confirm
+	 * @param siret
+	 * @param webaddress
+	 * @return Customer, Admin
+	 * @throws Exception
+	 */
 	public User updateUser(User myUser, String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm, String siret, String webaddress) throws Exception{
 		
 		if(myUser instanceof Seller){
@@ -238,7 +260,9 @@ public class UserService {
 				}
 			}
 			
+			
 			newUser.updateUser();
+			
 			if(myUser instanceof Admin){
 				Admin myAdmin = new Admin(newUser.getUserID(), newUser.getFirstName(), newUser.getLastName(), newUser.getPassword(), newUser.getEmail(), newUser.getTel(), newUser.getAdress());
 				return myAdmin;
@@ -250,9 +274,97 @@ public class UserService {
 		}
 	}
 	
+	
+	/**
+	 * Check if there is changes and call the updateUser() method for an SellerJDBC.
+	 * @param mySeller
+	 * @param firstName
+	 * @param lastName
+	 * @param userID
+	 * @param email
+	 * @param phoneNumber
+	 * @param address
+	 * @param password
+	 * @param confirm
+	 * @param siret
+	 * @param webaddress
+	 * @return Seller
+	 * @throws Exception
+	 */
 	public Seller updateSeller(Seller mySeller, String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm, String siret, String webaddress) throws Exception{
-		// TODO 
-		return mySeller;
+		//Create a new UserJDBC from myUser
+		
+		SellerJDBC newSeller = this.getSellerFactory().createSellerJDBC();
+		newSeller.setUserID(mySeller.getUserID());
+		newSeller.setFirstName(mySeller.getFirstName());
+		newSeller.setLastName(mySeller.getLastName());
+		newSeller.setPassword(mySeller.getPassword());
+		newSeller.setEmail(mySeller.getEmail());
+		newSeller.setAdress(mySeller.getAdress());
+		newSeller.setTel(mySeller.getTel());
+		newSeller.setSiret(mySeller.getSiret());
+		newSeller.setWebAddress(mySeller.getWebAddress());
+		
+		
+	
+		//Check if there is some updates.
+		if(!firstName.isEmpty()){
+			if(!newSeller.getFirstName().equals(firstName)){
+				newSeller.setFirstName(firstName);
+			}
+		}
+		
+		if(!lastName.isEmpty()){
+			if(!newSeller.getLastName().equals(lastName)){
+				newSeller.setLastName(lastName);
+			}
+		}
+		
+		if(!password.isEmpty()){
+			if(password.equals(confirm)){
+				newSeller.setPassword(password);
+			}
+			else{
+				throw new Exception("Passwords are not equals !");
+			}
+		}
+		
+		if(!email.isEmpty()){
+			if(!newSeller.getEmail().equals(email)){
+				newSeller.setEmail(email);
+			}
+		}
+		
+		if(!address.isEmpty()){
+			if(!newSeller.getAdress().equals(address)){
+				newSeller.setAdress(address);
+			}
+		}
+		
+		if(!phoneNumber.isEmpty()){
+			if(!newSeller.getTel().equals(phoneNumber)){
+				newSeller.setTel(phoneNumber);
+			}
+		}
+		
+		if(!siret.isEmpty()){
+			if(!newSeller.getSiret().equals(siret)){
+				newSeller.setSiret(siret);
+			}
+		}
+		
+		if(!webaddress.isEmpty()){
+			if(!newSeller.getSiret().equals(webaddress)){
+				newSeller.setWebAddress(webaddress);
+			}
+		}
+		
+		
+		newSeller.updateSeller();
+		Seller returnSeller = new Seller(newSeller.getUserID(), newSeller.getPassword(), 
+				newSeller.getLastName(), newSeller.getFirstName(), newSeller.getAdress(), 
+				newSeller.getTel(), newSeller.getEmail(), newSeller.getSiret(), newSeller.getWebAddress());
+		return returnSeller;
 	}
 	
 	/**

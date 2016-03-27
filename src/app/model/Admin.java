@@ -5,6 +5,16 @@ package app.model;
  */
 public class Admin extends User {
 	
+	/**
+	 * Constructor.
+	 * @param userID
+	 * @param firstName
+	 * @param lastName
+	 * @param password
+	 * @param email
+	 * @param telephone
+	 * @param address
+	 */
 	public Admin(String userID, String firstName, String lastName, String password, String email, String telephone, String address){
 		super(userID, password, lastName, firstName, address, telephone, email);
 	}

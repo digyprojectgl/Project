@@ -27,7 +27,7 @@ public class SellerJDBC extends Seller{
 				this.setPassword(res.getString("password"));
 				this.setAdress(res.getString("address"));
 				this.setTel(res.getString("tel"));
-				this.setFirstName("firstName");
+				this.setFirstName(res.getString("firstName"));
 				this.setLastName(res.getString("lastName"));
 				this.setEmail(res.getString("email"));
 				this.setSiret(res.getString("siret"));
@@ -56,6 +56,21 @@ public class SellerJDBC extends Seller{
 		connect.executeRequest(insertSeller);
 	}
 
+	
+	/**
+	 * Update the Seller into the DB.
+	 */
+	public void updateSeller(){
+		JdbcConnection connect = JdbcConnection.getInstance();
+		connect.openConnection();
+		//DB Structure : userID, password, firstName, lastName, address, tel, email, type, siret, webaddress 
+		String updateUser = "UPDATE User "
+				+ "SET password = '"+ this.getPassword() +"', firstName ='"+ this.getFirstName() + "', lastName ='" 
+				+ this.getLastName() +"', address ='"+ this.getAdress() +"', tel = '"+ this.getTel() +"', email = '"
+				+ this.getEmail() + "', siret = '" + this.getSiret() +"', webaddress = '" + this.getWebAddress() + "'  WHERE idUser = '" + this.getUserID() + "';";
+		connect.executeRequest(updateUser);
+	}
+	
 	@Override
 	public Comment postComment(User from, String message) {
 		// TODO Auto-generated method stub
