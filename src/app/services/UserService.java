@@ -251,7 +251,7 @@ public class UserService {
 	}
 	
 	public Seller updateSeller(Seller mySeller, String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm, String siret, String webaddress) throws Exception{
-		
+		// TODO 
 		return mySeller;
 	}
 	

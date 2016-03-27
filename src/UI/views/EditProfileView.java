@@ -60,6 +60,10 @@ public class EditProfileView implements ViewInterface{
 		}
 	}
 	
+	/**
+	 * Method responsible for adding components to the contentPane. Only for Customer or Admin
+	 * @param contentPane
+	 */
 	public void renderCustomer(Container contentPane){
 		JPanel all = new JPanel();
 		JPanel totalPanel = new JPanel(new GridLayout(2,0));
@@ -120,6 +124,10 @@ public class EditProfileView implements ViewInterface{
 		contentPane.add(all, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Method responsible for adding components to the contentPane. Only for Seller.
+	 * @param contentPane
+	 */
 	public void renderSeller(Container contentPane){
 		JPanel all = new JPanel();
 		JPanel totalPanel = new JPanel(new GridLayout(2,0));
@@ -222,10 +230,18 @@ public class EditProfileView implements ViewInterface{
 		this.getEditProfileController().updateUser(getMyUser(), firstName, lastName, userID, email, phoneNumber, address, password, confirm, siret, webaddress);
 	}
 	
+	/**
+	 * Create a popUp for displaying errors. Example : Changes haven't been performed.
+	 * @param e
+	 */
 	public void displayError(String e){
 		JOptionPane.showMessageDialog(null, e, "Changes haven't been performed.", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	/**
+	 * Create a popup for displaying a message. Example : your registration have been made.
+	 * @param m
+	 */
 	public void displayMessage(String m){
 		JOptionPane.showMessageDialog(null, m, "Your changes have been made !", JOptionPane.INFORMATION_MESSAGE);
 	}
