@@ -5,6 +5,7 @@ import UI.controllers.CartController;
 import UI.controllers.EditProfileController;
 import UI.controllers.HomeViewController;
 import UI.controllers.LogInController;
+import UI.controllers.ManageActivityController;
 import UI.controllers.NotificationsController;
 import UI.controllers.ProductListController;
 import UI.controllers.SignUpController;
@@ -64,7 +65,7 @@ public class RootController {
 				new HomeViewController();
 				break;
 			case "login":
-				RootController.setUser(null);
+				setUser(null);
 				new LogInController();
 				break;
 			case "cart":
@@ -78,6 +79,9 @@ public class RootController {
 				break;
 			case "edit":
 				new EditProfileController();
+				break;
+			case "mActivities":
+				new ManageActivityController();
 				break;
 		}
 	}
@@ -108,40 +112,6 @@ public class RootController {
 	public static User getUser() {
 		return currentUser;
 	}
-	
-	/*
-	public void goToSignUp(){
-		this.eraseContainer();
-		new SignUpController(this);
-		this.displayContentPane();
-	}
-	
-	public void goToLogIn(){
-		this.eraseContainer();
-		new LogInController(this);
-		this.displayContentPane();
-		
-	}
-
-	public void goToProductList(){
-		this.eraseContainer();
-		new  ProductListController(this);
-		this.displayContentPane();
-	}
-
-	public void goToCart() {
-		this.eraseContainer();
-		new CartController(this);
-		this.displayContentPane();
-	}
-	
-	public void goToHomeCustomer(User myUser){
-		this.eraseContainer();
-		new HomeViewController(this, myUser);
-		this.displayContentPane();
-	}
-	
-	*/
 	
 	public void displayContentPane(Container container){
 		container.revalidate();

@@ -54,6 +54,7 @@ public class SellerJDBC extends Seller{
 		//DB Structure : userID, password, firstName, lastName, address, tel, email, type, siret, webaddress 
 		String insertSeller = "INSERT INTO User VALUES('"+this.getUserID() +"','"+ this.getPassword() +"','"+ this.getFirstName() + "','" + this.getLastName() +"','"+ this.getAdress() +"','"+ this.getTel() +"','"+ this.getEmail() + "','seller' , '"+ this.getSiret() + "','" + this.getWebAddress() +"')";
 		connect.executeRequest(insertSeller);
+		connect.close();
 	}
 
 	
@@ -69,6 +70,7 @@ public class SellerJDBC extends Seller{
 				+ this.getLastName() +"', address ='"+ this.getAdress() +"', tel = '"+ this.getTel() +"', email = '"
 				+ this.getEmail() + "', siret = '" + this.getSiret() +"', webaddress = '" + this.getWebAddress() + "'  WHERE idUser = '" + this.getUserID() + "';";
 		connect.executeRequest(updateUser);
+		connect.close();
 	}
 	
 	@Override

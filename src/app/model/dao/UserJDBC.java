@@ -65,6 +65,7 @@ public class UserJDBC extends User {
 				+ this.getFirstName() + "','" + this.getLastName() +"','"+ this.getAdress() +"','"
 				+ this.getTel() +"','"+ this.getEmail() + "','customer' , '" + null + "' , '" + null + "')";
 		connect.executeRequest(insertUser);
+		connect.close();
 	}
 	
 	
@@ -80,6 +81,7 @@ public class UserJDBC extends User {
 				+ this.getLastName() +"', address ='"+ this.getAdress() +"', tel = '"+ this.getTel() +"', email = '"
 				+ this.getEmail() + "' WHERE idUser = '" + this.getUserID() + "';";
 		connect.executeRequest(updateUser);
+		connect.close();
 	}
 	
 	@Override
