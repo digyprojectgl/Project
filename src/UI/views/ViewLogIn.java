@@ -1,15 +1,15 @@
-package UI.views;
 
+package UI.views;
 import java.awt.*;
+
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
 import UI.controllers.LogInController;
 import UI.core.ViewInterface;
-
-
 /**
  * Display 2 text fields (user_id & password).
  * Call the LogIn Controller with user_id & password when the submit button is turned on.
@@ -49,6 +49,16 @@ public class ViewLogIn implements ViewInterface {
 		setTextUser(new JTextField(10));	//Text Field dans lequel le user va entrer son id
 		JLabel password = new JLabel("Password");	//Label "Password"
 		setPasswordField(new JPasswordField(10));//PAssword field
+		
+		this.getPasswordField().addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				logIn();
+			}
+			
+		});
 		
 		labelPanel.add(user_id);						//On ajoute le label et le text area au panel
 		labelPanel.add(password);
