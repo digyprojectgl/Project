@@ -16,7 +16,7 @@ public class ProductProposedJDBC extends Product {
 	/**
 	 * save a new proposition of product - seller side
 	 */
-	public void AddProductProposed(String label, String description, ProductCategory category){
+	public void addProductProposed(String label, String description, ProductCategory category){
 		JdbcConnection connection = JdbcConnection.getInstance();
 	    connection.openConnection();
 		String proposeProduct = "INSERT INTO ProductProposed VALUES('"+ label +"','"+ description +"','"+ category+"')";
@@ -27,7 +27,7 @@ public class ProductProposedJDBC extends Product {
 	/**
 	 * delete a proposition of product when it's valid or refused - admin side
 	 */
-	public void DeleteProductProposed(String label, String description, ProductCategory category){
+	public void deleteProductProposed(String label, String description, ProductCategory category){
 		JdbcConnection connection = JdbcConnection.getInstance();
 	    connection.openConnection();
 		String deleteProductProposed = "DELETE FROM ProductProposed WHERE label = '"+ label +"'AND description = '"+ description +"'AND category = '"+ category+"')";

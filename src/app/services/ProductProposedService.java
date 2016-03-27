@@ -4,6 +4,7 @@ import app.factory.ProductProposedFactory;
 import app.model.Product;
 import app.model.ProductCategory;
 import app.model.dao.ProductProposedJDBC;
+import app.model.dao.ProductProposedListJDBC;
 
 /**
  * @author shui
@@ -27,21 +28,21 @@ public class ProductProposedService {
 	
 	public void deleteProposition(String label, String description, ProductCategory category) throws Exception{
 		ProductProposedJDBC productproposedJDBC = new ProductProposedJDBC(label, description, category);
-		productproposedJDBC.DeleteProductProposed(label, description, category);
+		productproposedJDBC.deleteProductProposed(label, description, category);
 	}
 	
 	/**
-	 * wait for admin side
-	 * display the list of product proposed
-	 *
-	 * public Object listproposedProduct(String options) {
-        Object list;
-        try {
-            list = new PropositionManageJDBC(options);
-        } catch (Exception e) {
-            list = e;
-        }
-        return list;
-    }
-    */
+	 * get the list of all the product proposition
+	 * @return
+	 */
+	public Object getPropositionList() {
+	        Object result;
+	        ProductProposedListJDBC list = new ProductProposedListJDBC();
+	        try {
+	            result = list.getPropositionList();
+	        } catch (Exception e) {
+	            result = e;
+	        }
+	        return result;
+	        }
 }
