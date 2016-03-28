@@ -1,4 +1,4 @@
-package UI.views;
+package UI.views.admin;
 
 import java.awt.BorderLayout;
 import java.awt.Container;

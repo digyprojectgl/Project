@@ -1,4 +1,4 @@
-package UI.views;
+package UI.views.seller;
 
 import java.awt.Container;
 import java.awt.GridLayout;

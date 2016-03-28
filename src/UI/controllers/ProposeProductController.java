@@ -4,7 +4,7 @@ package UI.controllers;
  */
 
 import UI.core.RootController;
-import UI.views.ProposeProductView;
+import UI.views.seller.ProposeProductView;
 import app.facades.ProposeProductFacade;
 import app.model.*;
 

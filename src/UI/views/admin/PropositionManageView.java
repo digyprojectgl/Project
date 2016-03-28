@@ -1,4 +1,4 @@
-package UI.views;
+package UI.views.admin;
 
 /**
  * list of propositions of product on admin side

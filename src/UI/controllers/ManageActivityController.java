@@ -1,7 +1,7 @@
 package UI.controllers;
 
 import UI.core.RootController;
-import UI.views.ManageActivityCategoryView;
+import UI.views.admin.ManageActivityCategoryView;
 import app.facades.ManageActivityCategoryFacade;
 import app.model.ActivityCategory;
 import app.model.sets.ActivityCategorySet;

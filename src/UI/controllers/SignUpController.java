@@ -54,7 +54,7 @@ public class SignUpController extends RootController {
 		try{
 			Seller mySeller = this.facade.signUpSeller(firstName, lastName, userID, email, phoneNumber, address, password, confirm, siret, webaddress);
 			setUser(mySeller);
-			this.goTo("home");
+			this.goTo("notifications");
 		}
 		catch(Exception e){
 			SignUpView myView = new SignUpView(this, "seller");

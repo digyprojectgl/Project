@@ -1,6 +1,6 @@
 package UI.controllers;
 import UI.core.RootController;
-import UI.views.HomeView;
+import UI.views.customer.HomeView;
 import app.model.Customer;
 import app.model.User;
 

@@ -125,7 +125,7 @@ public class UserService {
 	 */
 	public Customer signUpCustomer(String firstName, String lastName, String userID, String email, String telephone, String address, String password, String confirm) throws Exception{
 	
-		this.checkFields(firstName, lastName, userID, email, telephone, address);
+		this.checkFields(firstName, lastName, userID, email, password, confirm);
 		
 		//Get the user in the DB
 		User myUser = this.getUserFactoryJDBC().createUserJDBC(userID);
