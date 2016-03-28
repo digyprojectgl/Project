@@ -5,7 +5,7 @@ package UI.controllers;
  */
 
 import UI.core.RootController;
-import UI.views.PropositionManageView;
+import UI.views.admin.PropositionManageView;
 import app.facades.PropositionListFacade;
 import app.facades.PropositionManageFacade;
 import app.model.*;

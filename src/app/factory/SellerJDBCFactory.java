@@ -5,7 +5,7 @@ import app.model.dao.SellerJDBC;
 
 public class SellerJDBCFactory {
 	
-	public SellerJDBC createSellerJDBC(String userID){
+	public SellerJDBC createSellerJDBC(String userID) throws Exception{
 		return new SellerJDBC(userID);
 	}
 	

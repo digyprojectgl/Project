@@ -56,7 +56,7 @@ public class ActivityCategoryJDBC extends ActivityCategory{
 	public void deleteCategory() throws Exception{
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
-		String query ="DROP ActivityCategory WHERE labelAC = '" 
+		String query ="DELETE FROM ActivityCategory WHERE labelAC = '" 
 		+ this.getLabelCategoryActivity() +"'";
 		connect.executeRequest(query);
 		connect.close();

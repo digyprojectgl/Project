@@ -3,6 +3,7 @@ package UI.controllers;
 import UI.core.RootController;
 import UI.views.ViewLogIn;
 import app.facades.LogInFacade;
+import app.model.Customer;
 import app.model.User;
 
 /**
@@ -32,7 +33,13 @@ public class LogInController extends RootController {
 		try {
 			user = loginfacade.handleLogIn(username, password);
 			setUser(user);
-			this.goTo("home");
+			if(user instanceof Customer){
+				this.goTo("home");
+			}
+			else{
+				this.goTo("notifications");
+			}
+			
 		} 
 		catch (Exception e) {
 			ViewLogIn myView = new ViewLogIn(this);
