@@ -60,8 +60,14 @@ public class UserService {
 		userID.toLowerCase();
 		
 		//First we get the User, if the user exists
+		User myUser = this.getUserFactoryJDBC().createUserJDBC();
+		try{
+			myUser = this.getUserFactoryJDBC().createUserJDBC(userID);
+		}
+		catch(Exception e){
+			throw new Exception("Error when getting user.");
+		}
 		
-		User myUser = this.getUserFactoryJDBC().createUserJDBC(userID);
 		
 		//We have to check if the userId is_set
 		if(myUser.getUserID().isEmpty()){
@@ -85,7 +91,13 @@ public class UserService {
 				return myAdmin;
 			}
 			else if(myUser.getType().equals(seller)){
-				Seller newSeller = this.getSellerFactory().createSellerJDBC(userID);
+				Seller newSeller = this.getSellerFactory().createSellerJDBC();
+				try{
+					newSeller = this.getSellerFactory().createSellerJDBC(userID);
+				}
+				catch(Exception e){
+					throw new Exception("Error when getting seller.");
+				}
 				Seller returnSeller = new Seller(newSeller.getUserID(), newSeller.getPassword(), 
 						newSeller.getLastName(), newSeller.getFirstName(), newSeller.getAdress(), 
 						newSeller.getTel(), newSeller.getEmail(), newSeller.getSiret(), newSeller.getWebAddress());
