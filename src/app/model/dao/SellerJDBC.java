@@ -5,32 +5,22 @@ import java.sql.SQLException;
 
 import app.model.Comment;
 import app.model.Notification;
+import app.model.Seller;
 import app.model.User;
 
-/**
- * Class in charge of linking the model to the database.
- * No database provide for the moment.
- * @author francois.beiger
- *
- */
-public class UserJDBC extends User {
+public class SellerJDBC extends Seller{
 	
-
 	/**
-	 * 
-	 * Find a user by his userID. 
-	 * Throws an Exception if not found.
+	 * Return a Seller by his UserId
 	 * @param userID
-	 * @return User
-	 * @throws Exception
 	 */
-	public UserJDBC(String userID) throws Exception{
+	public SellerJDBC(String userID){
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
 		ResultSet res = null;
 		
 		try{
-			String query ="SELECT * FROM User where idUser ='" + userID + "'";
+			String query ="SELECT * FROM User where idUser ='" + userID + "' AND type = 'seller';";
 			connect.executeRequest(query);
 			while ((res = connect.fetchArray()) != null){
 				this.setUserID(res.getString("idUser"));
@@ -40,46 +30,45 @@ public class UserJDBC extends User {
 				this.setFirstName(res.getString("firstName"));
 				this.setLastName(res.getString("lastName"));
 				this.setEmail(res.getString("email"));
-				this.setType(res.getString("type"));
+				this.setSiret(res.getString("siret"));
+				this.setWebAddress(res.getString("webaddress"));
 			}
 		}
 		catch(SQLException e){
-			throw (Exception)e;
+			e.printStackTrace();
 		}
 		connect.close();
 	}
 	
-	public UserJDBC(){
+	public SellerJDBC(){
 		super();
 	}
 	
 	/**
-	 * Insert the user into the DB.
+	 * Insert the seller into the DB.
 	 * @throws Exception
 	 */
-	public void insertCustomer() throws Exception{
+	public void inserSeller() throws Exception{
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
 		//DB Structure : userID, password, firstName, lastName, address, tel, email, type, siret, webaddress 
-		String insertUser = "INSERT INTO User VALUES('"+this.getUserID() +"','"+ this.getPassword() +"','"
-				+ this.getFirstName() + "','" + this.getLastName() +"','"+ this.getAdress() +"','"
-				+ this.getTel() +"','"+ this.getEmail() + "','customer' , '" + null + "' , '" + null + "')";
-		connect.executeRequest(insertUser);
+		String insertSeller = "INSERT INTO User VALUES('"+this.getUserID() +"','"+ this.getPassword() +"','"+ this.getFirstName() + "','" + this.getLastName() +"','"+ this.getAdress() +"','"+ this.getTel() +"','"+ this.getEmail() + "','seller' , '"+ this.getSiret() + "','" + this.getWebAddress() +"')";
+		connect.executeRequest(insertSeller);
 		connect.close();
 	}
-	
+
 	
 	/**
-	 * Update the user into the DB.
+	 * Update the Seller into the DB.
 	 */
-	public void updateUser(){
+	public void updateSeller(){
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
 		//DB Structure : userID, password, firstName, lastName, address, tel, email, type, siret, webaddress 
 		String updateUser = "UPDATE User "
 				+ "SET password = '"+ this.getPassword() +"', firstName ='"+ this.getFirstName() + "', lastName ='" 
 				+ this.getLastName() +"', address ='"+ this.getAdress() +"', tel = '"+ this.getTel() +"', email = '"
-				+ this.getEmail() + "' WHERE idUser = '" + this.getUserID() + "';";
+				+ this.getEmail() + "', siret = '" + this.getSiret() +"', webaddress = '" + this.getWebAddress() + "'  WHERE idUser = '" + this.getUserID() + "';";
 		connect.executeRequest(updateUser);
 		connect.close();
 	}
@@ -93,7 +82,7 @@ public class UserJDBC extends User {
 	@Override
 	public void deleteComment(Comment comment) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -101,5 +90,4 @@ public class UserJDBC extends User {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

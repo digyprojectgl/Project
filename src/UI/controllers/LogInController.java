@@ -33,8 +33,11 @@ public class LogInController extends RootController {
 			user = loginfacade.handleLogIn(username, password);
 			setUser(user);
 			this.goTo("home");
-		} catch (Exception e) {
-			
+		} 
+		catch (Exception e) {
+			ViewLogIn myView = new ViewLogIn(this);
+			myView.displayErrors(e.getMessage());
+			this.render(myView);
 		}
 	}
 	
