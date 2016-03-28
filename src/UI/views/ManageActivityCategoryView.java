@@ -1,5 +1,6 @@
 package UI.views;
 
+import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -40,7 +41,7 @@ public class ManageActivityCategoryView implements ViewInterface{
 	@Override
 	public void render(Container contentPane) {
 		// TODO Auto-generated method stub
-		int nbElem = 3;
+		int nbElem = 3;		//	NbElem/line
 		int c = nbElem;
 		int r ;
 		if(categories.count()%nbElem == 0){
@@ -50,6 +51,18 @@ public class ManageActivityCategoryView implements ViewInterface{
 			r = categories.count()/nbElem + 1;
 		}
 		JPanel gridPanel = new JPanel(new GridLayout(r, c));
+		JPanel panelTitle = new JPanel();
+		
+		JLabel title = new JLabel();
+		if(categories.count()==0){
+			title.setText("No new activity category.");
+		}
+		else{
+			title.setText("Activity categories awaiting validation.");
+		}
+		
+		title.setFont(new Font("Arial", Font.BOLD, 18));
+		panelTitle.add(title);
 		for(final ActivityCategory myCategory: categories.getActivityCategories()){
 			JPanel bloc = new JPanel();
 			JPanel columns = new JPanel(new GridLayout(4,0));
@@ -83,8 +96,10 @@ public class ManageActivityCategoryView implements ViewInterface{
 			
 			
 		}
-		JPanel all = new JPanel();
-		all.add(gridPanel);
+		
+		JPanel all = new JPanel(new BorderLayout());
+		all.add(panelTitle, BorderLayout.NORTH);
+		all.add(gridPanel, BorderLayout.CENTER);
 		contentPane.add(all);
 	}
 	

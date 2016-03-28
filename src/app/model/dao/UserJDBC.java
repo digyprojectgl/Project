@@ -71,8 +71,9 @@ public class UserJDBC extends User {
 	
 	/**
 	 * Update the user into the DB.
+	 * @throws Exception 
 	 */
-	public void updateUser(){
+	public void updateUser() throws Exception{
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
 		//DB Structure : userID, password, firstName, lastName, address, tel, email, type, siret, webaddress 

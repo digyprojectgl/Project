@@ -14,8 +14,9 @@ public class ProductProposedListJDBC extends ProductList{
     
     /**
      * Returns a list of all the ProductProposed in the attribute propostionList.
+     * @throws Exception 
      */
-    public Object getPropositionList(){
+    public Object getPropositionList() throws Exception{
     	JdbcConnection connection = JdbcConnection.getInstance();
         connection.openConnection();
         ResultSet res;

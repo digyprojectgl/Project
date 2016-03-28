@@ -13,8 +13,9 @@ public class SellerJDBC extends Seller{
 	/**
 	 * Return a Seller by his UserId
 	 * @param userID
+	 * @throws Exception 
 	 */
-	public SellerJDBC(String userID){
+	public SellerJDBC(String userID) throws Exception{
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
 		ResultSet res = null;
@@ -60,8 +61,9 @@ public class SellerJDBC extends Seller{
 	
 	/**
 	 * Update the Seller into the DB.
+	 * @throws Exception 
 	 */
-	public void updateSeller(){
+	public void updateSeller() throws Exception{
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
 		//DB Structure : userID, password, firstName, lastName, address, tel, email, type, siret, webaddress 

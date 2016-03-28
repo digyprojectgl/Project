@@ -16,8 +16,13 @@ public class ActivityService {
 	 * @throws Exception
 	 */
 	public ActivityCategorySet getAllActivityCategoryFalse() throws Exception{
-		ActivityCategorySet mySet = this.getSetFactory().createActivityCategorySet();
-		return mySet.getAllActivityCategoryFalse();
+		try{
+			ActivityCategorySet mySet = this.getSetFactory().createActivityCategorySet();
+			return mySet.getAllActivityCategoryFalse();
+		}
+		catch(Exception e){
+			throw new Exception("Error when getting data.");
+		}
 	}
 	
 	/**
@@ -27,8 +32,13 @@ public class ActivityService {
 	 */
 	public ActivityCategory validateCategory(ActivityCategory myCategory) throws Exception{
 		ActivityCategoryJDBC categoryJDBC = this.getCategoryFactory().createActivityCategory(myCategory.getLabelCategoryActivity());
-		categoryJDBC.validateCategory();
-		return categoryJDBC;
+		try{
+			categoryJDBC.validateCategory();
+			return categoryJDBC;
+		}
+		catch(Exception e){
+			throw new Exception("Error when validating activity category.");
+		}
 	}
 	
 	/**
@@ -38,7 +48,13 @@ public class ActivityService {
 	 */
 	public void deleteCategory(ActivityCategory myCategory) throws Exception{
 		ActivityCategoryJDBC categoryJDBC = this.getCategoryFactory().createActivityCategory(myCategory.getLabelCategoryActivity());
-		categoryJDBC.deleteCategory();
+		try{
+			categoryJDBC.deleteCategory();
+		}
+		catch(Exception e){
+			throw new Exception("Error when deleting activity category.");
+		}
+		
 	}
 	
 	
