@@ -33,7 +33,7 @@ public class OfferJDBC extends Offer{
 		connect.close();
 	}
 	
-	public OfferJDBC(String label,float price, int quantity ){
+	public OfferJDBC(String label,float price, int quantity ) throws Exception{
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
 		String insertOffer = "INSERT INTO Offer VALUES('"+quantity +"','"+ price +"','"+ null +"','"+ label +"')";
