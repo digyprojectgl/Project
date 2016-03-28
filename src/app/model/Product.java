@@ -18,6 +18,9 @@ public class Product {
         this.category = category;
     }
 
+    public Product() {
+    }
+
     public  void offerProduct(Seller seller, double prix){
         /**
          * TODO complete this method
@@ -63,9 +66,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return "label='" + label + '\'' +
-               ", description='" + description + '\'' +
-               ", category=" + category +
-               '}';
+        return  "(" + getCategory() + ") " + getLabel();
     }
 }

@@ -1,11 +1,6 @@
 package UI.core;
 import java.awt.Container;
-
-import UI.controllers.CartController;
-import UI.controllers.HomeViewController;
-import UI.controllers.LogInController;
-import UI.controllers.ProductListController;
-import UI.controllers.SignUpController;
+import UI.controllers.*;
 import UI.layouts.LoginLayout;
 import UI.layouts.MainLayout;
 import app.model.User;
@@ -70,7 +65,10 @@ public class RootController {
 				break;
 			case "productList":
 				new ProductListController();
-				break;	
+				break;
+			case "product":
+				new ProductController(params);
+				break;
 		}
 	}
 	

@@ -6,4 +6,5 @@ package app.facades;
  * @author Arthur
  */
 public class OfferListFacade {
+    //private OfferService;
 }

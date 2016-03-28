@@ -3,12 +3,16 @@ package UI.views;
 import UI.controllers.ProductListController;
 import UI.core.ViewInterface;
 import app.model.Product;
+import app.model.ProductCategory;
+import app.model.ProductCategoryList;
 import app.model.ProductList;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -19,10 +23,11 @@ import java.util.HashMap;
 public class ProductListView implements ViewInterface {
     private ProductListController productListController;
 
-    JButton search;
-    JTextField nameOrDescription;
-    JTextField category;
-    JPanel answer;
+    private JButton search;
+    private JTextField nameOrDescription;
+    private JComboBox<ProductCategory> category;
+    private JPanel answer;
+    private String defaultText = "Word in name or description...";
 
     public JPanel getAnswer() {
         return answer;
@@ -48,25 +53,26 @@ public class ProductListView implements ViewInterface {
         this.nameOrDescription = nameOrDescription;
     }
 
-    public JTextField getCategory() {
+    public JComboBox<ProductCategory> getCategory() {
         return category;
     }
 
-    public void setCategory(JTextField category) {
+    public void setCategory(JComboBox category) {
         this.category = category;
     }
 
     public ProductListView(ProductListController productListController) {
         this.productListController = productListController;
     }
-    
+
+    @Override
     public void render(Container contentPane) {
     	
  
         /*
         Set the JPanel containing all the elements
          */
-        JPanel globalPanel = new JPanel();
+        JPanel globalPanel = new JPanel(new GridLayout(0,1));
 
         /*
         Set the JPanel containing the search bar
@@ -79,8 +85,13 @@ public class ProductListView implements ViewInterface {
         Fill the panel with the fields
          */
         JPanel fields = new JPanel(new GridLayout(2,0));
-        this.setNameOrDescription(new JTextField("Word in name or description..."));
-        this.setCategory(new JTextField("Category..."));
+        this.setNameOrDescription(new JTextField(defaultText));
+        this.setCategory(new JComboBox());
+        this.getCategory().addItem(new ProductCategory("Toute catégorie"));
+        ArrayList<ProductCategory> categories = this.productListController.obtainCategoryList().productCategories;
+        for (int i = 0; i < categories.size(); i++) {
+            this.getCategory().addItem(categories.get(i));
+        }
         fields.add(this.getNameOrDescription());
         fields.add(this.getCategory());
 
@@ -105,13 +116,14 @@ public class ProductListView implements ViewInterface {
         /*
         Initialize the answer panel
          */
-        this.setAnswer(new JPanel());
+        this.setAnswer(new JPanel(new GridLayout(0,1)));
+        this.getAnswer().add(new JLabel("Produits"));
 
         /*
         Fill the global panel
          */
-        globalPanel.add(searchPanel, BorderLayout.NORTH);
-        globalPanel.add(this.getAnswer(), BorderLayout.CENTER);
+        globalPanel.add(searchPanel);
+        globalPanel.add(this.getAnswer());
 
         /*
         Add the global panel to the contentPane
@@ -121,20 +133,40 @@ public class ProductListView implements ViewInterface {
     }
 
     public void displayProductList() {
+        this.getAnswer().removeAll();
+        this.getAnswer().add(new JLabel("Produits"));
+
         HashMap<String,String> options = new HashMap<>();
-        if (!getNameOrDescription().getText().isEmpty()) {
+        if (!getNameOrDescription().getText().isEmpty() && !getNameOrDescription().getText().equalsIgnoreCase(defaultText)) {
             options.put("name", getNameOrDescription().getText().trim());
         }
-        if (!getCategory().getText().isEmpty()) {
-            options.put("category", getCategory().getText().trim());
+        if (getCategory().getSelectedIndex() != 0) {
+            options.put("category", (getCategory().getSelectedItem()).toString());
         }
-        Object item = this.productListController.obtainProductList(options);
-        if (item instanceof Exception) {
-            JOptionPane.showMessageDialog(this.getAnswer(), item, "Java ERROR", JOptionPane.ERROR_MESSAGE);
-        } else {
-            ProductList products = (ProductList) item;
-            this.getAnswer().add(new JList<Product>(products.productList));
+        ProductList products = this.productListController.obtainProductList(options);
+        int size = products.productList.size();
+        for (int i=0; i< size; i++) {
+            final JButton product = new JButton(products.productList.get(i).toString());
+            product.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    displayProduct(product.getText());
+                }
+            });
+            this.getAnswer().add(product);
         }
+        this.getAnswer().updateUI();
+    }
+
+    private void displayProduct(String text) {
+        String[] param;
+        param = text.split(" ");
+        param[0] = param[0].substring(1,param[0].length()-1);
+        this.productListController.goTo("product", param);
+    }
+
+    public void displayError(String e) {
+        JOptionPane.showMessageDialog(null, e,"Erreur",JOptionPane.ERROR_MESSAGE);
     }
 
 	@Override
