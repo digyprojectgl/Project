@@ -8,6 +8,7 @@ import UI.controllers.LogInController;
 import UI.controllers.ManageActivityController;
 import UI.controllers.NotificationsController;
 import UI.controllers.ProductListController;
+import UI.controllers.ProposeCategoryController;
 import UI.controllers.SignUpController;
 import UI.layouts.LoginLayout;
 import UI.layouts.MainLayout;
@@ -82,6 +83,9 @@ public class RootController {
 				break;
 			case "mActivities":
 				new ManageActivityController();
+				break;
+			case "newCategory":
+				new ProposeCategoryController();
 				break;
 		}
 	}

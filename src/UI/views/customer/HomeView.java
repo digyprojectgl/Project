@@ -23,7 +23,6 @@ import app.model.User;
 public class HomeView implements ViewInterface {
 	
 	private HomeViewController homeViewController;
-	private User myUser;
 	
 	/**
 	 * HomeView Constructor for the Customer.
@@ -31,8 +30,7 @@ public class HomeView implements ViewInterface {
 	 * @param homeViewController
 	 */
 	public HomeView(HomeViewController homeViewController, User myUser){
-		this.homeViewController = homeViewController;
-		this.myUser = myUser;
+		this.setHomeViewController(homeViewController);
 	}
 
 	@Override
@@ -75,6 +73,14 @@ public class HomeView implements ViewInterface {
 	 * Call the controller and create a new view for creating a new category 
 	 */
 	private void newCategory(){
-		
+		this.getHomeViewController().newCategory();
+	}
+
+	public HomeViewController getHomeViewController() {
+		return homeViewController;
+	}
+
+	public void setHomeViewController(HomeViewController homeViewController) {
+		this.homeViewController = homeViewController;
 	}
 }
