@@ -57,6 +57,53 @@ public class ActivityService {
 		
 	}
 	
+	/**
+	 * Check if all the fields are setted, 
+	 * then call the insertActivityCategory method, 
+	 * to add the new activity to the DB.
+	 * @param labelAC
+	 * @param shortDescription
+	 * @return
+	 * @throws Exception
+	 */
+	public ActivityCategory insertActivityCategory(String labelAC, String shortDescription) throws Exception{
+
+		//First check fields
+		if(labelAC.isEmpty()){
+			throw new Exception("Label activity is empty !");
+		}
+		if(shortDescription.isEmpty()){
+			throw new Exception("Short description is empty !");
+		}
+		
+		//Check if the labelAC isn't already taken
+		ActivityCategoryJDBC newCategory = this.getCategoryFactory().createActivityCategory();
+		try{
+			newCategory = this.getCategoryFactory().createActivityCategory(labelAC);
+		}
+		catch(Exception e){
+			throw new Exception("Error while getting the infos.");
+		}
+		
+		if(newCategory.getLabelCategoryActivity() != null){
+			throw new Exception("Label activity already taken !");
+		}
+		else{
+			//Set the new category
+			newCategory.setLabelCategoryActivity(labelAC);
+			newCategory.setShortDescription(shortDescription);
+			
+			//Insert into the DB
+			try{
+				newCategory.insertCategory();
+				return newCategory;
+			}
+			catch(Exception e){
+				throw new Exception("Error while adding new category.");
+			}
+		}
+		
+	}
 	
 	
 	

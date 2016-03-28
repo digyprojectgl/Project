@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -79,6 +80,7 @@ public class ProposeCategoryView implements ViewInterface{
 			}
 		});
 		
+		
 		buttons.add(back);
 		buttons.add(submit);
 		
@@ -92,6 +94,22 @@ public class ProposeCategoryView implements ViewInterface{
 	}
 
 	/**
+	 * Create a popUp for displaying errors. Example : Changes haven't been performed.
+	 * @param e
+	 */
+	public void displayError(String e){
+		JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	/**
+	 * Create a popup for displaying a message. Example : your registration have been made.
+	 * @param m
+	 */
+	public void displayMessage(String m){
+		JOptionPane.showMessageDialog(null, m, "Great !", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	/**
 	 * Call the controller and go back to the HomeView.
 	 */
 	private void back(){
@@ -102,7 +120,9 @@ public class ProposeCategoryView implements ViewInterface{
 	 * Submit the new category.
 	 */
 	private void submit(){
-		this.getMyController();
+		String labelAC = this.getLabelField().getText();
+		String shortDescription = this.getDescrField().getText();
+		this.getMyController().insertActivityCategory(labelAC, shortDescription);
 	}
 
 	public JTextField getLabelField() {

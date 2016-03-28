@@ -61,9 +61,9 @@ public class UserJDBC extends User {
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
 		//DB Structure : userID, password, firstName, lastName, address, tel, email, type, siret, webaddress 
-		String insertUser = "INSERT INTO User VALUES('"+this.getUserID() +"','"+ this.getPassword() +"','"
-				+ this.getFirstName() + "','" + this.getLastName() +"','"+ this.getAdress() +"','"
-				+ this.getTel() +"','"+ this.getEmail() + "','customer' , '" + null + "' , '" + null + "')";
+		String insertUser = "INSERT INTO User VALUES(idUser ='"+this.getUserID() +"',password = '"+ this.getPassword() +"', firstName ='"+ this.getFirstName() + "', lastName ='" 
+				+ this.getLastName() +"', address ='"+ this.getAdress() +"', tel = '"+ this.getTel() +"', email = '"
+				+ this.getEmail() + "','customer' , '" + null + "' , '" + null + "')";
 		connect.executeRequest(insertUser);
 		connect.close();
 	}
