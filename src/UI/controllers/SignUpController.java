@@ -15,6 +15,8 @@ import app.model.*;
  *
  */
 public class SignUpController extends RootController {
+	SignUpFacade facade = new SignUpFacade();
+	
 	public SignUpController(){
 		this.render(new SignUpView(this, "customer"));
 	}
@@ -35,13 +37,28 @@ public class SignUpController extends RootController {
 	}
 	
 	public void signUpCustomer(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm){
-		SignUpFacade facade = new SignUpFacade();
+	
 		try{
-			User myUser = facade.signUpCustomer(firstName, lastName, userID, email, phoneNumber, address, password, confirm);
+			Customer myCustomer = this.facade.signUpCustomer(firstName, lastName, userID, email, phoneNumber, address, password, confirm);
+			setUser(myCustomer);
 			this.goTo("home");
 		}
 		catch(Exception e){
 			SignUpView myView = new SignUpView(this, "customer");
+			this.render(myView);
+			myView.displayError(e.getMessage());
+		}
+	}
+	
+	public void signUpSeller(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm, String siret, String webaddress){
+		try{
+			Seller mySeller = this.facade.signUpSeller(firstName, lastName, userID, email, phoneNumber, address, password, confirm, siret, webaddress);
+			setUser(mySeller);
+			this.goTo("home");
+		}
+		catch(Exception e){
+			SignUpView myView = new SignUpView(this, "seller");
+			this.render(myView);
 			myView.displayError(e.getMessage());
 		}
 	}

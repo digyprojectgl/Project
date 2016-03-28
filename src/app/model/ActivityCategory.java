@@ -8,4 +8,45 @@ public class ActivityCategory {
     private String shortDescription;
     private String detailedDescription;
     private ActivityCategory parentCategory = null;
+    
+    public ActivityCategory(){
+    	this.labelCategoryActivity = null;
+    	this.shortDescription = null;
+    	this.detailedDescription = null;
+    	this.parentCategory = null;
+    }
+    
+    public ActivityCategory(String labelCat, String shortDescr, String detailedDescr, ActivityCategory parent){
+    	this.labelCategoryActivity = labelCat;
+    	this.shortDescription = shortDescr;
+    	this.detailedDescription = detailedDescr;
+    	this.parentCategory = parent;
+    }
+	
+    public String getLabelCategoryActivity() {
+		return labelCategoryActivity;
+	}
+	public void setLabelCategoryActivity(String labelCategoryActivity) {
+		this.labelCategoryActivity = labelCategoryActivity;
+	}
+	public String getShortDescription() {
+		return shortDescription;
+	}
+	public void setShortDescription(String shortDescription) {
+		this.shortDescription = shortDescription;
+	}
+	public String getDetailedDescription() {
+		return detailedDescription;
+	}
+	public void setDetailedDescription(String detailedDescription) {
+		this.detailedDescription = detailedDescription;
+	}
+	public ActivityCategory getParentCategory() {
+		return parentCategory;
+	}
+	public void setParentCategory(ActivityCategory parentCategory) {
+		this.parentCategory = parentCategory;
+	}
+    
+    
 }

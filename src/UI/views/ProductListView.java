@@ -25,7 +25,7 @@ public class ProductListView implements ViewInterface {
 
     private JButton search;
     private JTextField nameOrDescription;
-    private JComboBox<ProductCategory> category;
+    private JComboBox category;
     private JPanel answer;
     private String defaultText = "Word in name or description...";
 

@@ -1,15 +1,15 @@
-package UI.views;
 
+package UI.views;
 import java.awt.*;
+
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
 import UI.controllers.LogInController;
 import UI.core.ViewInterface;
-
-
 /**
  * Display 2 text fields (user_id & password).
  * Call the LogIn Controller with user_id & password when the submit button is turned on.
@@ -34,7 +34,6 @@ public class ViewLogIn implements ViewInterface {
 	}
 	
 	public void render(Container contentPane) {
-		System.out.println("3");
 		JPanel all = new JPanel();
 		
 		JPanel totalContent = new JPanel(new GridLayout(2,0));
@@ -50,6 +49,16 @@ public class ViewLogIn implements ViewInterface {
 		setTextUser(new JTextField(10));	//Text Field dans lequel le user va entrer son id
 		JLabel password = new JLabel("Password");	//Label "Password"
 		setPasswordField(new JPasswordField(10));//PAssword field
+		
+		this.getPasswordField().addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				logIn();
+			}
+			
+		});
 		
 		labelPanel.add(user_id);						//On ajoute le label et le text area au panel
 		labelPanel.add(password);
@@ -168,5 +177,9 @@ public class ViewLogIn implements ViewInterface {
 		String username = getTextUser().getText().toString();
 		String password = String.valueOf(getPasswordField().getPassword());
 		logInController.handleLogIn(username, password);
+	}
+	
+	public void displayErrors(String e){
+		JOptionPane.showMessageDialog(null, e, "Your log in hasn't been performed.", JOptionPane.ERROR_MESSAGE);
 	}
 }

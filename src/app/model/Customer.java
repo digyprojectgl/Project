@@ -8,8 +8,22 @@ import java.util.Date;
  */
 public class Customer extends User {
 
+	/**
+	 * Constructor.
+	 * @param userID
+	 * @param password
+	 * @param lastName
+	 * @param firstName
+	 * @param adress
+	 * @param tel
+	 * @param email
+	 */
 	public Customer(String userID, String password, String lastName, String firstName, String adress, String tel, String email){
 		super(userID, password, lastName, firstName, adress, tel, email);
+	}
+	
+	public Customer(){
+		super();
 	}
 	
 	
