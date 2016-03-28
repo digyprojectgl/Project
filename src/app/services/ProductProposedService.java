@@ -10,8 +10,8 @@ import app.model.dao.ProductProposedListJDBC;
  * @author shui
  */
 public class ProductProposedService {
+	
 	/**
-	 * Static method.
 	 * Create the ProductProposedFactory. 
 	 * Ask it to create a new ProductProposed.
 	 */
@@ -19,6 +19,15 @@ public class ProductProposedService {
 		ProductProposedFactory factory = new ProductProposedFactory();
 		factory.createProductProposed(label,description, category);
 		return null;
+		/**
+		 *  //TODO
+		 *  Changer la méthode pour : 
+		 *  tester les champs
+		 *  tester si le produit ne se trouve pas déjà en DB
+		 *  créer le produit
+		 *  le sauver en DB
+		 *  le renvoyer
+		 */
 		
 	}
 	

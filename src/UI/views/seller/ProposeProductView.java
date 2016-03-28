@@ -69,6 +69,13 @@ public class ProposeProductView implements ViewInterface {
 		JLabel lblCategory = new JLabel("Category");
 		lblCategory.setBounds(66, 204, 81, 21);
 		all.add(lblCategory);
-		JPanel totalPanel = new JPanel(new GridLayout(2,0));		
+		JPanel totalPanel = new JPanel(new GridLayout(2,0));	
+		
+		/**
+		 * //TODO
+		 * Ajouter les action Listener
+		 * Ajouter les fonctions d'appel au controller
+		 * Ajouter les fonctions display
+		 */
 	}	
 }
