@@ -1,9 +1,13 @@
 package UI.views;
 
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -46,20 +50,36 @@ public class ManageActivityCategoryView implements ViewInterface{
 			r = categories.count()/nbElem + 1;
 		}
 		JPanel gridPanel = new JPanel(new GridLayout(r, c));
-		for(ActivityCategory myCategory: categories.getActivityCategories()){
-			JPanel line = new JPanel(new FlowLayout());
+		for(final ActivityCategory myCategory: categories.getActivityCategories()){
+			JPanel bloc = new JPanel();
 			JPanel columns = new JPanel(new GridLayout(4,0));
 			JLabel labelAC =  new JLabel(myCategory.getLabelCategoryActivity());
 			JLabel shortDescr = new JLabel(myCategory.getShortDescription());
 			JButton validate = new JButton("Validate");
 			JButton delete = new JButton("Delete");
 			
+			validate.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					validateCategory(myCategory);
+				}
+			});
+			
+			delete.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					deleteCategory(myCategory);
+				}
+			});
+			
 			columns.add(labelAC);
 			columns.add(shortDescr);
 			columns.add(validate);
 			columns.add(delete);
-			line.add(columns);
-			gridPanel.add(line);
+			bloc.add(columns);
+			gridPanel.add(bloc);
 			
 			
 		}
@@ -67,6 +87,15 @@ public class ManageActivityCategoryView implements ViewInterface{
 		all.add(gridPanel);
 		contentPane.add(all);
 	}
+	
+	public void validateCategory(ActivityCategory myCategory){
+		this.getMyController().validateCategory(myCategory);
+	}
+	
+	public void deleteCategory(ActivityCategory myCategory){
+		this.getMyController().deleteCategory(myCategory);
+	}
+	
 
 	/**
 	 * Create a popUp for displaying errors. Example : Changes haven't been performed.

@@ -1,6 +1,5 @@
 package UI.controllers;
 
-import java.util.ArrayList;
 import UI.core.RootController;
 import UI.views.ManageActivityCategoryView;
 import app.facades.ManageActivityCategoryFacade;
@@ -24,6 +23,15 @@ public class ManageActivityController extends RootController{
 		return null;
 	}
 
+	
+	public void validateCategory(ActivityCategory myCategory){
+		
+	}
+	
+	public void deleteCategory(ActivityCategory myCategory){
+		
+	}
+	
 	public ManageActivityCategoryFacade getManageActivityCategoryFacade() {
 		return manageActivityCategoryFacade;
 	}
