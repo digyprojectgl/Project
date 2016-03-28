@@ -25,10 +25,33 @@ public class ManageActivityController extends RootController{
 
 	
 	public void validateCategory(ActivityCategory myCategory){
-		
+		try {
+			ActivityCategory validCategory = this.getManageActivityCategoryFacade().validateCategory(myCategory);
+			ManageActivityCategoryView myView = new ManageActivityCategoryView(this, this.getAllActivitiesCategoryFalse());
+			this.render(myView);
+			myView.displayMessage("The Activity category: " + validCategory.getLabelCategoryActivity() + "is validated." );
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			ManageActivityCategoryView myView = new ManageActivityCategoryView(this, this.getAllActivitiesCategoryFalse());
+			this.render(myView);
+			myView.displayError(e.getMessage());
+			
+		}
 	}
 	
 	public void deleteCategory(ActivityCategory myCategory){
+		try{
+			this.getManageActivityCategoryFacade().deleteCategory(myCategory);
+			ManageActivityCategoryView myView = new ManageActivityCategoryView(this, this.getAllActivitiesCategoryFalse());
+			this.render(myView);
+			myView.displayMessage("The Activity category: " + myCategory.getLabelCategoryActivity() + "is deleted.");
+		}
+		catch(Exception e){
+			ManageActivityCategoryView myView = new ManageActivityCategoryView(this, this.getAllActivitiesCategoryFalse());
+			this.render(myView);
+			myView.displayError(e.getMessage());
+		}
 		
 	}
 	
