@@ -45,7 +45,9 @@ public class ManageOfferView implements ViewInterface{
 	@Override
 	public void render(Container contentPane) {
 		
-		this.manageOffer = new JPanel();
+		this.manageOffer = new JPanel(new BorderLayout());
+		JPanel panelCreate = new JPanel();
+		
 		this.createOffer = new JButton("Create");
 		this.updateOffer = new JButton("update");
 		this.deleteOffer = new JButton("delete");
@@ -64,12 +66,14 @@ public class ManageOfferView implements ViewInterface{
 			e1.printStackTrace();
 		}
 		
-		this.manageOffer.add(productOffer,BorderLayout.WEST);
-		this.manageOffer.add(price,BorderLayout.NORTH);
-		this.manageOffer.add(priceOffer,BorderLayout.EAST);
-		this.manageOffer.add(qty,BorderLayout.NORTH);
-		this.manageOffer.add(qtyOffer,BorderLayout.NORTH);
-		this.manageOffer.add(createOffer,BorderLayout.SOUTH);
+		panelCreate.add(productOffer);
+		panelCreate.add(price);
+		panelCreate.add(priceOffer);
+		panelCreate.add(qty);
+		panelCreate.add(qtyOffer);
+		panelCreate.add(createOffer);
+		
+		this.manageOffer.add(panelCreate, BorderLayout.NORTH);
 		
 		
 

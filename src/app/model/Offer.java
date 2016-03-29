@@ -1,7 +1,7 @@
 package app.model;
 
 
-public abstract class Offer {
+public class Offer {
     public String idOffer;
     public int quantity;
     public float price;
