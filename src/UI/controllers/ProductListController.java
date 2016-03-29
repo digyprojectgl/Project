@@ -3,6 +3,8 @@ package UI.controllers;
 import UI.core.RootController;
 import UI.views.ProductListView;
 import app.facades.ProductListFacade;
+import app.model.ProductCategoryList;
+import app.model.ProductList;
 
 import java.util.HashMap;
 
@@ -21,8 +23,25 @@ public class ProductListController extends RootController {
         this.render(productListView);
     }
 
-    public Object obtainProductList(HashMap<String,String> options){
-        return this.productListFacade.obtainProductList(options);
+    public ProductList obtainProductList(HashMap<String,String> options){
+        try {
+            return this.productListFacade.obtainProductList(options);
+        } catch (Exception e) {
+            productListView = new ProductListView(this);
+            productListView.displayError(e.toString());
+        }
+        return new ProductList();
+    }
+
+    public ProductCategoryList obtainCategoryList()  {
+        ProductCategoryList productCategoryList;
+        try {
+            productCategoryList = this.productListFacade.obtainCategoryList();
+        } catch (Exception e) {
+            productListView.displayError(e.toString());
+            productCategoryList = new ProductCategoryList();
+        }
+        return productCategoryList;
     }
 
 }

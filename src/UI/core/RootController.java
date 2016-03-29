@@ -1,16 +1,8 @@
 package UI.core;
 import java.awt.Container;
 
-import UI.controllers.CartController;
-import UI.controllers.EditProfileController;
-import UI.controllers.HomeViewController;
-import UI.controllers.LogInController;
-import UI.controllers.ManageActivityController;
-import UI.controllers.ManageOfferController;
-import UI.controllers.NotificationsController;
-import UI.controllers.ProductListController;
-import UI.controllers.ProposeCategoryController;
-import UI.controllers.SignUpController;
+
+import UI.controllers.*;
 import UI.layouts.LoginLayout;
 import UI.layouts.MainLayout;
 import app.model.User;
@@ -90,6 +82,9 @@ public class RootController {
 				break;
 			case "offers" :
 				new ManageOfferController();
+				break;
+			case "product":
+				new ProductController(params);
 				break;
 		}
 	}

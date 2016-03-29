@@ -1,6 +1,8 @@
 package app.facades;
 
+import app.model.ProductCategoryList;
 import app.model.ProductList;
+import app.services.ProductCategoryService;
 import app.services.ProductService;
 
 import java.util.HashMap;
@@ -12,12 +14,18 @@ import java.util.HashMap;
  */
 public class ProductListFacade {
     private ProductService productService;
+    private ProductCategoryService categoryService;
 
     public ProductListFacade() {
         productService = new ProductService();
+        categoryService = new ProductCategoryService();
     }
 
-    public Object obtainProductList(HashMap<String,String> options) {
+    public ProductList obtainProductList(HashMap<String,String> options) throws Exception {
         return productService.obtainProductList(options);
+    }
+
+    public ProductCategoryList obtainCategoryList() throws Exception {
+        return categoryService.obtainCategoryList();
     }
 }

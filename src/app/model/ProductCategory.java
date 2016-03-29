@@ -20,4 +20,8 @@ public class ProductCategory {
         this.label = label;
     }
 
+    @Override
+    public String toString() {
+        return getLabel();
+    }
 }

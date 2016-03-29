@@ -7,6 +7,7 @@ import app.model.Product;
 import app.model.ProductCategory;
 import app.model.ProductList;
 import app.model.User;
+import app.model.dao.ProductJDBC;
 import app.model.dao.ProductListJDBC;
 import app.model.dao.UserJDBC;
 
@@ -22,14 +23,12 @@ public class ProductService {
      * Get the product list from the database.
      * Return the list of products containing all the products
      */
-    public Object obtainProductList(HashMap<String,String> options) {
-        Object list;
-        try {
-            list = new ProductListJDBC(options);
-        } catch (Exception e) {
-            list = e;
-        }
-        return list;
+    public ProductList obtainProductList(HashMap<String,String> options) throws Exception {
+        return new ProductListJDBC(options);
+    }
+
+    public Product getProduct(String label, String category) throws Exception {
+        return new ProductJDBC(label, category);
     }
 
     /**
