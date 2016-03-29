@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import app.model.Product;
 import app.facades.OfferFacade;
 import UI.core.RootController;
+import UI.views.ManageOfferView;
 
 public class ManageOfferController extends RootController {
-    private OfferFacade offerFacade = new OfferFacade();
     
+	private OfferFacade offerFacade;
+	private ManageOfferView mov;
+	
     public ManageOfferController(){
+         offerFacade = new OfferFacade();
+         mov = new ManageOfferView(this);
+         this.render(mov);
     }
     
 	public void createOffer(Product prod, float prix, int qte) {
@@ -17,7 +23,6 @@ public class ManageOfferController extends RootController {
 		
 	}
 	public static ArrayList<Product> getProductList() {
-		ArrayList<Product> prod = new ArrayList<Product>();
-		return prod;
+		return offerFacade.getProductList();
 	}
 }

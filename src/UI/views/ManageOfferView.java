@@ -14,8 +14,7 @@ import app.model.Product;
 public class ManageOfferView implements ViewInterface{
 	
 	ArrayList<Product> products = new ArrayList<Product>();
-	ManageOfferController moc = new ManageOfferController();
-
+	ManageOfferController moc;
 	JPanel manageOffer;
 	JButton createOffer;
 	JButton updateOffer;
@@ -27,7 +26,24 @@ public class ManageOfferView implements ViewInterface{
 	JComboBox<Product> productOffer;
 	
 	
-	public ManageOfferView(Offer[] offres){
+	public ManageOfferView(ManageOfferController moc){
+		this.moc = moc;
+	}
+
+
+	@Override
+	public String getLayout() {
+		// TODO Auto-generated method stub
+		return "main";
+	}
+
+
+	/**
+	 * @wbp.parser.entryPoint
+	 */
+	@Override
+	public void render(Container contentPane) {
+		
 		this.manageOffer = new JPanel();
 		this.createOffer = new JButton("Create");
 		this.updateOffer = new JButton("update");
@@ -59,19 +75,8 @@ public class ManageOfferView implements ViewInterface{
 				moc.createOffer(selectedProduct,Float.parseFloat(prix), Integer.parseInt(qte));
 			}
 		});
-	}
-
-
-	@Override
-	public String getLayout() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public void render(Container contentPane) {
-		// TODO Auto-generated method stub
+		
+		contentPane.add(manageOffer);
 		
 	}
 }

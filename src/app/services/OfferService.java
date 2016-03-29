@@ -1,14 +1,24 @@
 package app.services;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import app.factory.OfferFactory;
 import app.model.Product;
+import app.model.dao.ProductListJDBC;
 
 public class OfferService {
 
 	OfferFactory of = new OfferFactory();
 	
-	public void createOffer(Product prod, float prix, int qte) {
+	
+	public void createOffer(Product prod, float prix, int qte) throws Exception {
 
-		
+		of.createOffer(prod, prix, qte);
 	}
+	
+	public ArrayList<Product> getProducts(){
+		return new ProductListJDBC(new HashMap<>()).productList
+	}
+	
 }

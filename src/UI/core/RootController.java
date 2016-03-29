@@ -6,6 +6,7 @@ import UI.controllers.EditProfileController;
 import UI.controllers.HomeViewController;
 import UI.controllers.LogInController;
 import UI.controllers.ManageActivityController;
+import UI.controllers.ManageOfferController;
 import UI.controllers.NotificationsController;
 import UI.controllers.ProductListController;
 import UI.controllers.ProposeCategoryController;
@@ -86,6 +87,9 @@ public class RootController {
 				break;
 			case "newCategory":
 				new ProposeCategoryController();
+				break;
+			case "offers" :
+				new ManageOfferController();
 				break;
 		}
 	}
