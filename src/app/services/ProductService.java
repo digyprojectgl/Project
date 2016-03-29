@@ -1,16 +1,10 @@
 package app.services;
 
-import app.factory.ProductFactory;
-import app.factory.UserFactoryJDBC;
-import app.model.Customer;
 import app.model.Product;
-import app.model.ProductCategory;
 import app.model.ProductList;
-import app.model.User;
 import app.model.dao.ProductJDBC;
 import app.model.dao.ProductListJDBC;
-import app.model.dao.UserJDBC;
-
+import app.model.dao.ProductProposedJDBC;
 import java.util.HashMap;
 
 /**
@@ -33,15 +27,13 @@ public class ProductService {
 
     /**
      * Add function 27/03 
-     * Create a new product when valid a proposition of product
+     * update 'status=true' when valid a proposition of product
      * @author shui
      * @throws Exception 
      */
-    public void newProduct(String label, String description, ProductCategory category) throws Exception{
-    	if(label.isEmpty()){
-    		throw new Exception("Lable is a required field !");
-    	}
-    	ProductFactory productFactory = new ProductFactory();
-    	productFactory.createProduct(label, description, category);
+    public void newProduct(Product p) throws Exception{
+    	ProductProposedJDBC productproposedJDBC = new ProductProposedJDBC(p.label, p.description, p.category, p.status);
+    	productproposedJDBC.acceptProposition(p);
+    	
     }
 }

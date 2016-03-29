@@ -7,15 +7,23 @@ import java.util.Collection;
  *
  * @author Arthur
  */
+
+/**
+ * update 29/03
+ * add attribut status: 'true' valid by admin
+ * @author shui
+ */
 public class Product {
     public String label;
     public String description;
     public ProductCategory category;
+    public String status;
 
-    public Product(String label, String description, ProductCategory category) {
+    public Product(String label, String description, ProductCategory category, String status) {
         this.label = label;
         this.description = description;
         this.category = category;
+        this.status = status;
     }
 
     public Product() {

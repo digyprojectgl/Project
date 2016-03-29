@@ -17,8 +17,8 @@ public class ProposeProductFacade {
 		return proposeProductservice.proposeProduct(label, description, category);
 	}
 	
-	public void deleteproductproposed(String label, String description, ProductCategory category) throws Exception{
-		proposeProductservice.deleteProposition(label, label, category);
+	public void deleteproductproposed(Product p) throws Exception{
+		proposeProductservice.deleteProposition(p);
 	}
 	
 	public ProductCategoryList obtainCategoryList() throws Exception{

@@ -37,10 +37,10 @@ public class ProposeProductController extends RootController {
 		}
 	}
 	
-	public void deleteProposition(String label, String description, ProductCategory category){
+	public void deleteProposition(Product p){
 	
 		try {
-			facade.deleteproductproposed(label,description, category);
+			facade.deleteproductproposed(p);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

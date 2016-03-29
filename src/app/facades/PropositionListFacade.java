@@ -3,6 +3,7 @@ package app.facades;
  * @author shui
  */
 
+import app.model.ProductList;
 import app.services.ProductProposedService;
 
 public class PropositionListFacade {
@@ -12,7 +13,7 @@ public class PropositionListFacade {
         productproposedService = new ProductProposedService();
     }
 
-    public Object getProductProposedList() {
+    public ProductList getProductProposedList() throws Exception {
         return productproposedService.getPropositionList();
     }
 }

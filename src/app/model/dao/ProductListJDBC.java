@@ -52,7 +52,7 @@ public class ProductListJDBC extends ProductList {
             res = connection.fetchArray();
             res.beforeFirst();
             while (res.next()) {
-                this.productList.add(new Product(res.getString("labelProduct"), res.getString("description"), new ProductCategory(res.getString("labelPC"))));
+                this.productList.add(new Product(res.getString("labelProduct"), res.getString("description"), new ProductCategory(res.getString("labelPC")), res.getString("status")));
             }
         } catch (Exception e){
             throw e;

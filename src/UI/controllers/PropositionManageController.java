@@ -17,8 +17,9 @@ public class PropositionManageController extends RootController{
 			}
 	/**
 	 * play list of propose
+	 * @throws Exception 
 	 */
-	public Object ListProposition(){
+	public ProductList ListProposition() throws Exception{
 		PropositionListFacade facade = new PropositionListFacade();
         return facade.getProductProposedList();
     }
@@ -26,10 +27,10 @@ public class PropositionManageController extends RootController{
 	/**
 	 * valid a propose
 	 */
-	public void AcceptProposition(String label, String description, ProductCategory category){
+	public void AcceptProposition(Product p){
 		PropositionManageFacade facade = new PropositionManageFacade();
 		try {
-			facade.acceptProposition(label,description, category);
+			facade.acceptProposition(p);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,10 +40,10 @@ public class PropositionManageController extends RootController{
 	/**
 	 * refuse a propose
 	 */
-	public void RefuseProposition(String label, String description, ProductCategory category){
+	public void refuseProposition(Product p){
 		PropositionManageFacade facade = new PropositionManageFacade();
 		try {
-			facade.refuseProposition(label,description, category);
+			facade.refuseProposition(p);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
