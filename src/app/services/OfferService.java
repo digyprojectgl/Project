@@ -12,9 +12,9 @@ public class OfferService {
 	OfferFactory of = new OfferFactory();
 	
 	
-	public void createOffer(Product prod, float prix, int qte) throws Exception {
+	public void createOffer(String id, Product prod, float prix, int qte) throws Exception {
 
-		of.createOffer(prod, prix, qte);
+		of.createOffer(id,prod, prix, qte);
 	}
 	
 	public ArrayList<Product> getProducts() throws Exception{

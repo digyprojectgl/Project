@@ -17,9 +17,9 @@ public class OfferFactory {
 	}
 	
 	
-	public Offer createOffer(Product prod, float price, int quantity) throws Exception{
+	public Offer createOffer(String id, Product prod, float price, int quantity) throws Exception{
 		String label = prod.getLabel();
-		new OfferJDBC(label, price, quantity);
+		new OfferJDBC(id, label, price, quantity);
 		return  new OfferJDBC(label);
 	}
 	
