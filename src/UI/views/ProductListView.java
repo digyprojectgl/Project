@@ -187,6 +187,9 @@ public class ProductListView implements ViewInterface {
 		return "main";
 	}
 
+	/**
+	 * Called when the user press the new product button.
+	 */
 	private void goToNewProduct(){
 		this.productListController.goTo("newProduct");
 	}
