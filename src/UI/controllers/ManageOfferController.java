@@ -2,6 +2,7 @@ package UI.controllers;
 
 import java.util.ArrayList;
 import app.model.Product;
+import app.model.sets.OfferSet;
 import app.facades.OfferFacade;
 import UI.core.RootController;
 import UI.views.ManageOfferView;
@@ -25,5 +26,16 @@ public class ManageOfferController extends RootController {
 	}
 	public ArrayList<Product> getProductList() throws Exception {
 		return offerFacade.getProducts();
+	}
+	
+	public OfferSet getOfferWithUserID(){
+		try{
+			id = RootController.getUser().getUserID();
+			return this.getOfferWithUserID();	
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

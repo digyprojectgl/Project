@@ -29,21 +29,21 @@ public class OfferService {
 			throw new Exception("Error when getting data.");
 		}
 	}
-	/*
+	
 	public OfferSet getAllOffers() throws Exception{
 		try{
 			OfferSet mySet = this.getOfferSetFactory().createOfferSet();
-			return mySet.getOffersWithUserID(userId);
+			return mySet.getAllOffers();
 		}
 		catch(Exception e){
 			throw new Exception("Error when getting data.");
 		}
 	}
-	*/
+	
 	public ArrayList<Product> getProducts() throws Exception{
 		return new ProductListJDBC(new HashMap<String, String>()).productList;
 	}
-	
+
 	public OfferFactory getOfferFactory() {
 		return offerFactory;
 	}
