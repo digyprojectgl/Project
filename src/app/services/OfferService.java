@@ -43,7 +43,7 @@ public class OfferService {
 	public ArrayList<Product> getProducts() throws Exception{
 		return new ProductListJDBC(new HashMap<String, String>()).productList;
 	}
-	
+	//bite
 	public OfferFactory getOfferFactory() {
 		return offerFactory;
 	}
