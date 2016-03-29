@@ -70,7 +70,7 @@ public class UserService {
 		
 		
 		//We have to check if the userId is_set
-		if(myUser.getUserID().isEmpty()){
+		if(myUser.getUserID() == null){
 			throw new Exception("Username doesn't exists !");
 		}
 		
