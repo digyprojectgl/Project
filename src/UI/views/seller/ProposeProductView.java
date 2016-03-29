@@ -24,6 +24,9 @@ import app.model.ProductCategoryList;
 public class ProposeProductView implements ViewInterface {
 	ProposeProductController proposeProductController;
 	ProductCategoryList categorySet;
+	JTextField name = new JTextField(10);
+	JComboBox myCombo = new JComboBox();
+	JTextArea descr = new JTextArea();
 
 	public ProposeProductView(ProposeProductController proposeProductController, ProductCategoryList categorySet){
 		this.proposeProductController = proposeProductController;	
@@ -55,20 +58,17 @@ public class ProposeProductView implements ViewInterface {
 		gridLabel.add(categoryLab);
 		gridLabel.add(descrLab);
 		
-		JTextField name = new JTextField(10);
-		JComboBox myCombo = new JComboBox();
-		JTextArea descr = new JTextArea();
 		
 		if(this.categorySet !=null){
-			myCombo = new JComboBox(this.categorySet.productCategories.toArray());
+			this.setMyCombo(new JComboBox(this.categorySet.productCategories.toArray()));
 		}
 		
 	
 		
 		
-		gridFields.add(name);
-		gridFields.add(myCombo);
-		gridFields.add(descr);
+		gridFields.add(this.getName());
+		gridFields.add(this.getMyCombo());
+		gridFields.add(this.getDescr());
 		
 		gridAll.add(gridLabel);
 		gridAll.add(gridFields);
@@ -132,4 +132,46 @@ public class ProposeProductView implements ViewInterface {
 	public void displayMessage(String m){
 		JOptionPane.showMessageDialog(null, m, "Perfect !", JOptionPane.INFORMATION_MESSAGE);
 	}
+
+	public ProposeProductController getProposeProductController() {
+		return proposeProductController;
+	}
+
+	public void setProposeProductController(ProposeProductController proposeProductController) {
+		this.proposeProductController = proposeProductController;
+	}
+
+	public ProductCategoryList getCategorySet() {
+		return categorySet;
+	}
+
+	public void setCategorySet(ProductCategoryList categorySet) {
+		this.categorySet = categorySet;
+	}
+
+	public JTextField getName() {
+		return name;
+	}
+
+	public void setName(JTextField name) {
+		this.name = name;
+	}
+
+	public JComboBox getMyCombo() {
+		return myCombo;
+	}
+
+	public void setMyCombo(JComboBox myCombo) {
+		this.myCombo = myCombo;
+	}
+
+	public JTextArea getDescr() {
+		return descr;
+	}
+
+	public void setDescr(JTextArea descr) {
+		this.descr = descr;
+	}
+	
+	
 }
