@@ -31,7 +31,7 @@ public class ProductController extends RootController {
             this.view.setProduct(product);
             this.render(view);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error while retrieving the product", "Error", JOptionPane.INFORMATION_MESSAGE);
             this.goTo("productList");
         }
     }

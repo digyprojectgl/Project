@@ -34,7 +34,7 @@ public class ProductListController extends RootController {
             return this.productListFacade.obtainProductList(options);
         } catch (Exception e) {
             productListView = new ProductListView(this);
-            productListView.displayError(e.toString());
+            productListView.displayError("No product found");
         }
         return new ProductList();
     }
@@ -49,7 +49,7 @@ public class ProductListController extends RootController {
         try {
             productCategoryList = this.productListFacade.obtainCategoryList();
         } catch (Exception e) {
-            productListView.displayError(e.toString());
+            productListView.displayError("No category found");
             productCategoryList = new ProductCategoryList();
         }
         return productCategoryList;

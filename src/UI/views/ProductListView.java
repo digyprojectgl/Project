@@ -72,7 +72,7 @@ public class ProductListView implements ViewInterface {
         /*
         Set the JPanel containing all the elements
          */
-        JPanel globalPanel = new JPanel(new GridLayout(0,1));
+        JPanel globalPanel = new JPanel(new BorderLayout());
 
         /*
         Set the JPanel containing the search bar
@@ -122,8 +122,8 @@ public class ProductListView implements ViewInterface {
         /*
         Fill the global panel
          */
-        globalPanel.add(searchPanel);
-        globalPanel.add(this.getAnswer());
+        globalPanel.add(searchPanel, BorderLayout.NORTH);
+        globalPanel.add(this.getAnswer(), BorderLayout.CENTER);
 
         /*
         Add the global panel to the contentPane
