@@ -21,6 +21,7 @@ public class ProposeProductController extends RootController {
 		}
 		catch(Exception e){
 			return e.getMessage();
+			// TODO display function
 		}
 	}
 	
@@ -31,6 +32,7 @@ public class ProposeProductController extends RootController {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			// TODO display function
 		}
 	}
 }
