@@ -10,6 +10,7 @@ public class ManageOfferController extends RootController {
     
 	private OfferFacade offerFacade;
 	private ManageOfferView mov;
+	private String id;
 	
     public ManageOfferController(){
          offerFacade = new OfferFacade();
@@ -18,8 +19,8 @@ public class ManageOfferController extends RootController {
     }
     
 	public void createOffer(Product prod, float prix, int qte) throws Exception {
-		
-		offerFacade.createOffer(prod, prix, qte);
+		id = RootController.getUser().getUserID();
+		offerFacade.createOffer(id,prod, prix, qte);
 		
 	}
 	public ArrayList<Product> getProductList() throws Exception {

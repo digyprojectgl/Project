@@ -17,9 +17,9 @@ public class OfferFacade {
     	return offerService.getProducts();
     }
     
-	public void createOffer(Product prod, float prix, int qte) throws Exception {
+	public void createOffer(String id, Product prod, float prix, int qte) throws Exception {
 		
-		offerService.createOffer(prod, prix, qte);
+		offerService.createOffer(id,prod, prix, qte);
 		
 	}
 	
