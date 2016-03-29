@@ -18,7 +18,7 @@ public class OfferService {
 	}
 	
 	public ArrayList<Product> getProducts() throws Exception{
-		return new ProductListJDBC(new HashMap<>()).productList;
+		return new ProductListJDBC(new HashMap<String, String>()).productList;
 	}
 	
 }
