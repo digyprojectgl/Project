@@ -17,8 +17,8 @@ public class OfferService {
 		of.createOffer(prod, prix, qte);
 	}
 	
-	public ArrayList<Product> getProducts(){
-		return new ProductListJDBC(new HashMap<>()).productList
+	public ArrayList<Product> getProducts() throws Exception{
+		return new ProductListJDBC(new HashMap<>()).productList;
 	}
 	
 }

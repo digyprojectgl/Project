@@ -17,12 +17,12 @@ public class ManageOfferController extends RootController {
          this.render(mov);
     }
     
-	public void createOffer(Product prod, float prix, int qte) {
+	public void createOffer(Product prod, float prix, int qte) throws Exception {
 		
 		offerFacade.createOffer(prod, prix, qte);
 		
 	}
-	public static ArrayList<Product> getProductList() {
-		return offerFacade.getProductList();
+	public ArrayList<Product> getProductList() throws Exception {
+		return offerFacade.getProducts();
 	}
 }

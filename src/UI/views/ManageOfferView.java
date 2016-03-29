@@ -39,6 +39,7 @@ public class ManageOfferView implements ViewInterface{
 
 
 	/**
+	 * @throws  
 	 * @wbp.parser.entryPoint
 	 */
 	@Override
@@ -54,8 +55,13 @@ public class ManageOfferView implements ViewInterface{
 		this.qty = new JLabel("Quantity : ");
 		this.productOffer = new JComboBox<Product>();
 		
-		for(int i=0;i<ManageOfferController.getProductList().size();i++){
-			this.productOffer.addItem(ManageOfferController.getProductList().get(i));
+		try {
+			for(int i=0;i<moc.getProductList().size();i++){
+				this.productOffer.addItem(moc.getProductList().get(i));
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		
 		this.manageOffer.add(productOffer,BorderLayout.WEST);
@@ -72,7 +78,15 @@ public class ManageOfferView implements ViewInterface{
 				Product selectedProduct = (Product)productOffer.getSelectedItem();
 				String prix = priceOffer.getText();
 				String qte = qtyOffer.getText();
-				moc.createOffer(selectedProduct,Float.parseFloat(prix), Integer.parseInt(qte));
+				try {
+					moc.createOffer(selectedProduct,Float.parseFloat(prix), Integer.parseInt(qte));
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		

@@ -12,12 +12,12 @@ public class OfferFacade {
     	offerService = new OfferService();
     }
     
-    public ArrayList<Product> getProducts(){
+    public ArrayList<Product> getProducts() throws Exception{
     	
     	return offerService.getProducts();
     }
     
-	public void createOffer(Product prod, float prix, int qte) {
+	public void createOffer(Product prod, float prix, int qte) throws Exception {
 		
 		offerService.createOffer(prod, prix, qte);
 		
