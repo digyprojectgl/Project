@@ -9,6 +9,7 @@ import app.model.dao.ProductCategoryListJDBC;
  * @author Arthur
  */
 public class ProductCategoryService {
+	
     public ProductCategoryList obtainCategoryList() throws Exception {
         return new ProductCategoryListJDBC();
     }

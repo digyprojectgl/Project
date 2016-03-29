@@ -12,7 +12,17 @@ public class ProposeProductController extends RootController {
 	ProposeProductFacade facade = new ProposeProductFacade();
 	
 	public ProposeProductController(){
-		this.render(new ProposeProductView(this));
+		try{
+			ProductCategoryList categorySet = this.facade.obtainCategoryList();
+			this.render(new ProposeProductView(this, categorySet));
+		}
+		catch(Exception e){
+			ProposeProductView myView = new ProposeProductView(this, null);
+			this.render(myView);
+			myView.displayError(e.getMessage());
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public Object proposeProduct(String label, String description, ProductCategory category){

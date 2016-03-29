@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -18,12 +19,15 @@ import javax.swing.JTextField;
 import UI.controllers.ProposeProductController;
 import UI.core.ViewInterface;
 import app.model.ProductCategory;
+import app.model.ProductCategoryList;
 
 public class ProposeProductView implements ViewInterface {
 	ProposeProductController proposeProductController;
+	ProductCategoryList categorySet;
 
-	public ProposeProductView(ProposeProductController proposeProductController){
+	public ProposeProductView(ProposeProductController proposeProductController, ProductCategoryList categorySet){
 		this.proposeProductController = proposeProductController;	
+		this.categorySet = categorySet;
 	}
 
 	@Override
@@ -54,6 +58,13 @@ public class ProposeProductView implements ViewInterface {
 		JTextField name = new JTextField(10);
 		JComboBox myCombo = new JComboBox();
 		JTextArea descr = new JTextArea();
+		
+		if(this.categorySet !=null){
+			myCombo = new JComboBox(this.categorySet.productCategories.toArray());
+		}
+		
+	
+		
 		
 		gridFields.add(name);
 		gridFields.add(myCombo);
@@ -104,5 +115,21 @@ public class ProposeProductView implements ViewInterface {
 	
 	private void newProduct(){
 		
+	}
+	
+	/**
+	 * Create a popUp for displaying errors. Example : Changes haven't been performed.
+	 * @param e
+	 */
+	public void displayError(String e){
+		JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	/**
+	 * Create a popup for displaying a message. Example : your registration have been made.
+	 * @param m
+	 */
+	public void displayMessage(String m){
+		JOptionPane.showMessageDialog(null, m, "Perfect !", JOptionPane.INFORMATION_MESSAGE);
 	}
 }
