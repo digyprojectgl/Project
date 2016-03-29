@@ -90,7 +90,7 @@ public class OfferSet {
 		return offers;
 	}
 
-	public void setOffers(ArrayList<Offer> offer) {
+	public void setOffers(ArrayList<Offer> offers) {
 		this.offers = offers;
 	}
 	

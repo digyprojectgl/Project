@@ -4,9 +4,6 @@ import app.model.Offer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import app.model.User;
-import app.model.Comment;
-import app.model.Notification;
 
 public class OfferJDBC extends Offer{
 
