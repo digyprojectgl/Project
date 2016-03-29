@@ -1,4 +1,4 @@
-package UI.views;
+package UI.views.seller;
 
 import UI.controllers.ManageOfferController;
 import UI.core.ViewInterface;
@@ -11,9 +11,11 @@ import java.util.ArrayList;
 
 import app.model.Offer;
 import app.model.Product;
+import app.model.sets.OfferSet;
 public class ManageOfferView implements ViewInterface{
 	
 	ArrayList<Product> products = new ArrayList<Product>();
+	OfferSet offers;
 	ManageOfferController moc;
 	JPanel manageOffer;
 	JButton createOffer;
@@ -26,7 +28,8 @@ public class ManageOfferView implements ViewInterface{
 	JComboBox<Product> productOffer;
 	
 	
-	public ManageOfferView(ManageOfferController moc){
+	public ManageOfferView(ManageOfferController moc, OfferSet offers){
+		this.offers = offers;
 		this.moc = moc;
 	}
 
@@ -45,14 +48,18 @@ public class ManageOfferView implements ViewInterface{
 	@Override
 	public void render(Container contentPane) {
 		
+		int nbElem = 3;		//	NbElem/line
+		int c = nbElem;
+		int r ;
+		
 		this.manageOffer = new JPanel(new BorderLayout());
 		JPanel panelCreate = new JPanel();
-		
+
 		this.createOffer = new JButton("Create");
 		this.updateOffer = new JButton("update");
 		this.deleteOffer = new JButton("delete");
-		this.priceOffer = new JTextField("price");
-		this.qtyOffer = new JTextField("qty");
+		this.priceOffer = new JTextField(5);
+		this.qtyOffer = new JTextField(5);
 		this.price = new JLabel("Price : ");
 		this.qty = new JLabel("Quantity : ");
 		this.productOffer = new JComboBox<Product>();
@@ -93,6 +100,50 @@ public class ManageOfferView implements ViewInterface{
 				}
 			}
 		});
+	
+		if(offers.count()%nbElem == 0){
+			r = offers.count()/nbElem ;
+		}
+		else{
+			r = offers.count()/nbElem + 1;
+		}
+		JPanel gridPanel = new JPanel(new GridLayout(r, c));
+
+		for(final Offer myOffer: offers.getOffers()){
+			JPanel bloc = new JPanel();
+			JPanel columns = new JPanel(new GridLayout(5,0));
+			JLabel labelOffer =  new JLabel("Name : " +myOffer.getLabelProduct());
+			JLabel price = new JLabel("Price : "+Float.toString(myOffer.getPrice()));
+			JLabel quantity = new JLabel("Quantity : "+Integer.toString(myOffer.getQuantity()));
+			JButton update = new JButton("Update");
+			JButton delete = new JButton("Delete");
+			
+			update.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//update(myOffer);
+				}
+			});
+			
+			delete.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//deleteCategory(myOffer);
+				}
+			});
+			
+			columns.add(labelOffer);
+			columns.add(price);
+			columns.add(quantity);
+			columns.add(update);
+			columns.add(delete);
+			bloc.add(columns);
+			gridPanel.add(bloc);
+			
+			this.manageOffer.add(gridPanel, BorderLayout.CENTER);
+
+		}
+		
 		
 		contentPane.add(manageOffer);
 		
