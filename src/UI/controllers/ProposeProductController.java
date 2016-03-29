@@ -9,12 +9,14 @@ import app.facades.ProposeProductFacade;
 import app.model.*;
 
 public class ProposeProductController extends RootController {
+	ProposeProductFacade facade = new ProposeProductFacade();
+	
 	public ProposeProductController(){
 		this.render(new ProposeProductView(this));
 	}
 	
 	public Object proposeProduct(String label, String description, ProductCategory category){
-		ProposeProductFacade facade = new ProposeProductFacade();
+		
 		try{
 			Product newProductProposed = facade.proposeproduct(label,description, category);
 			return newProductProposed;
@@ -26,7 +28,7 @@ public class ProposeProductController extends RootController {
 	}
 	
 	public void deleteProposition(String label, String description, ProductCategory category){
-		ProposeProductFacade facade = new ProposeProductFacade();
+	
 		try {
 			facade.deleteproductproposed(label,description, category);
 		} catch (Exception e) {
