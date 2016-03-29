@@ -9,4 +9,10 @@ import app.services.CartService;
  */
 public class CartFacade {
     private CartService cartService;
+
+    public CartFacade() {
+        this.cartService = new CartService();
+    }
+
+
 }

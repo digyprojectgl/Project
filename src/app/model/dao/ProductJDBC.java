@@ -15,6 +15,12 @@ import java.sql.ResultSet;
  */
 public class ProductJDBC extends Product {
 
+	/**
+	 * Get the Product from the database
+	 * @param label the label of the product
+	 * @param category the category of the product
+	 * @throws Exception
+     */
     public ProductJDBC(String label, String category) throws Exception {
         JdbcConnection connection = JdbcConnection.getInstance();
         connection.openConnection();

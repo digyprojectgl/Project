@@ -87,7 +87,7 @@ public class ProductListView implements ViewInterface {
         JPanel fields = new JPanel(new GridLayout(2,0));
         this.setNameOrDescription(new JTextField(defaultText));
         this.setCategory(new JComboBox());
-        this.getCategory().addItem(new ProductCategory("Toute catégorie"));
+        this.getCategory().addItem(new ProductCategory("Any category"));
         ArrayList<ProductCategory> categories = this.productListController.obtainCategoryList().productCategories;
         for (int i = 0; i < categories.size(); i++) {
             this.getCategory().addItem(categories.get(i));
@@ -117,7 +117,7 @@ public class ProductListView implements ViewInterface {
         Initialize the answer panel
          */
         this.setAnswer(new JPanel(new GridLayout(0,1)));
-        this.getAnswer().add(new JLabel("Produits"));
+        this.getAnswer().add(new JLabel("Products"));
 
         /*
         Fill the global panel
@@ -134,7 +134,7 @@ public class ProductListView implements ViewInterface {
 
     public void displayProductList() {
         this.getAnswer().removeAll();
-        this.getAnswer().add(new JLabel("Produits"));
+        this.getAnswer().add(new JLabel("Products"));
 
         HashMap<String,String> options = new HashMap<>();
         if (!getNameOrDescription().getText().isEmpty() && !getNameOrDescription().getText().equalsIgnoreCase(defaultText)) {
@@ -166,7 +166,7 @@ public class ProductListView implements ViewInterface {
     }
 
     public void displayError(String e) {
-        JOptionPane.showMessageDialog(null, e,"Erreur",JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, e,"Error",JOptionPane.ERROR_MESSAGE);
     }
 
 	@Override

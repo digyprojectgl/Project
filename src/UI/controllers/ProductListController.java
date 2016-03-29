@@ -23,6 +23,12 @@ public class ProductListController extends RootController {
         this.render(productListView);
     }
 
+    /**
+     * Get the product list from the database.
+     * @param options HashMap containing the options for the list of product
+     * @return the productList containing all the products that meet the options
+     * @throws Exception if no product is found or the database has a problem
+     */
     public ProductList obtainProductList(HashMap<String,String> options){
         try {
             return this.productListFacade.obtainProductList(options);
@@ -33,6 +39,11 @@ public class ProductListController extends RootController {
         return new ProductList();
     }
 
+    /**
+     * Get all the categories
+     * If an error is caught, display it
+     * @return the ProductCategoryList containing all the categories
+     */
     public ProductCategoryList obtainCategoryList()  {
         ProductCategoryList productCategoryList;
         try {

@@ -31,11 +31,17 @@ public class ProductController extends RootController {
             this.view.setProduct(product);
             this.render(view);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.toString(), "Erreur", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
             this.goTo("productList");
         }
     }
 
+    /**
+     * Get all the public offers associated with a product
+     * @param product the product concerned by the offers
+     * @return the ArrayList containing all the offers
+     */
+    // TODO: 28/03/2016 complete the method 
     public ArrayList<Offer> getOffers(Product product) {
         return null;
     }
