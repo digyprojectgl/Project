@@ -32,6 +32,7 @@ public class LogInController extends RootController {
 		User user;
 		try {
 			user = loginfacade.handleLogIn(username, password);
+			System.out.print(user);
 			setUser(user);
 			if(user instanceof Customer){
 				this.goTo("home");
