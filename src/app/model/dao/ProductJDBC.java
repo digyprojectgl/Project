@@ -5,7 +5,6 @@ package app.model.dao;
 
 import app.model.Product;
 import app.model.ProductCategory;
-
 import java.sql.ResultSet;
 
 /**
@@ -34,10 +33,11 @@ public class ProductJDBC extends Product {
         this.setCategory(new ProductCategory(category));
         connection.close();
     }
-	public ProductJDBC(String label, String description, ProductCategory category){
+    
+    public ProductJDBC(String label, String description, ProductCategory category){
 		super(label, description, category);
 	}
-
+	
 	/**
 	 * Insert the Product into the DB.
 	 * @throws Exception
@@ -50,4 +50,3 @@ public class ProductJDBC extends Product {
 		connect.executeRequest(insertProduct);
 	}
 }
-

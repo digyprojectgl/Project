@@ -56,7 +56,7 @@ public class ActivityCategoryJDBC extends ActivityCategory{
 	public void deleteCategory() throws Exception{
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
-		String query ="DROP ActivityCategory WHERE labelAC = '" 
+		String query ="DELETE FROM ActivityCategory WHERE labelAC = '" 
 		+ this.getLabelCategoryActivity() +"'";
 		connect.executeRequest(query);
 		connect.close();
@@ -70,9 +70,9 @@ public class ActivityCategoryJDBC extends ActivityCategory{
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
 		//DB Structure : labelAC, shortDescription, detailedDescription, is_validate
-		String query ="INSERT INTO ActivityCategory VALUES(labelAC = '" + this.getLabelCategoryActivity()
-			+ "' , shortDescription = '" + this.getShortDescription() + "' , detailDescription = '" 
-			+ this.getDetailedDescription() + "' , is_validate = 'false'";
+		String query ="INSERT INTO ActivityCategory VALUES('" + this.getLabelCategoryActivity()
+			+ "' , '" + this.getShortDescription() + "' , '" 
+			+ this.getDetailedDescription() + "' , 'false')";
 		connect.executeRequest(query);
 		connect.close();
 	}

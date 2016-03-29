@@ -5,3 +5,5 @@ lib
 .settings/
 .project
 ProjectDigy.iml
+*.bak
+*.orig

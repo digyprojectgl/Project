@@ -60,8 +60,14 @@ public class UserService {
 		userID.toLowerCase();
 		
 		//First we get the User, if the user exists
+		User myUser = this.getUserFactoryJDBC().createUserJDBC();
+		try{
+			myUser = this.getUserFactoryJDBC().createUserJDBC(userID);
+		}
+		catch(Exception e){
+			throw new Exception("Error when getting user.");
+		}
 		
-		User myUser = this.getUserFactoryJDBC().createUserJDBC(userID);
 		
 		//We have to check if the userId is_set
 		if(myUser.getUserID().isEmpty()){
@@ -77,15 +83,25 @@ public class UserService {
 			//We have to check if the user is a Seller/Trader or Admin
 			// TODO: factoryAdmin, factoryCustomer are useless
 			if(myUser.getType().equals(customer)){
-				Customer myCustomer = new Customer(myUser.getUserID(), myUser.getFirstName(), myUser.getLastName(), myUser.getPassword(), myUser.getEmail(), myUser.getTel(), myUser.getAdress());
+				Customer myCustomer = new Customer(myUser.getUserID(), myUser.getPassword(),  
+						myUser.getLastName(), myUser.getFirstName(), myUser.getAdress(), 
+						myUser.getTel(), myUser.getEmail());
 				return myCustomer;
 			}
 			else if(myUser.getType().equals(admin)){
-				Admin myAdmin = new Admin(myUser.getUserID(), myUser.getFirstName(), myUser.getLastName(), myUser.getPassword(), myUser.getEmail(), myUser.getTel(), myUser.getAdress());
+				Admin myAdmin = new Admin(myUser.getUserID(), myUser.getPassword(),  
+						myUser.getLastName(), myUser.getFirstName(), myUser.getAdress(), 
+						myUser.getTel(), myUser.getEmail());
 				return myAdmin;
 			}
 			else if(myUser.getType().equals(seller)){
-				Seller newSeller = this.getSellerFactory().createSellerJDBC(userID);
+				Seller newSeller = this.getSellerFactory().createSellerJDBC();
+				try{
+					newSeller = this.getSellerFactory().createSellerJDBC(userID);
+				}
+				catch(Exception e){
+					throw new Exception("Error when getting seller.");
+				}
 				Seller returnSeller = new Seller(newSeller.getUserID(), newSeller.getPassword(), 
 						newSeller.getLastName(), newSeller.getFirstName(), newSeller.getAdress(), 
 						newSeller.getTel(), newSeller.getEmail(), newSeller.getSiret(), newSeller.getWebAddress());
@@ -113,7 +129,7 @@ public class UserService {
 	 */
 	public Customer signUpCustomer(String firstName, String lastName, String userID, String email, String telephone, String address, String password, String confirm) throws Exception{
 	
-		this.checkFields(firstName, lastName, userID, email, telephone, address);
+		this.checkFields(firstName, lastName, userID, email, password, confirm);
 		
 		//Get the user in the DB
 		User myUser = this.getUserFactoryJDBC().createUserJDBC(userID);
@@ -136,9 +152,9 @@ public class UserService {
 				throw new Exception("Error with the insertion in the DB.");
 			}
 			
-			Customer myCustomer = new Customer(anUser.getUserID(), anUser.getFirstName(), 
-					anUser.getLastName(), anUser.getPassword(), anUser.getEmail(), 
-					anUser.getTel(), anUser.getAdress());
+			Customer myCustomer = new Customer(anUser.getUserID(), anUser.getPassword(),  
+					anUser.getLastName(), anUser.getFirstName(), anUser.getAdress(), 
+					anUser.getTel(), anUser.getEmail());
 			return myCustomer;
 		}
 	}

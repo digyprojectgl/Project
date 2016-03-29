@@ -1,4 +1,4 @@
-package UI.views;
+package UI.views.customer;
 
 import UI.controllers.CartController;
 import UI.core.ViewInterface;

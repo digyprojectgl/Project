@@ -60,7 +60,7 @@ public class JdbcConnection {
      * @param sqlRequest la requete
      * @return true si l'execution c'est bien passe, false sinon
      */
-	public boolean executeRequest(String sqlRequest) {
+	public boolean executeRequest(String sqlRequest) throws Exception {
         try {
         	//s'il s'agit d'une requete SELECT il faut utiliser executeQuery()
             if (sqlRequest.contains("SELECT")) {
@@ -71,8 +71,7 @@ public class JdbcConnection {
                 this.streamConnection.executeUpdate(sqlRequest);
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();           
-            return false;
+            throw ex;           
         }
         return true;
     }

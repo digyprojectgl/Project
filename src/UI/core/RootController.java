@@ -75,9 +75,15 @@ public class RootController {
 			case "mActivities":
 				new ManageActivityController();
 				break;
-            case "product":
-                new ProductController(params);
-                break;
+			case "newCategory":
+				new ProposeCategoryController();
+				break;
+			case "offers" :
+				new ManageOfferController();
+				break;
+			case "product":
+				new ProductController(params);
+				break;
 		}
 	}
 	
