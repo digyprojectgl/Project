@@ -45,7 +45,7 @@ public class OfferService {
 	}
 	
 	/**
-	 * Call the OfferFactory to create an OfferSet of all the offers
+	 * Call the OfferSetFactory to create an OfferSet of all the offers
 	 * @return an OfferSet containing all the offers
 	 * @throws Exception when problem with the database
 	 */
@@ -53,6 +53,22 @@ public class OfferService {
 		try{
 			OfferSet mySet = this.getOfferSetFactory().createOfferSet();
 			return mySet.getAllOffers();
+		}
+		catch(Exception e){
+			throw new Exception("Error when getting data.");
+		}
+	}
+	
+	/**
+	 * Call the OfferSetFactory to create an OfferSet containing the offers about an product
+	 * @param labelProduct The name of the product we want the offers about
+	 * @return an OfferSet containing all the offers concerning this prod
+	 * @throws Exception when problem with database
+	 */
+	public OfferSet getOffersWithLabelProduct(String labelProduct) throws Exception{
+		try{
+			OfferSet mySet = this.getOfferSetFactory().createOfferSet();
+			return mySet.getOfferWithLabelProduct(labelProduct);
 		}
 		catch(Exception e){
 			throw new Exception("Error when getting data.");

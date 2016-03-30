@@ -26,10 +26,10 @@ public class OfferSet {
 	}
 	
 	/**
+	 * Call the database to put all the offer in an OfferSet
 	 * @return all the offers in an OfferSet
 	 * @throws Exception if return nothing or problem to connect
 	 * this function get all the offers in the database
-	 * No parameter required
 	 */
 	public OfferSet getAllOffers() throws Exception{
 		JdbcConnection connect = JdbcConnection.getInstance();
@@ -59,7 +59,7 @@ public class OfferSet {
 	}
 	
 	/**
-	 * 
+	 * Call the database to put the offers of a seller in OfferSet
 	 * @param idUser the id of the seller who created the offer
 	 * @return the offers created by this seller in an OfferSet
 	 * @throws Exception when problem to connect or return nothing
@@ -72,6 +72,38 @@ public class OfferSet {
 		
 		try{
 			String query ="SELECT * FROM Offer where IdUser = '"+ idUser + "'";
+			connect.executeRequest(query);
+			while ((res = connect.fetchArray()) != null){
+				Offer myOffer = new Offer();
+				myOffer.setIdOffer(res.getString("idOffer"));
+				myOffer.setQuantity(res.getInt("quantity"));
+				myOffer.setPrice(res.getFloat("price"));
+				myOffer.setPrivacy(res.getString("privacy"));
+				myOffer.setIdUser(res.getString("idUser"));
+				myOffer.setLabelProduct(res.getString("labelProduct"));
+				this.addOffer(myOffer);
+			}
+		}
+		catch(SQLException e){
+			throw (Exception)e;
+		}
+		connect.close();
+		return this;
+	}
+	/**
+	 * Call the database to put the offers concerning a product in an OfferSet
+	 * @param labelProduct The product concerned by the offers
+	 * @return an OfferSet containing the offers concerning this product
+	 * @throws Exception when problem with database
+	 */
+	public OfferSet getOfferWithLabelProduct(String labelProduct) throws Exception{
+		JdbcConnection connect = JdbcConnection.getInstance();
+		connect.openConnection();
+		ResultSet res = null;
+		this.setOffers(new ArrayList<Offer>());
+		
+		try{
+			String query ="SELECT * FROM Offer where labelProduct = '"+ labelProduct + "'";
 			connect.executeRequest(query);
 			while ((res = connect.fetchArray()) != null){
 				Offer myOffer = new Offer();
