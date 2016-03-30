@@ -9,12 +9,24 @@ import app.facades.ProposeProductFacade;
 import app.model.*;
 
 public class ProposeProductController extends RootController {
+	ProposeProductFacade facade = new ProposeProductFacade();
+	
 	public ProposeProductController(){
-		this.render(new ProposeProductView(this));
+		try{
+			ProductCategoryList categorySet = this.facade.obtainCategoryList();
+			this.render(new ProposeProductView(this, categorySet));
+		}
+		catch(Exception e){
+			ProposeProductView myView = new ProposeProductView(this, null);
+			this.render(myView);
+			myView.displayError(e.getMessage());
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public Object proposeProduct(String label, String description, ProductCategory category){
-		ProposeProductFacade facade = new ProposeProductFacade();
+		
 		try{
 			Product newProductProposed = facade.proposeproduct(label,description, category);
 			return newProductProposed;
@@ -25,10 +37,10 @@ public class ProposeProductController extends RootController {
 		}
 	}
 	
-	public void deleteProposition(String label, String description, ProductCategory category){
-		ProposeProductFacade facade = new ProposeProductFacade();
+	public void deleteProposition(Product p){
+	
 		try {
-			facade.deleteproductproposed(label,description, category);
+			facade.deleteproductproposed(p);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

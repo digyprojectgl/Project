@@ -3,10 +3,12 @@ package app.services;
 import app.factory.ProductProposedFactory;
 import app.model.Product;
 import app.model.ProductCategory;
+import app.model.ProductList;
 import app.model.dao.ProductProposedJDBC;
 import app.model.dao.ProductProposedListJDBC;
 
 /**
+ * all the functions with product not valid
  * @author shui
  */
 public class ProductProposedService {
@@ -35,23 +37,24 @@ public class ProductProposedService {
 	 * delete a ProductProposed when is valided or refused
 	 */
 	
-	public void deleteProposition(String label, String description, ProductCategory category) throws Exception{
-		ProductProposedJDBC productproposedJDBC = new ProductProposedJDBC(label, description, category);
-		productproposedJDBC.deleteProductProposed(label, description, category);
+	public void deleteProposition(Product p) throws Exception{
+		String label = p.label;
+	    String description = p.description;
+	    ProductCategory category = p.category;
+	    String status = p.status;
+		ProductProposedJDBC productproposedJDBC = new ProductProposedJDBC(label, description, category, status);
+		productproposedJDBC.deleteProductProposed(p);
 	}
 	
 	/**
 	 * get the list of all the product proposition
 	 * @return
+	 * @throws Exception 
 	 */
-	public Object getPropositionList() {
-	        Object result;
+	public ProductList getPropositionList() throws Exception {
+	        ProductList result;
 	        ProductProposedListJDBC list = new ProductProposedListJDBC();
-	        try {
-	            result = list.getPropositionList();
-	        } catch (Exception e) {
-	            result = e;
-	        }
+	        result = list.getPropositionList();
 	        return result;
 	        }
 }

@@ -1,11 +1,6 @@
 /out
 bin
 .idea/
-lib
 .settings/
 .project
-<<<<<<< HEAD
-=======
-Digy Project.iml
->>>>>>> digyprojectgl/gitstillbug
 ProjectDigy.iml

@@ -120,6 +120,19 @@ public class ProductListView implements ViewInterface {
         this.getAnswer().add(new JLabel("Produits"));
 
         /*
+         * Create a JButton toGO NewProduct and add it to the search panel
+         */
+        JButton newProduct = new JButton("New product");
+        newProduct.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				goToNewProduct();
+			}
+        });
+        globalPanel.add(newProduct);
+        
+        /*
         Fill the global panel
          */
         globalPanel.add(searchPanel);
@@ -174,5 +187,11 @@ public class ProductListView implements ViewInterface {
 		return "main";
 	}
 
+	/**
+	 * Called when the user press the new product button.
+	 */
+	private void goToNewProduct(){
+		this.productListController.goTo("newProduct");
+	}
 
 }

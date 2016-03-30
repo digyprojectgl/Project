@@ -4,9 +4,6 @@ import app.model.Offer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import app.model.User;
-import app.model.Comment;
-import app.model.Notification;
 
 public class OfferJDBC extends Offer{
 
@@ -33,10 +30,10 @@ public class OfferJDBC extends Offer{
 		connect.close();
 	}
 	
-	public OfferJDBC(String label,float price, int quantity ) throws Exception{
+	public OfferJDBC(String idUser,String label, float price, int quantity ) throws Exception{
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
-		String insertOffer = "INSERT INTO Offer VALUES('"+quantity +"','"+ price +"','"+ null +"','"+ label +"')";
+		String insertOffer = "INSERT INTO Offer (idUser, labelProduct, quantity, price) VALUES('"+ idUser +"','"+label +"','"+ quantity +"','"+ price +"')";
 		connect.executeRequest(insertOffer);
 	}
 }

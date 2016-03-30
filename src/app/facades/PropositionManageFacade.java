@@ -4,7 +4,7 @@ package app.facades;
  * @author shui
  */
 
-import app.model.ProductCategory;
+import app.model.Product;
 import app.services.ProductProposedService;
 import app.services.ProductService;
 
@@ -23,12 +23,12 @@ public class PropositionManageFacade {
  * valid/refuse a proposition
  * @throws Exception 
  */
-	public void acceptProposition(String label, String description, ProductCategory category) throws Exception {
-		manageproductService.newProduct(label, description, category);
-		managepropositionService.deleteProposition(label, description, category);
+	public void acceptProposition(Product p) throws Exception {
+		manageproductService.newProduct(p);
+		managepropositionService.deleteProposition(p);
 	}
     
-	public void refuseProposition(String label, String description, ProductCategory category) throws Exception {
-		managepropositionService.deleteProposition(label, description, category);
+	public void refuseProposition(Product p) throws Exception {
+		managepropositionService.deleteProposition(p);
 	}
 }
