@@ -48,7 +48,7 @@ public class PropositionManageView implements ViewInterface{
 		JPanel acceptPanel = new JPanel(new GridLayout());
 		JPanel refusePanel = new JPanel(new GridLayout());
 		
-		for(Product p: list.productList){
+		for(final Product p: list.productList){
 			JLabel product = new JLabel(p.label);
 			JPanel productCell = creatCell(product);
 			listPanel.add(productCell);
