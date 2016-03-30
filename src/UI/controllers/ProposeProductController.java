@@ -25,7 +25,7 @@ public class ProposeProductController extends RootController {
 		
 	}
 	
-	public Object proposeProduct(String label, String description, ProductCategory category){
+	public Object proposeNewProduct(String label, String description, ProductCategory category){
 		
 		try{
 			Product newProductProposed = facade.proposeproduct(label,description, category);

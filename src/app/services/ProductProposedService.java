@@ -13,24 +13,34 @@ import app.model.dao.ProductProposedListJDBC;
  */
 public class ProductProposedService {
 	
+	private ProductProposedFactory factory = new ProductProposedFactory();
+	
 	/**
 	 * Create the ProductProposedFactory. 
 	 * Ask it to create a new ProductProposed.
 	 */
 	public Product proposeProduct(String label, String description, ProductCategory category) throws Exception{
-		ProductProposedFactory factory = new ProductProposedFactory();
-		factory.createProductProposed(label,description, category);
-		return null;
-		/**
-		 *  //TODO
-		 *  Changer la méthode pour : 
-		 *  tester les champs
-		 *  tester si le produit ne se trouve pas déjà en DB
-		 *  créer le produit
-		 *  le sauver en DB
-		 *  le renvoyer
-		 */
+		this.checkFields(label, category);
 		
+		Product myproduct = factory.createProductProposedJDBC(label, description, category);
+		if(myproduct.getLabel()!=null){
+			throw new Exception("Label has been already used");
+		}
+		else{
+			ProductProposedJDBC aproposition = factory.createProductProposedJDBC(); 
+			aproposition.setLabel(label);
+			aproposition.setDescription(description);
+			aproposition.setCategory(category);
+			aproposition.setStatus("false");
+			try{
+				aproposition.addProductProposed(label, description, category);
+			}
+			catch (Exception e){
+				throw new Exception("Error with the insertion in the DB.");
+			}
+			Product productproposed = new Product(aproposition.getLabel(),aproposition.getDescription(),aproposition.getCategory(),aproposition.getStatus());
+			return productproposed;
+		}		
 	}
 	
 	/**
@@ -57,4 +67,17 @@ public class ProductProposedService {
 	        result = list.getPropositionList();
 	        return result;
 	        }
+	
+	/**
+	 * check label and category are not null
+	 */
+	private void checkFields(String label, ProductCategory category) throws Exception{
+		if(label.isEmpty()){
+			throw new Exception("Label is a required field !");
+		}
+		if(category.getLabel()== null){
+			throw new Exception("Category is a required field !");
+		}
+	}
+
 }

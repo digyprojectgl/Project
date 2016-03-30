@@ -71,6 +71,14 @@ public class Product {
     public void setCategory(ProductCategory category) {
         this.category = category;
     }
+    
+    public String getStatus() {
+        return status;
+    }
+    
+    public void setStatus(String string) {
+		this.status = string;
+	}
 
     @Override
     public String toString() {

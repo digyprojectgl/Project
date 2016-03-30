@@ -2,7 +2,6 @@ package app.model;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 /**
@@ -12,6 +11,11 @@ import java.util.Arrays;
  */
 public class ProductList {
     public ArrayList<Product> productList = new ArrayList<>();
+
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return productList.isEmpty();
+	}
 
 
 }

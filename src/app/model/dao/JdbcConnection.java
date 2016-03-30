@@ -31,7 +31,7 @@ public class JdbcConnection {
     		// Charge le driver JDBC pour mysql
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             
-            // Creation de la connection ï¿½ la base
+            // Creation de la connection ï¿ la base
             Connection con = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
             this.streamConnection = con.createStatement();
         } 
@@ -75,6 +75,17 @@ public class JdbcConnection {
         }
         return true;
     }
+	
+	/**
+	 * function redefine executeQuery
+	 * @param sqlRequest
+	 * @return a ResultSet(never null)
+	 * @throws Exception
+	 */
+	
+	public ResultSet executeQuery(String sqlRequest) throws Exception {
+		return this.streamResponse = this.streamConnection.executeQuery(sqlRequest);
+}
 	
     /**
      * Methode fetchArray

@@ -14,9 +14,14 @@ public class ProductProposedJDBC extends Product {
 		// TODO Changer le constructeur pour renvoyer un élément dans la DB.
 	}
 
+	public ProductProposedJDBC() {
+		super();
+	}
+
 	/**
 	 * save a new proposition of product - seller side
 	 * @param status 
+	 * @return 
 	 * @throws Exception 
 	 */
 	public void addProductProposed(String label, String description, ProductCategory category) throws Exception{

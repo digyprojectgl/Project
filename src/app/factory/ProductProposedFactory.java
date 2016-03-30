@@ -13,8 +13,11 @@ public class ProductProposedFactory {
 		
 	}
 	
-	public void createProductProposed(String label, String description, ProductCategory category) throws Exception{
-		ProductProposedJDBC productproposedJDBC = new ProductProposedJDBC(label, description, category, "false");
-		productproposedJDBC.addProductProposed(label, description, category);
+	public ProductProposedJDBC createProductProposedJDBC() throws Exception{
+		return new ProductProposedJDBC();
+	}
+	
+	public ProductProposedJDBC createProductProposedJDBC(String label, String description, ProductCategory category) throws Exception{
+		return new ProductProposedJDBC(label, description, category, "false");
 	}
 }
