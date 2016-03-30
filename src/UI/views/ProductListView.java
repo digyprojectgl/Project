@@ -2,10 +2,7 @@ package UI.views;
 
 import UI.controllers.ProductListController;
 import UI.core.ViewInterface;
-import app.model.Product;
-import app.model.ProductCategory;
-import app.model.ProductCategoryList;
-import app.model.ProductList;
+import app.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -122,16 +119,18 @@ public class ProductListView implements ViewInterface {
         /*
          * Create a JButton toGO NewProduct and add it to the search panel
          */
-        JButton newProduct = new JButton("New product");
-        newProduct.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				goToNewProduct();
-			}
-        });
-        globalPanel.add(newProduct);
-        
+
+        if (ProductListController.getUser() instanceof Seller) {
+            JButton newProduct = new JButton("New product");
+            newProduct.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    goToNewProduct();
+                }
+            });
+            globalPanel.add(newProduct, BorderLayout.SOUTH);
+        }
+
         /*
         Fill the global panel
          */
@@ -148,6 +147,7 @@ public class ProductListView implements ViewInterface {
     public void displayProductList() {
         this.getAnswer().removeAll();
         this.getAnswer().add(new JLabel("Products"));
+
 
         HashMap<String,String> options = new HashMap<>();
         if (!getNameOrDescription().getText().isEmpty() && !getNameOrDescription().getText().equalsIgnoreCase(defaultText)) {
@@ -168,6 +168,7 @@ public class ProductListView implements ViewInterface {
             });
             this.getAnswer().add(product);
         }
+        this.getAnswer().add(new JSeparator());
         this.getAnswer().updateUI();
     }
 
