@@ -19,6 +19,7 @@ public class OfferJDBC extends Offer{
 				this.setIdOffer(res.getString("idOffer"));
 				this.setQuantity(res.getInt("quantity"));
 				this.setPrivacy(res.getString("privacy"));
+				this.setPrice(res.getFloat("price"));
 				this.setIdUser(res.getString("idUser"));
 				this.setLabelProduct(res.getString("labelProduct"));
 				this.setPrice(res.getFloat("price"));
