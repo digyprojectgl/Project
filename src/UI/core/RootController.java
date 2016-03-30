@@ -87,6 +87,9 @@ public class RootController {
 			case "newProduct":
 				new ProposeProductController();
 				break;
+			case "mProducts":
+				new PropositionManageController();
+				break;
 		}
 	}
 	

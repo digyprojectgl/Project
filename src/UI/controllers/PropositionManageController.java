@@ -12,7 +12,7 @@ import app.model.*;
 
 public class PropositionManageController extends RootController{
 	
-	public PropositionManageController(RootController rootController){
+	public PropositionManageController(){
 			this.render(new PropositionManageView(this));
 			}
 	/**
