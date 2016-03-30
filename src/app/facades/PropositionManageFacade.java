@@ -25,7 +25,6 @@ public class PropositionManageFacade {
  */
 	public void acceptProposition(Product p) throws Exception {
 		manageproductService.newProduct(p);
-		managepropositionService.deleteProposition(p);
 	}
     
 	public void refuseProposition(Product p) throws Exception {
