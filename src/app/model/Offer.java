@@ -9,6 +9,9 @@ public class Offer {
     public String idUser;
     public String labelProduct;
     
+    /**
+     * Default Constructor
+     */
     public Offer(){
     	idOffer = null;
     	quantity = 0;
@@ -18,7 +21,15 @@ public class Offer {
         labelProduct= null;
     }
 
-
+    /**
+     * Constructor with parameters
+     * @param idOffer the Id of the Offer
+     * @param quantity the quantity of Product in the Offer
+     * @param price The price of the Offer
+     * @param privacy The privacy of the Offer (set on null or the UserId of a customer)
+     * @param idUser The id of the Seller who created the Offer
+     * @param labelProduct The name of the Product
+     */
 	public Offer(String idOffer, int quantity, float price, String privacy, String idUser, String labelProduct){
     	this.idOffer = idOffer;
     	this.quantity = quantity;
@@ -28,6 +39,12 @@ public class Offer {
     	this.labelProduct = labelProduct;
     }
     
+	/**
+	 * Constructor with parameters
+	 * @param labelProduct The name of the Product
+	 * @param price The price of the Offer
+	 * @param quantity The quantity of Product in the Offer
+	 */
     public Offer(String labelProduct, float price, int quantity){
     	this.labelProduct = labelProduct;
     	this.price = price;
