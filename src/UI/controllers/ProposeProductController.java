@@ -36,15 +36,4 @@ public class ProposeProductController extends RootController {
 			// TODO display function
 		}
 	}
-	
-	public void deleteProposition(Product p){
-	
-		try {
-			facade.deleteproductproposed(p);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			// TODO display function
-		}
-	}
 }
