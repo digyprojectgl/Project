@@ -12,6 +12,10 @@ import java.sql.ResultSet;
  */
 public class ProductCategoryListJDBC extends ProductCategoryList {
 
+    /**
+     * Get all the categories for the database
+     * @throws Exception
+     */
     public ProductCategoryListJDBC() throws Exception {
         JdbcConnection connection = JdbcConnection.getInstance();
         connection.openConnection();

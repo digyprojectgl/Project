@@ -11,7 +11,7 @@ import app.model.Product;
 public class ProductProposedJDBC extends Product {
 	public ProductProposedJDBC(String label, String description, ProductCategory category, String status) throws Exception{
 		super(label, description, category, status);
-		// TODO Changer le constructeur pour renvoyer un Ã©lÃ©ment dans la DB.
+		// TODO Changer le constructeur pour renvoyer un élément dans la DB.
 	}
 
 	/**

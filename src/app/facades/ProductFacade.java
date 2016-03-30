@@ -15,6 +15,13 @@ public class ProductFacade {
         this.productService = new ProductService();
     }
 
+    /**
+     * Get a product from the database
+     * @param label the name of the product
+     * @param category the name of the category
+     * @return the product whose name and category correspond the parameters
+     * @throws Exception if no product is found or the database has a problem
+     */
     public Product getProduct(String label, String category) throws Exception {
         return productService.getProduct(label, category);
     }

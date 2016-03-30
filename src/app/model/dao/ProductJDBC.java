@@ -1,4 +1,7 @@
 package app.model.dao;
+/**
+ * @author shui
+ */
 
 import app.model.Product;
 import app.model.ProductCategory;
@@ -10,11 +13,18 @@ import java.sql.ResultSet;
  * @author Arthur
  */
 public class ProductJDBC extends Product {
+
+	/**
+	 * Get the Product from the database
+	 * @param label the label of the product
+	 * @param category the category of the product
+	 * @throws Exception
+     */
     public ProductJDBC(String label, String category) throws Exception {
         JdbcConnection connection = JdbcConnection.getInstance();
         connection.openConnection();
         ResultSet res;
-        connection.executeRequest("SELECT * FROM Product WHERE labelProduct='" + label + "' AND labelPC='" + category + "AND status = 'ture'");
+        connection.executeRequest("SELECT * FROM Product WHERE labelProduct='" + label + "' AND labelPC='" + category + "'");
         res = connection.fetchArray();
         res.beforeFirst();
         res.next();
@@ -25,6 +35,18 @@ public class ProductJDBC extends Product {
     }
     
     public ProductJDBC(String label, String description, ProductCategory category){
-		super(label, description, category, "true");
+		super(label, description, category);
+	}
+	
+	/**
+	 * Insert the Product into the DB.
+	 * @throws Exception
+	 */
+	public void addProduct() throws Exception{
+		JdbcConnection connect = JdbcConnection.getInstance();
+		connect.openConnection();
+		//DB Structure : label,description,category
+		String insertProduct = "INSERT INTO Product VALUES('"+this.getLabel() +"','"+ this.getDescription() +"','"+ this.getCategory() +"')";
+		connect.executeRequest(insertProduct);
 	}
 }

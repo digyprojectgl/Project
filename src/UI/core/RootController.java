@@ -1,7 +1,5 @@
 package UI.core;
 import java.awt.Container;
-
-
 import UI.controllers.*;
 import UI.layouts.LoginLayout;
 import UI.layouts.MainLayout;

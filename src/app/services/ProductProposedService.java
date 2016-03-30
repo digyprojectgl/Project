@@ -23,10 +23,10 @@ public class ProductProposedService {
 		return null;
 		/**
 		 *  //TODO
-		 *  Changer la m√©thode pour : 
+		 *  Changer la mÈthode pour : 
 		 *  tester les champs
-		 *  tester si le produit ne se trouve pas d√©j√† en DB
-		 *  cr√©er le produit
+		 *  tester si le produit ne se trouve pas dÈj‡ en DB
+		 *  crÈer le produit
 		 *  le sauver en DB
 		 *  le renvoyer
 		 */
