@@ -22,5 +22,26 @@ public class OfferFactory {
 		new OfferJDBC(id, label, price, quantity);
 		return  new OfferJDBC(label);
 	}
+
+
+	public void deleteOffer(Offer myOffer) {
+		try {
+			new OfferJDBC(myOffer);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
+	public Offer updateOffer(Offer myOffer, float newPrice, int newQuantity) {
+		try {
+			return new OfferJDBC(myOffer,newPrice,newQuantity);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return myOffer;
+	}
 	
 }

@@ -32,7 +32,7 @@ public class OfferSet {
 				Offer myOffer = new Offer();
 				myOffer.setIdOffer(res.getString("idOffer"));
 				myOffer.setQuantity(res.getInt("quantity"));
-				myOffer.setPrice(res.getFloat("Privacy"));
+				myOffer.setPrice(res.getFloat("price"));
 				myOffer.setPrivacy(res.getString("privacy"));
 				myOffer.setIdUser(res.getString("idUser"));
 				myOffer.setLabelProduct(res.getString("labelProduct"));
@@ -59,7 +59,7 @@ public class OfferSet {
 				Offer myOffer = new Offer();
 				myOffer.setIdOffer(res.getString("idOffer"));
 				myOffer.setQuantity(res.getInt("quantity"));
-				myOffer.setPrice(res.getFloat("Privacy"));
+				myOffer.setPrice(res.getFloat("price"));
 				myOffer.setPrivacy(res.getString("privacy"));
 				myOffer.setIdUser(res.getString("idUser"));
 				myOffer.setLabelProduct(res.getString("labelProduct"));

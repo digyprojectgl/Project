@@ -1,6 +1,8 @@
 package UI.controllers;
 
 import java.util.ArrayList;
+
+import app.model.Offer;
 import app.model.Product;
 import app.model.sets.OfferSet;
 import app.facades.OfferFacade;
@@ -63,5 +65,14 @@ public class ManageOfferController extends RootController {
 
 		public void setId(String id) {
 			this.id = id;
+		}
+
+		public void deleteOffer(Offer myOffer) {
+			this.getOfferFacade().deleteOffer(myOffer);
+
+		}
+
+		public Offer updateOffer(Offer myOffer, float newPrice, int newQantity) {
+			return this.getOfferFacade().updateOffer(myOffer, newPrice, newQantity);
 		}
 }
