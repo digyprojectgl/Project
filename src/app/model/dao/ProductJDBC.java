@@ -24,7 +24,7 @@ public class ProductJDBC extends Product {
         JdbcConnection connection = JdbcConnection.getInstance();
         connection.openConnection();
         ResultSet res;
-        connection.executeRequest("SELECT * FROM Product WHERE labelProduct='" + label + "' AND labelPC='" + category + "'");
+        connection.executeRequest("SELECT * FROM Product WHERE labelProduct='" + label + "' AND labelPC='" + category + "' AND status = 'true'");
         res = connection.fetchArray();
         res.beforeFirst();
         res.next();
@@ -35,7 +35,7 @@ public class ProductJDBC extends Product {
     }
     
     public ProductJDBC(String label, String description, ProductCategory category){
-		super(label, description, category);
+		super(label, description, category, "true");
 	}
 	
 	/**
