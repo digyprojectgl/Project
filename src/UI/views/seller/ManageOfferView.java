@@ -27,12 +27,15 @@ public class ManageOfferView implements ViewInterface{
 	JLabel qty;
 	JComboBox<Product> productOffer;
 	
-	
+	/**
+	 * Constructor with parameters
+	 * @param moc The ManageOfferController who brings the data
+	 * @param offers The OfferSet containing the offers
+	 */
 	public ManageOfferView(ManageOfferController moc, OfferSet offers){
 		this.offers = offers;
 		this.moc = moc;
 	}
-
 
 	@Override
 	public String getLayout() {
@@ -164,11 +167,21 @@ public class ManageOfferView implements ViewInterface{
 	public void setMoc(ManageOfferController moc) {
 		this.moc = moc;
 	}
-	
+	/**
+	 * Call the deleteOffer method of ManageOfferController
+	 * @param myOffer The offer we want to delete
+	 */
 	public void deleteOffer(Offer myOffer){
 		this.getMoc().deleteOffer(myOffer);
 	}
 	
+	/**
+	 * Call the updateOffer method of ManageOfferController
+	 * @param myOffer The Offer we want to update
+	 * @param newPrice The new price of the offer
+	 * @param newQuantity The new quantity of product in the Offer
+	 * @return
+	 */
 	public Offer updateOffer(Offer myOffer, float newPrice, int newQuantity){
 		return this.getMoc().updateOffer(myOffer,newPrice,newQuantity);
 	}
