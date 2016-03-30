@@ -9,16 +9,28 @@ import app.model.dao.JdbcConnection;
 
 public class OfferSet {
 	private ArrayList<Offer> offers;
-
+	
+	/**
+	 * Default constructor
+	 */
 	public OfferSet(){
 		this.offers = null;
 	}
 	
+	/**
+	 * Constructor of the OfferSet
+	 * @param offers an ArrayList of Offer
+	 */
 	public OfferSet(ArrayList<Offer> offers){
 		this.offers = offers;
 	}
 	
-	
+	/**
+	 * @return all the offers in an OfferSet
+	 * @throws Exception if return nothing or problem to connect
+	 * this function get all the offers in the database
+	 * No parameter required
+	 */
 	public OfferSet getAllOffers() throws Exception{
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
@@ -46,6 +58,12 @@ public class OfferSet {
 		return this;
 	}
 	
+	/**
+	 * 
+	 * @param idUser the id of the seller who created the offer
+	 * @return the offers created by this seller in an OfferSet
+	 * @throws Exception when problem to connect or return nothing
+	 */
 	public OfferSet getOffersWithUserID(String idUser) throws Exception{
 		JdbcConnection connect = JdbcConnection.getInstance();
 		connect.openConnection();
@@ -73,26 +91,44 @@ public class OfferSet {
 		return this;
 	}
 	
-	
+	/**
+	 * Get the size of the OfferSet
+	 * @return the size of the OfferSet as an integer
+	 */
 	public int count(){
 		return this.getOffers().size();
 	}
 	
+	/**
+	 * Add an Offer to the OfferSet
+	 * @param offer
+	 */
 	public void addOffer(Offer offer){
 		this.getOffers().add(offer);
 	}
 	
+	/**
+	 * remove an Offer from the OfferSet
+	 * @param offer
+	 */
 	public void removeOffer(Offer offer){
 		this.getOffers().remove(offer);
 	}
 	
+	/**
+	 * get the offers
+	 * @return an ArrayList of Offer
+	 */
 	public ArrayList<Offer> getOffers() {
 		return offers;
 	}
 
+	/**
+	 * Set the ArrayList of Offer
+	 * @param offers an ArrayList of Offer
+	 */
 	public void setOffers(ArrayList<Offer> offers) {
 		this.offers = offers;
 	}
-	
 	
 }
