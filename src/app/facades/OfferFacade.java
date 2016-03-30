@@ -2,6 +2,7 @@ package app.facades;
 
 import java.util.ArrayList;
 
+import app.model.Offer;
 import app.model.Product;
 import app.model.sets.OfferSet;
 import app.services.OfferService;
@@ -30,5 +31,13 @@ public class OfferFacade {
 	
 	public OfferSet getOffersWithUserID(String userId) throws Exception{
 		return this.offerService.getOfferWithUserID(userId);
+	}
+
+	public void deleteOffer(Offer myOffer) {
+		offerService.deleteOffer(myOffer);
+	}
+
+	public Offer updateOffer(Offer myOffer, float newPrice, int newQuantity) {
+		return offerService.updateOffer(myOffer, newPrice, newQuantity);
 	}
 }

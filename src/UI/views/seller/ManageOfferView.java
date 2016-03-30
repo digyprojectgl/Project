@@ -111,29 +111,35 @@ public class ManageOfferView implements ViewInterface{
 
 		for(final Offer myOffer: offers.getOffers()){
 			JPanel bloc = new JPanel();
-			JPanel columns = new JPanel(new GridLayout(5,0));
+			JPanel columns = new JPanel(new GridLayout(7,0));
 			JLabel labelOffer =  new JLabel("Name : " +myOffer.getLabelProduct());
-			JLabel price = new JLabel("Price : "+Float.toString(myOffer.getPrice()));
-			JLabel quantity = new JLabel("Quantity : "+Integer.toString(myOffer.getQuantity()));
+			JLabel priceLabel = new JLabel("Price : ");
+			JTextField price = new JTextField(Float.toString(myOffer.getPrice()));
+			JLabel quantityLabel = new JLabel("Quantity : ");
+			JTextField quantity = new JTextField(Integer.toString(myOffer.getQuantity()));
 			JButton update = new JButton("Update");
 			JButton delete = new JButton("Delete");
 			
 			update.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					//update(myOffer);
+					int newQuantity = Integer.parseInt(quantity.getText());
+					float newPrice = Float.parseFloat(price.getText());
+					updateOffer(myOffer, newPrice, newQuantity);
 				}
 			});
 			
 			delete.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					//deleteCategory(myOffer);
+					deleteOffer(myOffer);
 				}
 			});
 			
 			columns.add(labelOffer);
+			columns.add(priceLabel);
 			columns.add(price);
+			columns.add(quantityLabel);
 			columns.add(quantity);
 			columns.add(update);
 			columns.add(delete);
@@ -147,5 +153,23 @@ public class ManageOfferView implements ViewInterface{
 		
 		contentPane.add(manageOffer);
 		
+	}
+
+
+	public ManageOfferController getMoc() {
+		return moc;
+	}
+
+
+	public void setMoc(ManageOfferController moc) {
+		this.moc = moc;
+	}
+	
+	public void deleteOffer(Offer myOffer){
+		this.getMoc().deleteOffer(myOffer);
+	}
+	
+	public Offer updateOffer(Offer myOffer, float newPrice, int newQuantity){
+		return this.getMoc().updateOffer(myOffer,newPrice,newQuantity);
 	}
 }

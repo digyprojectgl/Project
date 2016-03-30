@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import app.factory.OfferFactory;
 import app.factory.OfferSetFactory;
+import app.model.Offer;
 import app.model.Product;
 import app.model.dao.ProductListJDBC;
 import app.model.sets.OfferSet;
@@ -58,6 +59,16 @@ public class OfferService {
 
 	public void setOfferSetFactory(OfferSetFactory offerSetFactory) {
 		this.offerSetFactory = offerSetFactory;
+	}
+
+
+	public void deleteOffer(Offer myOffer) {
+		offerFactory.deleteOffer(myOffer);
+	}
+
+
+	public Offer updateOffer(Offer myOffer, float newPrice, int newQuantity) {
+		return offerFactory.updateOffer(myOffer,newPrice,newQuantity);
 	}
 
 }

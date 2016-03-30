@@ -36,4 +36,17 @@ public class OfferJDBC extends Offer{
 		String insertOffer = "INSERT INTO Offer (idUser, labelProduct, quantity, price) VALUES('"+ idUser +"','"+label +"','"+ quantity +"','"+ price +"')";
 		connect.executeRequest(insertOffer);
 	}
+
+	public OfferJDBC(Offer myOffer) throws Exception {
+		JdbcConnection connect = JdbcConnection.getInstance();
+		connect.openConnection();
+		String deleteOffer = "DELETE FROM Offer WHERE idOffer = "+ myOffer.getIdOffer();
+		connect.executeRequest(deleteOffer);
+	}
+
+	public OfferJDBC(Offer myOffer, float newPrice, int newQuantity) throws Exception {
+		JdbcConnection connect = JdbcConnection.getInstance();
+		connect.openConnection();
+		String updateOffer = "UPDATE Offer SET quantity = '"+newQuantity+"', price = '"+newPrice+"' WHERE idOffer = "+ myOffer.getIdOffer();
+		connect.executeRequest(updateOffer);	}
 }
