@@ -29,13 +29,11 @@ public class ProposeCategoryView implements ViewInterface{
 	
 	@Override
 	public String getLayout() {
-		// TODO Auto-generated method stub
 		return "main";
 	}
 
 	@Override
 	public void render(Container contentPane) {
-		// TODO Auto-generated method stub
 		
 		JLabel title = new JLabel("Enter your new activity category");
 		JPanel titlePanel = new JPanel();
@@ -67,7 +65,6 @@ public class ProposeCategoryView implements ViewInterface{
 		back.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				back();
 			}
 		});
@@ -75,7 +72,6 @@ public class ProposeCategoryView implements ViewInterface{
 		submit.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				submit();
 			}
 		});

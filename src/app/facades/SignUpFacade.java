@@ -12,6 +12,6 @@ public class SignUpFacade {
 	}
 	
 	public Seller signUpSeller(String firstName, String lastName, String userID, String email, String phoneNumber, String address, String password, String confirm, String siret, String webaddress) throws Exception{
-		return this.userService.sigUpSeller(firstName, lastName, userID, email, phoneNumber, address, password, confirm, siret, webaddress);
+		return this.userService.signUpSeller(firstName, lastName, userID, email, phoneNumber, address, password, confirm, siret, webaddress);
 	}
 }

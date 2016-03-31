@@ -45,13 +45,11 @@ public class EditProfileView implements ViewInterface{
 	
 	@Override
 	public String getLayout() {
-		// TODO Auto-generated method stub
 		return "main";
 	}
 
 	@Override
 	public void render(Container contentPane) {
-		// TODO Auto-generated method stub
 		if(myUser instanceof Seller){
 			this.renderSeller(contentPane);
 		}
@@ -111,7 +109,6 @@ public class EditProfileView implements ViewInterface{
 		this.getSubmit().addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				updateUser();
 			}
 		});
@@ -182,7 +179,6 @@ public class EditProfileView implements ViewInterface{
 		this.getSubmit().addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				updateUser();
 			}
 		});
