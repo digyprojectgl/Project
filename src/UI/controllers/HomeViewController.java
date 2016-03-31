@@ -14,4 +14,8 @@ public class HomeViewController extends RootController {
 	public void newCategory(){
 		this.goTo("newCategory");
 	}
+	
+	public void entry() {
+		this.goTo("customerEntries");
+	}
 }

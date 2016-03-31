@@ -53,20 +53,29 @@ public class MainLayout extends RootController implements LayoutInterface {
 		}
 		Image scaledImage = myPicture.getScaledInstance(140, 90, Image.SCALE_SMOOTH);
 		JLabel picLabel = new JLabel(new ImageIcon(scaledImage));
-		header.add(picLabel, BorderLayout.NORTH);
+		JPanel logoPanel = new JPanel(new BorderLayout());
+		logoPanel.add(picLabel, BorderLayout.NORTH);
+		
 		
 		//Load the good menu according to the user.
+		JPanel menu = null;
+		String pageTitle = null;
 		if(getUser() instanceof Customer){
-			header.add(this.buildMenuCustomer(), BorderLayout.SOUTH);
+			menu = this.buildMenuCustomer();
+			pageTitle = "Customer Panel";
 		}
 		if(getUser() instanceof Seller){
-			header.add(this.buildMenuSeller(), BorderLayout.SOUTH);
+			menu = this.buildMenuSeller();
+			pageTitle = "Seller Panel";
 		}
 		if(getUser() instanceof Admin){
-			header.add(this.buildMenuAdmin(), BorderLayout.SOUTH);
+			menu = this.buildMenuAdmin();
+			pageTitle = "Admin Panel";
 		}
-		
-		header.add(new JLabel("Hi,  " + getUser().getUserID()), BorderLayout.CENTER);
+		logoPanel.add(new JLabel(pageTitle), BorderLayout.CENTER);
+		header.add(logoPanel, BorderLayout.NORTH);
+		header.add(menu, BorderLayout.SOUTH);
+		header.add(new JLabel("Hi, " + getUser().getUserID()), BorderLayout.CENTER);
 		
 		JPanel buttonsEdit = new JPanel();
 		JButton edit = new JButton("Edit profile");

@@ -59,7 +59,16 @@ public class HomeView implements ViewInterface {
 			}
 		});
 		
-		
+		entry.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("est");
+				// TODO Auto-generated method stub
+				entry();
+			}
+			
+		});
 		lines.add(entry);
 		lines.add(activity);
 		lines.add(activityCategory);
@@ -76,6 +85,10 @@ public class HomeView implements ViewInterface {
 		this.getHomeViewController().newCategory();
 	}
 
+	private void entry() {
+		System.out.println("test");
+		this.getHomeViewController().entry();
+	}
 	public HomeViewController getHomeViewController() {
 		return homeViewController;
 	}

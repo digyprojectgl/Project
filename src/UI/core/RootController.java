@@ -90,6 +90,9 @@ public class RootController {
 			case "mProducts":
 				new PropositionManageController();
 				break;
+			case "customerEntries":
+				new CustomerEntryController();
+				break;
 		}
 	}
 	
