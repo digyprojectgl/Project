@@ -44,10 +44,7 @@ public class ManageOfferView implements ViewInterface{
 	}
 
 
-	/**
-	 * @throws  
-	 * @wbp.parser.entryPoint
-	 */
+	
 	@Override
 	public void render(Container contentPane) {
 		

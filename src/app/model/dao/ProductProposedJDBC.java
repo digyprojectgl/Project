@@ -38,8 +38,8 @@ public class ProductProposedJDBC extends Product {
 
 	/**
 	 * save a new proposition of product - seller side
-	 * @param status 
-	 * @return 
+	 * @param label, description, category 
+	 *  
 	 * @throws Exception 
 	 */
 	public void addProductProposed(String label, String description, ProductCategory category) throws Exception{

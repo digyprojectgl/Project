@@ -11,8 +11,8 @@ import javax.swing.*;
 import UI.controllers.LogInController;
 import UI.core.ViewInterface;
 /**
- * Display 2 text fields (user_id & password).
- * Call the LogIn Controller with user_id & password when the submit button is turned on.
+ * Display 2 text fields (user_id and password).
+ * Call the LogIn Controller with user_id and password when the submit button is turned on.
  * @author francois.beiger
  *
  */
@@ -26,8 +26,7 @@ public class ViewLogIn implements ViewInterface {
 	/**
 	 * Constructor.
 	 * Create all the JFrame components then adds them to the contentPane.
-	 * @param contentPane
-	 * @param logInContainer
+	 * @param logInController
 	 */
 	public ViewLogIn(LogInController logInController){
 		this.logInController = logInController;

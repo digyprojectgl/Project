@@ -21,7 +21,6 @@ public class UserJDBC extends User {
 	 * Find a user by his userID. 
 	 * Throws an Exception if not found.
 	 * @param userID
-	 * @return User
 	 * @throws Exception
 	 */
 	public UserJDBC(String userID) throws Exception{

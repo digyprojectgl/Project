@@ -26,7 +26,6 @@ public class HomeView implements ViewInterface {
 	
 	/**
 	 * HomeView Constructor for the Customer.
-	 * @param contentPane
 	 * @param homeViewController
 	 */
 	public HomeView(HomeViewController homeViewController, User myUser){

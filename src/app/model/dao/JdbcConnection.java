@@ -31,7 +31,7 @@ public class JdbcConnection {
     		// Charge le driver JDBC pour mysql
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             
-            // Creation de la connection ï¿ la base
+            // Creation de la connection a la base
             Connection con = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
             this.streamConnection = con.createStatement();
         } 

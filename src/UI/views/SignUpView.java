@@ -34,8 +34,7 @@ public class SignUpView implements ViewInterface {
 	/**
 	 * Constructor for the Customer.
 	 * Create all the JFrame components then adds them to the contentPane.
-	 * @param contentPane
-	 * @param signUpController
+	 * @param signUpController, type
 	 */
 	public SignUpView(SignUpController signUpController, String type) {
 		this.signUpController = signUpController;
@@ -141,7 +140,6 @@ public class SignUpView implements ViewInterface {
 	/**
 	 * Constructor for the Seller
 	 * @param contentPane
-	 * @param signUpController
 	 */
 	public void renderSeller(Container contentPane) {	
 		JPanel all = new JPanel();

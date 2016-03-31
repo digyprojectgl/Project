@@ -27,7 +27,6 @@ public class ProductListController extends RootController {
      * Get the product list from the database.
      * @param options HashMap containing the options for the list of product
      * @return the productList containing all the products that meet the options
-     * @throws Exception if no product is found or the database has a problem
      */
     public ProductList obtainProductList(HashMap<String,String> options){
         try {
