@@ -31,6 +31,7 @@ public class ProductJDBC extends Product {
         this.setLabel(label);
         this.setDescription(res.getString("description"));
         this.setCategory(new ProductCategory(category));
+        this.setStatus("true");
         connection.close();
     }
     
