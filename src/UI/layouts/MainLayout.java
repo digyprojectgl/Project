@@ -59,20 +59,16 @@ public class MainLayout extends RootController implements LayoutInterface {
 		
 		//Load the good menu according to the user.
 		JPanel menu = null;
-		String pageTitle = null;
 		if(getUser() instanceof Customer){
 			menu = this.buildMenuCustomer();
-			pageTitle = "Customer Panel";
 		}
 		if(getUser() instanceof Seller){
 			menu = this.buildMenuSeller();
-			pageTitle = "Seller Panel";
 		}
 		if(getUser() instanceof Admin){
 			menu = this.buildMenuAdmin();
-			pageTitle = "Admin Panel";
 		}
-		logoPanel.add(new JLabel(pageTitle), BorderLayout.CENTER);
+		
 		header.add(logoPanel, BorderLayout.NORTH);
 		header.add(menu, BorderLayout.SOUTH);
 		header.add(new JLabel("Hi, " + getUser().getUserID()), BorderLayout.CENTER);
@@ -85,7 +81,7 @@ public class MainLayout extends RootController implements LayoutInterface {
 		buttonsEdit.add(edit);
 		buttonsEdit.add(deconnect);
 		header.add(buttonsEdit, BorderLayout.EAST);
-		footer.add(new JLabel("footer"));
+		footer.add(new JLabel("@Copyright Digy"));
 		
 		layout.add(header, BorderLayout.NORTH);
 		layout.add(footer, BorderLayout.SOUTH);
