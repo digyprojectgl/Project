@@ -7,6 +7,7 @@ public class ActivityCategory {
     private String labelCategoryActivity;
     private String shortDescription;
     private String detailedDescription;
+    private String is_validated ;
     private ActivityCategory parentCategory = null;
     
     public ActivityCategory(){
@@ -46,6 +47,14 @@ public class ActivityCategory {
 	}
 	public void setParentCategory(ActivityCategory parentCategory) {
 		this.parentCategory = parentCategory;
+	}
+
+	public String getIs_validated() {
+		return is_validated;
+	}
+
+	public void setIs_validated(String is_validated) {
+		this.is_validated = is_validated;
 	}
     
     

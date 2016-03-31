@@ -31,6 +31,7 @@ public class PropositionManageController extends RootController{
 		PropositionManageFacade facade = new PropositionManageFacade();
 		try {
 			facade.acceptProposition(p);
+			this.render(new PropositionManageView(this));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -44,6 +45,7 @@ public class PropositionManageController extends RootController{
 		PropositionManageFacade facade = new PropositionManageFacade();
 		try {
 			facade.refuseProposition(p);
+			this.render(new PropositionManageView(this));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

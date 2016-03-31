@@ -18,6 +18,7 @@ import app.model.Product;
 import app.model.ProductList;
 
 public class PropositionManageView implements ViewInterface {
+	private JPanel all; 
 
 	PropositionManageController propositionManageController;
 
@@ -27,7 +28,6 @@ public class PropositionManageView implements ViewInterface {
 
 	@Override
 	public String getLayout() {
-		// TODO Auto-generated method stub
 		return "main";
 	}
 
@@ -38,11 +38,10 @@ public class PropositionManageView implements ViewInterface {
 		try {
 			list = this.propositionManageController.ListProposition();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		JPanel all = new JPanel();
+		
+		all = new JPanel();
 
 		/**
 		 * if there are propositions to handle, show the list
@@ -66,7 +65,6 @@ public class PropositionManageView implements ViewInterface {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						acceptProduct(p);
-
 					}});
 				acceptPanel.add(acceptCell);
 
@@ -77,7 +75,7 @@ public class PropositionManageView implements ViewInterface {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						refuseProduct(p);
-
+						all.updateUI();
 					}});
 				refusePanel.add(refuseCell);
 			}
@@ -92,6 +90,7 @@ public class PropositionManageView implements ViewInterface {
 			JLabel noproposition = new JLabel("no Proposition");
 			contentPane.add(noproposition);
 		}
+		
 	}
 
 	public JPanel creatCell(Component comp) {
