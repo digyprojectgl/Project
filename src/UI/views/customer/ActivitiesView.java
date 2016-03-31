@@ -48,7 +48,7 @@ public class ActivitiesView implements ViewInterface {
 		JPanel container = new JPanel();
 		for(Activity activity: this.activities) {
 			JPanel row = new JPanel(new FlowLayout());
-			JButton subscribeButton = new JButton("X");
+			JButton subscribeButton = new JButton("S'inscrire");
 			subscribeButton.addActionListener(new Subscribe(this.controller, activity));
 			row.add(new JLabel(activity.getName()));
 			row.add(new JLabel(activity.getDescription()));
