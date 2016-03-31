@@ -28,6 +28,7 @@ public class ActivityCategoryJDBC extends ActivityCategory{
 				this.setLabelCategoryActivity(res.getString("labelAC"));
 				this.setShortDescription(res.getString("shortDescription"));
 				this.setDetailedDescription(res.getString("detailDescription"));
+				this.setIs_validated(res.getString("is_validate"));
 			}
 		}
 		catch(SQLException e){
