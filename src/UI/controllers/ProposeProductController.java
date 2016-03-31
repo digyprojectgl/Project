@@ -4,6 +4,7 @@ package UI.controllers;
  */
 
 import UI.core.RootController;
+import UI.views.SignUpView;
 import UI.views.seller.ProposeProductView;
 import app.facades.ProposeProductFacade;
 import app.model.*;
@@ -25,15 +26,18 @@ public class ProposeProductController extends RootController {
 		
 	}
 	
-	public Object proposeNewProduct(String label, String description, ProductCategory category){
+	public void proposeNewProduct(String label, String description, ProductCategory category){
 		
 		try{
 			Product newProductProposed = facade.proposeproduct(label,description, category);
-			return newProductProposed;
+			ProposeProductView myView = new ProposeProductView(this,null);
+			this.render(myView);
+			myView.displaySuccess(newProductProposed);
 		}
 		catch(Exception e){
-			return e.getMessage();
-			// TODO display function
+			ProposeProductView myView = new ProposeProductView(this,null);
+			this.render(myView);
+			myView.displayError(e.getMessage());
 		}
 	}
 }

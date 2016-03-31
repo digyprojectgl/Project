@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 
 import UI.controllers.ProposeProductController;
 import UI.core.ViewInterface;
+import app.model.Product;
 import app.model.ProductCategory;
 import app.model.ProductCategoryList;
 
@@ -35,7 +36,6 @@ public class ProposeProductView implements ViewInterface {
 
 	@Override
 	public String getLayout() {
-		// TODO Auto-generated method stub
 		return "main";
 	}
 
@@ -63,9 +63,6 @@ public class ProposeProductView implements ViewInterface {
 			this.setMyCombo(new JComboBox(this.categorySet.productCategories.toArray()));
 		}
 		
-	
-		
-		
 		gridFields.add(this.getName());
 		gridFields.add(this.getMyCombo());
 		gridFields.add(this.getDescr());
@@ -79,7 +76,6 @@ public class ProposeProductView implements ViewInterface {
 		back.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				back();
 			}
 		});
@@ -87,7 +83,6 @@ public class ProposeProductView implements ViewInterface {
 		submit.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				newProduct();
 			}
 		});
@@ -100,13 +95,6 @@ public class ProposeProductView implements ViewInterface {
 		all.add(buttons, BorderLayout.SOUTH);
 		
 		contentPane.add(all);
-		
-		/**
-		 * //TODO
-		 * Ajouter les action Listener
-		 * Ajouter les fonctions d'appel au controller
-		 * Ajouter les fonctions display
-		 */
 	}	
 	
 	private void back(){
@@ -114,7 +102,10 @@ public class ProposeProductView implements ViewInterface {
 	}
 	
 	private void newProduct(){
-		
+		String label = this.getName().getText();
+		String description = this.getDescr().getText();
+		ProductCategory category = (ProductCategory) this.myCombo.getSelectedItem();
+		this.getProposeProductController().proposeNewProduct(label, description, category);
 	}
 	
 	/**
@@ -171,6 +162,15 @@ public class ProposeProductView implements ViewInterface {
 
 	public void setDescr(JTextArea descr) {
 		this.descr = descr;
+	}
+
+	/**
+	 * if the proposition is done successfully, show a message
+	 * @param p
+	 */
+	public void displaySuccess(Product p) {
+		String message = "Your proposition "+p.getLabel()+" is sent to Admin";
+		JOptionPane.showMessageDialog(null,message);
 	}
 	
 	
