@@ -102,6 +102,7 @@ public class MainLayout extends RootController implements LayoutInterface {
 				new MenuItem("Home", "home"),
 				new MenuItem("Products", "productList"),
 				new MenuItem("My account", "customerEntries"),
+				new MenuItem("My activities", "activities"),
 				new MenuItem("Notifications", "notifications"),
 				new MenuItem("Cart", "cart")
 		};	

@@ -93,6 +93,9 @@ public class RootController {
 			case "customerEntries":
 				new CustomerEntryController();
 				break;
+			case "activities":
+				new ActivitiesController();
+				break;
 		}
 	}
 	

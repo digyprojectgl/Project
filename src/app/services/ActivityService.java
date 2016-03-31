@@ -1,9 +1,14 @@
 package app.services;
 
+import java.util.ArrayList;
+
 import app.factory.ActivityCategoryJDBCFactory;
 import app.factory.ActivityCategorySetFactory;
+import app.model.Activity;
 import app.model.ActivityCategory;
+import app.model.Customer;
 import app.model.dao.ActivityCategoryJDBC;
+import app.model.dao.ActivityJDBC;
 import app.model.sets.ActivityCategorySet;
 
 public class ActivityService {
@@ -120,6 +125,24 @@ public class ActivityService {
 	public void setSetFactory(ActivityCategorySetFactory setFactory) {
 		this.setFactory = setFactory;
 	}
+
+
 	
 	
+	/***
+	 * Activity Part:
+	 */
+	
+	public static void subscribeToActivity(Activity activity, Customer customer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static ArrayList<Activity> getCustomerActivity(Customer customer) throws Exception {
+		return ActivityJDBC.getCustomerActivities(customer);
+	}
+
+	public static ArrayList<Activity> getAllActivities() throws Exception {
+		return ActivityJDBC.getAllActivities();
+	}
 }
