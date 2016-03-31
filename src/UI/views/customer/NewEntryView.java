@@ -40,7 +40,7 @@ public class NewEntryView implements ViewInterface {
 		JPanel container = new JPanel(new BorderLayout());
 		JPanel form = new JPanel(new FlowLayout());
 		JLabel label = new JLabel("Nouvel entrée: ");		//Label "User ID"
-		JTextField input = new JTextField(10);	//Text Field dans lequel le user va entrer son id
+		final JTextField input = new JTextField(10);	//Text Field dans lequel le user va entrer son id
 		JButton submit = new JButton("Insérer");
 		form.add(label);
 		form.add(input);
