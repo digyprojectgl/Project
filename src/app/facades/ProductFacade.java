@@ -1,6 +1,8 @@
 package app.facades;
 
 import app.model.Product;
+import app.model.sets.OfferSet;
+import app.services.OfferService;
 import app.services.ProductService;
 
 /**
@@ -10,9 +12,11 @@ import app.services.ProductService;
  */
 public class ProductFacade {
     private ProductService productService;
+    private OfferService offerService;
 
     public ProductFacade() {
         this.productService = new ProductService();
+        this.offerService = new OfferService();
     }
 
     /**
@@ -24,5 +28,13 @@ public class ProductFacade {
      */
     public Product getProduct(String label, String category) throws Exception {
         return productService.getProduct(label, category);
+    }
+
+    public OfferSet getOffers(String label) throws Exception {
+        return offerService.getOffersWithLabelProduct(label);
+    }
+
+    public void createOffer(String id, Product product, int qty, float price) throws Exception {
+        offerService.createOffer(id, product, price, qty);
     }
 }

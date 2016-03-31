@@ -2,7 +2,6 @@ package UI.controllers;
 
 import UI.core.RootController;
 import UI.views.ProductView;
-import app.facades.OfferListFacade;
 import app.facades.ProductFacade;
 import app.model.Offer;
 import app.model.Product;
@@ -18,12 +17,10 @@ import java.util.ArrayList;
  */
 public class ProductController extends RootController {
     private ProductFacade productFacade;
-    private OfferListFacade offerFacade;
     private ProductView view;
 
     public ProductController(String[] params) {
         this.productFacade = new ProductFacade();
-        this.offerFacade = new OfferListFacade();
         Product product = null;
         this.view = new ProductView(this);
         try {
@@ -41,8 +38,21 @@ public class ProductController extends RootController {
      * @param product the product concerned by the offers
      * @return the ArrayList containing all the offers
      */
-    // TODO: 28/03/2016 complete the method 
-    public ArrayList<Offer> getOffers(Product product) {
-        return null;
+    public Object getOffers(Product product) {
+        Object offers;
+        try {
+            offers = productFacade.getOffers(product.getLabel()).getOffers();
+        } catch (Exception e) {
+            offers = "No offer found";
+        }
+        return offers;
+    }
+
+    public void createOffer(Product product, int quantity, float price) {
+        try {
+            productFacade.createOffer(ProductController.getUser().getUserID(), product, quantity, price);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error while creating the offer", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
